@@ -41,8 +41,8 @@ jobs:
       - name: Build Docker Image
         working-directory: ${{ env.DEPLOY_PATH }}
         run: |
-          # Building with quiet flag
-          docker build -q -t ${{ env.IMAGE_NAME }}:${{ github.run_number }} -t ${{ env.IMAGE_NAME }}:latest .
+          # Building with --no-cache to ensure a fresh image every time
+          docker build --no-cache -q -t ${{ env.IMAGE_NAME }}:${{ github.run_number }} -t ${{ env.IMAGE_NAME }}:latest .
 
       - name: Stop and Remove Old Container
         working-directory: ${{ env.DEPLOY_PATH }}
