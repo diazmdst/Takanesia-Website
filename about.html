@@ -2,8 +2,11 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
+  <!-- [FAVICON] Browser tab icon � change href to your logo file path -->
+  <link rel="icon" type="image/png" href="img/logo2.png" />
+  <link rel="apple-touch-icon" href="img/logo2.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="高嶺のなでしこ — グループについて" />
+  <meta name="description" content="Takanesia Website" />
   <title>ABOUT | タカネシア</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,8 +20,8 @@
        ============================================================ -->
   <header class="site-header site-header--scrolled" id="siteHeader" role="banner">
     <div class="header-inner">
-      <a href="index.html" class="logo" aria-label="高嶺のなでしこ トップへ">
-        <img src="img/logo.png" alt="高嶺のなでしこ TAKANE NO NADESHIKO" class="logo-img" />
+      <a href="index.html" class="logo" aria-label="TAKANESIA WEBSITE">
+        <img src="img/logo.png" alt="TAKANESIA LOGO" class="logo-img" />
       </a>
       <button class="hamburger" id="hamburgerBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mainNav">
         <span></span><span></span><span></span>
@@ -27,7 +30,7 @@
         <ul class="nav-list" role="list">
           <li><a href="index.html" class="nav-link">HOME</a></li>
           <li><a href="about.html" class="nav-link nav-link--active">ABOUT</a></li>
-          <li><a href="news.html" class="nav-link">NEWS</a></li>
+          <li><a href="media.html" class="nav-link">MEDIA</a></li>
           <li><a href="member.html" class="nav-link">MEMBER</a></li>
           <li><a href="discography.html" class="nav-link">DISCOGRAPHY</a></li>
           <li><a href="goods.html" class="nav-link">GOODS</a></li>
@@ -60,7 +63,7 @@
 
         <!-- [ABOUT LOGO] Large logo centered above the text -->
         <div class="about-logo-wrap">
-          <img src="img/logo.png" alt="高嶺のなでしこ" class="about-logo-img" />
+          <img src="img/logo.png" alt="TAKANESIA LOGO" class="about-logo-img" />
         </div>
 
         <!-- [ABOUT BODY] Group description — each element has data-reveal for staggered scroll animation -->
@@ -94,19 +97,13 @@
             di seluruh Indonesia, dengan terfokus pada area Jabodetabek dan sekitarnya
           </p>
 
-          <!-- [ABOUT VIDEO] Indonesia animation -->
+          <!-- [ABOUT IMAGE] Indonesia -->
           <div class="about-video-wrap" data-reveal data-reveal-delay="4">
-            <video
+            <img
               class="about-video"
-              src="img/indonesia.mp4"
-              autoplay
-              loop
-              muted
-              playsinline
-              aria-label="Takanesia Indonesia animation"
-            >
-              お使いのブラウザは動画再生に対応していません。
-            </video>
+              src="img/indonesia.png"
+              alt="Takanesia Indonesia"
+            />
           </div>
 
           <p data-reveal data-reveal-delay="5">
@@ -114,22 +111,6 @@
             サポートし、ジャボデタベック地域とその周辺エリアを中心に、インドネシア全
             土のファンを一つにすることに尽力しています
           </p>
-
-          <!-- [ABOUT STATS] Key facts in a row -->
-          <div class="about-stats" data-reveal data-reveal-delay="6">
-            <div class="about-stat">
-              <span class="about-stat-num">9</span>
-              <span class="about-stat-label">MEMBERS</span>
-            </div>
-            <div class="about-stat">
-              <span class="about-stat-num">4</span>
-              <span class="about-stat-label">YEARS</span>
-            </div>
-            <div class="about-stat">
-              <span class="about-stat-num">6</span>
-              <span class="about-stat-label">RELEASES</span>
-            </div>
-          </div>
 
           <!-- [ABOUT CTA] Link to member page -->
           <a href="member.html" class="btn btn--primary" data-reveal data-reveal-delay="7">メンバーを見る</a>
@@ -146,16 +127,8 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-logo">
-        <img src="img/logo.png" alt="高嶺のなでしこ TAKANE NO NADESHIKO" class="footer-logo-img" />
+        <img src="img/logo.png" alt="TAKANESIA LOGO" class="footer-logo-img" />
       </div>
-      <nav class="footer-nav" aria-label="フッターナビゲーション">
-        <ul role="list">
-          <li><a href="#">プロフィール</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">特定商取引法に基づく表記</a></li>
-        </ul>
-      </nav>
       <div class="social-links" aria-label="SNSリンク">
         <a href="https://x.com/TakanesiaID?s=20" class="social-link" aria-label="Twitter / X" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>

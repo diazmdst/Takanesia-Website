@@ -9,7 +9,7 @@
  *   3. HEADER SCROLL BEHAVIOR
  *   4. HAMBURGER MENU
  *   5. HERO PETALS
- *   6. NEWS RENDERING
+ *   6. MEDIA RENDERING
  *   7. MEMBER RENDERING
  *   8. DISCOGRAPHY RENDERING
  *   9. BACK TO TOP
@@ -25,183 +25,455 @@
    ============================================================ */
 
 /**
- * newsData — 15 news items.
- * Each item: { id, date, category, title }
- * Categories: 'live' | 'event' | 'goods' | 'info'
+ * mediaData — Media posts for the MEDIA page.
+ * Each item: {
+ *   id       — unique number
+ *   date     — 'YYYY.MM.DD' format — used for sorting (newest first)
+ *   category — 'news' | 'funfacts' | 'memories'
+ *   title    — post title (Japanese or English)
+ *   image    — path to cover image, e.g. 'img/media/post1.jpg'
+ *              Set to null to show gradient placeholder
+ *   excerpt  — short description (1-2 sentences)
+ *   color    — accent color for the card gradient placeholder
+ * }
+ *
+ * HOW TO ADD A NEW POST:
+ *   1. Add a new object to this array
+ *   2. Set date in 'YYYY.MM.DD' format — newer dates appear first
+ *   3. Set category to 'news', 'funfacts', or 'memories'
+ *   4. Add a cover image to img/media/ and set the image field
+ *   5. The card will automatically appear in the correct sorted position
  */
-const newsData = [
+const mediaData = [
   {
     id: 1,
     date: '2024.07.15',
-    category: 'live',
-    title: '高嶺のなでしこ 4周年 Special LIVE / 4th ファンミーティング 開催決定！',
+    category: 'news',
+    title: '高嶺のなでしこ 4周年 Special LIVE 開催決定！',
+    image: null,
+    excerpt: '4周年を記念したスペシャルライブの開催が決定しました。',
+    color: '#4883E0',
   },
   {
     id: 2,
     date: '2024.07.10',
-    category: 'event',
-    title: 'たかねこフェスVol.6 〜サマーセッション〜 開催決定！',
+    category: 'funfacts',
+    title: 'メンバーの好きな食べ物は？',
+    image: null,
+    excerpt: '9人のメンバーそれぞれのお気に入りフードを大公開！',
+    color: '#F87590',
   },
   {
     id: 3,
     date: '2024.07.05',
-    category: 'live',
-    title: 'Live Tour -Bouquet of 9 Flowers– スタンプラリー企画 7会場・13公演特典の申請につきまして',
+    category: 'news',
+    title: 'Live Tour -Bouquet of 9 Flowers– スタンプラリー企画',
+    image: null,
+    excerpt: '7会場・13公演特典の申請につきまして詳細をお知らせします。',
+    color: '#4883E0',
   },
   {
     id: 4,
     date: '2024.06.28',
-    category: 'goods',
-    title: 'たかねこブーケラッピングプロジェクトの特典に関するお知らせ',
+    category: 'memories',
+    title: 'たかねこフェス Vol.6 〜サマーセッション〜 思い出フォト',
+    image: null,
+    excerpt: 'フェスの楽しかった瞬間をメンバーが振り返ります。',
+    color: '#2d5fb8',
   },
   {
     id: 5,
     date: '2024.06.20',
-    category: 'info',
-    title: '座席割当て間違いのお詫び',
+    category: 'funfacts',
+    title: 'メンバーの意外な特技を大公開！',
+    image: null,
+    excerpt: '知られざるメンバーの隠れた才能をご紹介します。',
+    color: '#F87590',
   },
   {
     id: 6,
     date: '2024.06.15',
-    category: 'event',
-    title: '個別2ショット撮影会・個別TikTok撮影会・個別サイン会 キャラアニ・チャンス 2次受付のご案内',
+    category: 'news',
+    title: '個別2ショット撮影会 2次受付のご案内',
+    image: null,
+    excerpt: '5月16日（土）東京流通センターでの2次受付情報です。',
+    color: '#4883E0',
   },
   {
     id: 7,
     date: '2024.06.10',
-    category: 'event',
-    title: 'メンバーとオンライン個別お話し会のお知らせ',
+    category: 'memories',
+    title: 'ツアー初日の舞台裏をチラ見せ',
+    image: null,
+    excerpt: 'ライブツアー初日、メンバーの本番前の様子をお届けします。',
+    color: '#2d5fb8',
   },
   {
     id: 8,
     date: '2024.06.05',
-    category: 'live',
-    title: '12公演来場者限定 楽屋招待詳細につきまして',
+    category: 'funfacts',
+    title: 'メンバーの朝のルーティンは？',
+    image: null,
+    excerpt: '9人それぞれの朝の過ごし方を大調査しました！',
+    color: '#F87590',
   },
   {
     id: 9,
     date: '2024.05.30',
-    category: 'goods',
+    category: 'news',
     title: 'たかねこブーケラッピングプロジェクト FINAL',
+    image: null,
+    excerpt: 'ツアーFINALに向けた特別プロジェクトの詳細です。',
+    color: '#4883E0',
   },
   {
     id: 10,
     date: '2024.05.22',
-    category: 'event',
-    title: '個別2ショット撮影会 1次受付のご案内',
+    category: 'memories',
+    title: '4周年記念 メンバーからのメッセージ',
+    image: null,
+    excerpt: '4年間の感謝を込めて、メンバー全員からのメッセージをお届けします。',
+    color: '#2d5fb8',
   },
-  // --- 5 additional plausible news items ---
   {
     id: 11,
     date: '2024.05.15',
-    category: 'live',
-    title: 'Live Tour -Bouquet of 9 Flowers– 追加公演決定のお知らせ',
+    category: 'news',
+    title: 'Live Tour 追加公演決定のお知らせ',
+    image: null,
+    excerpt: 'ファンの皆様のご要望にお応えして追加公演が決定しました。',
+    color: '#4883E0',
   },
   {
     id: 12,
     date: '2024.05.08',
-    category: 'goods',
-    title: '4周年記念フォトブック 予約受付開始のお知らせ',
-  },
-  {
-    id: 13,
-    date: '2024.04.28',
-    category: 'info',
-    title: '公式ファンクラブ「たかねこFC」会員証デザイン変更のお知らせ',
-  },
-  {
-    id: 14,
-    date: '2024.04.20',
-    category: 'event',
-    title: '春のリリース記念 個別握手会・チェキ会 開催決定！',
-  },
-  {
-    id: 15,
-    date: '2024.04.10',
-    category: 'live',
-    title: '高嶺のなでしこ 4周年記念ライブ チケット一般発売のご案内',
+    category: 'funfacts',
+    title: 'メンバーが選ぶ！おすすめ曲ランキング',
+    image: null,
+    excerpt: '9人のメンバーがそれぞれのおすすめ楽曲を選びました。',
+    color: '#F87590',
   },
 ];
 
 /**
  * membersData — 9 members.
- * Each item: { id, nameJp, nameEn, color, position, photo, instagram, twitter, tiktok }
  *
- * HOW TO ADD A PHOTO:
- *   1. Put the image file in the img/members/ folder
- *      (e.g. img/members/shiraishi-miku.jpg)
- *   2. Set the photo field to that path, e.g.:
- *      photo: 'img/members/shiraishi-miku.jpg'
- *   3. Leave photo: null to keep the gradient placeholder.
+ * ============================================================
+ * HOW TO EDIT MEMBER DATA:
+ * ============================================================
+ * CARD FIELDS:
+ *   id        — unique number, do not change
+ *   nameJp    — Japanese name displayed on card + modal header
+ *   nameEn    — Romanized name in ALL CAPS
+ *   color     — member accent color (hex) — name text color
+ *   photo     — path to photo: 'img/members/filename.jpg'
+ *               Set to null to show gradient placeholder
+ *   instagram — Instagram profile URL
+ *   twitter   — X (Twitter) profile URL
+ *   tiktok    — TikTok profile URL
+ *
+ * MODAL BIODATA FIELDS (shown in popup when card is clicked):
+ *   bloodType — 血液型  e.g. 'B型'
+ *   zodiac    — 星座    e.g. 'やぎ座'
+ *   height    — 身長    e.g. '153cm'
+ *   birthday  — 生年月日 e.g. '2003年12月25日'
+ *   hometown  — 出身地  e.g. '埼玉県'
+ *   hobbies   — 趣味    e.g. 'ホラー系作品鑑賞・ヘアアレンジ'
+ *   skills    — 特技    e.g. '色々な怪獣の顔マネ・変な動き'
+ *   message   — ひとこと (personal message to fans)
+ * ============================================================
  */
 const membersData = [
   {
-    id: 1, nameJp: '城月 菜央',   nameEn: 'KIZUKI NAO',
+    id: 1, nameJp: '城月 菜央', nameEn: 'KIZUKI NAO',
     color: '#f3d104', position: 'センター',
     photo: 'img/members/nao.jpg',
-    instagram: 'https://www.instagram.com/nao_kizuki_', twitter: 'https://x.com/nao_kizuki', tiktok: 'https://www.tiktok.com/@nao_kizuki',
+    instagram: 'https://www.instagram.com/nao_kizuki_',
+    twitter:   'https://x.com/nao_kizuki',
+    tiktok:    'https://www.tiktok.com/@nao_kizuki',
+    // --- MODAL BIODATA (edit these fields) ---
+    bloodType: 'B',
+    height:    '153cm',
+    birthday:  'December 25, 2003',
+    hometown:  'Saitama Prefecture',
   },
   {
     id: 2, nameJp: '涼海 すう', nameEn: 'SUZUMI SU',
     color: '#209aca', position: 'リーダー',
     photo: 'img/members/suu.jpg',
-    instagram: 'https://www.instagram.com/su_suzumi_/', twitter: 'https://x.com/su_suzumi_', tiktok: 'https://www.tiktok.com/@suu._.suu',
+    instagram: 'https://www.instagram.com/su_suzumi_/',
+    twitter:   'https://x.com/su_suzumi_',
+    tiktok:    'https://www.tiktok.com/@suu._.suu',
+    bloodType: 'AB',
+    height:    '148cm',
+    birthday:  'August 22, 2007',
+    hometown:  'Osaka Prefecture',
   },
   {
-    id: 3, nameJp: '橋本 桃呼',   nameEn: 'HASHIMOTO MOMOKO',
+    id: 3, nameJp: '橋本 桃呼', nameEn: 'HASHIMOTO MOMOKO',
     color: '#c72e85', position: 'メンバー',
     photo: 'img/members/momoko.jpg',
-    instagram: 'https://www.instagram.com/momoko__3628/', twitter: 'https://x.com/MomokoHashimoto', tiktok: 'https://www.tiktok.com/@momoko_hashimoto',
+    instagram: 'https://www.instagram.com/momoko__3628/',
+    twitter:   'https://x.com/MomokoHashimoto',
+    tiktok:    'https://www.tiktok.com/@momoko_hashimoto',
+    bloodType: 'AB',
+    height:    '160cm',
+    birthday:  'June 28, 2003',
+    hometown:  'Yamaguchi Prefecture',
   },
   {
     id: 4, nameJp: '葉月 紗蘭', nameEn: 'HAZUKI SAARA',
     color: '#ffffff', position: 'メンバー',
     photo: 'img/members/saara.jpg',
-    instagram: 'https://www.instagram.com/saara_hazuki/', twitter: 'https://x.com/saara_hazuki', tiktok: 'https://www.tiktok.com/@saara_hazuki',
+    instagram: 'https://www.instagram.com/saara_hazuki/',
+    twitter:   'https://x.com/saara_hazuki',
+    tiktok:    'https://www.tiktok.com/@saara_hazuki',
+    bloodType: '-',
+    height:    '160cm',
+    birthday:  'March 3, 2007',
+    hometown:  'Mie Prefecture',
   },
   {
-    id: 5, nameJp: '東山 恵里沙',   nameEn: 'HIGASHIYAMA ERISA',
+    id: 5, nameJp: '東山 恵里沙', nameEn: 'HIGASHIYAMA ERISA',
     color: '#f98c27', position: 'メンバー',
     photo: 'img/members/erisa.jpg',
-    instagram: 'https://www.instagram.com/erisa_higashiyama/', twitter: 'https://x.com/erisahigasiyama', tiktok: 'https://www.tiktok.com/@erisahigasiyama',
+    instagram: 'https://www.instagram.com/erisa_higashiyama/',
+    twitter:   'https://x.com/erisahigasiyama',
+    tiktok:    'https://www.tiktok.com/@erisahigasiyama',
+    bloodType: 'AB',
+    height:    '157cm',
+    birthday:  'May 28, 2006',
+    hometown:  'Gifu Prefecture',
   },
   {
     id: 6, nameJp: '日向端 ひな', nameEn: 'HINAHATA HINA',
     color: '#8017bc', position: 'メンバー',
     photo: 'img/members/hinatama.jpg',
-    instagram: 'https://www.instagram.com/hinatama18', twitter: 'https://x.com/hina_hinahata', tiktok: 'https://www.tiktok.com/@hinatam_18',
+    instagram: 'https://www.instagram.com/hinatama18',
+    twitter:   'https://x.com/hina_hinahata',
+    tiktok:    'https://www.tiktok.com/@hinatam_18',
+    bloodType: 'O',
+    height:    '158cm',
+    birthday:  'October 30, 2002',
+    hometown:  'Kanagawa Prefecture',
   },
   {
-    id: 7, nameJp: '星谷 美来',   nameEn: 'HOSHITANI MIKURU',
+    id: 7, nameJp: '星谷 美来', nameEn: 'HOSHITANI MIKURU',
     color: '#d21919', position: 'メンバー',
     photo: 'img/members/mikuru.jpg',
-    instagram: 'https://www.instagram.com/mikuru_1106/', twitter: 'https://x.com/mikuru_hositani', tiktok: 'https://www.instagram.com/mikuru_1106/',
+    instagram: 'https://www.instagram.com/mikuru_1106/',
+    twitter:   'https://x.com/mikuru_hositani',
+    tiktok:    'https://www.tiktok.com/@mikuru_1106',
+    bloodType: 'O',
+    height:    '161cm',
+    birthday:  'November 6, 2003',
+    hometown:  'Tokyo',
   },
   {
-    id: 8, nameJp: '松本ももな',   nameEn: 'MATSUMOTO MOMONA',
+    id: 8, nameJp: '松本ももな', nameEn: 'MATSUMOTO MOMONA',
     color: '#e87dd4', position: 'メンバー',
     photo: 'img/members/momona.jpg',
-    instagram: 'https://www.instagram.com/momona.1012/', twitter: 'https://x.com/momonamatsumoto', tiktok: 'https://www.tiktok.com/@momona.1012',
+    instagram: 'https://www.instagram.com/momona.1012/',
+    twitter:   'https://x.com/momonamatsumoto',
+    tiktok:    'https://www.tiktok.com/@momona.1012',
+    bloodType: 'B',
+    height:    '159cm',
+    birthday:  'October 12, 2002',
+    hometown:  'Kanagawa Prefecture',
   },
   {
-    id: 9, nameJp: '籾山 ひめり',   nameEn: 'MOMIYAMA HIMERI',
+    id: 9, nameJp: '籾山 ひめり', nameEn: 'MOMIYAMA HIMERI',
     color: '#1864c1', position: 'メンバー',
     photo: 'img/members/himeri.jpg',
-    instagram: 'https://www.instagram.com/momichan_hime/', twitter: 'https://x.com/himeri_momiyama', tiktok: 'https://www.tiktok.com/@momichan_hime',
+    instagram: 'https://www.instagram.com/momichan_hime/',
+    twitter:   'https://x.com/himeri_momiyama',
+    tiktok:    'https://www.tiktok.com/@momichan_hime',
+    bloodType: 'B',
+    height:    '158cm',
+    birthday:  'March 22, 2004',
+    hometown:  'Tochigi Prefecture',
   },
 ];
 
 /**
- * discoData — 6 releases.
- * Each item: { title, type, year, color }
+ * discoData — Discography releases.
+ *
+ * ============================================================
+ * HOW TO EDIT:
+ *   releaseDate — 'YYYY.MM.DD' format — used for sorting
+ *   cover       — path to cover image, e.g. 'img/disco/bouquet.jpg'
+ *                 Set to null to show gradient placeholder
+ * ============================================================
  */
 const discoData = [
-  { title: 'Bouquet of 9 Flowers',  type: 'Album',  year: '2024', color: '#4883E0' },
-  { title: 'なでしこ色の空',          type: 'Single', year: '2023', color: '#F87590' },
-  { title: 'ハナコトバ',              type: 'Single', year: '2023', color: '#2d5fb8' },
-  { title: '高嶺の花よ',              type: 'Single', year: '2022', color: '#F87590' },
-  { title: 'First Bloom',            type: 'Album',  year: '2022', color: '#4883E0' },
-  { title: 'たかねこ☆スターター',     type: 'Single', year: '2021', color: '#2d5fb8' },
+  {
+    title:       'アンチファン - Anti-fan',
+    type:        'Single',
+    releaseDate: '2022.10.26',
+    color:       '#4883E0',
+    cover:       'img/disco/antifan.jpg',
+  },
+  {
+    title:       '女の子は強い - Onnanoko wa Tsuyoi',
+    type:        'Digital Single',
+    releaseDate: '2022.12.26',
+    color:       '#F87590',
+    cover:       'img/disco/onnanoko.jpg',
+  },
+  {
+    title:       '可愛くてごめん - Kawaikute gomen',
+    type:        'Digital Single',
+    releaseDate: '2023.01.27',
+    color:       '#2d5fb8',
+    cover:       'img/disco/kawaikute.png',
+  },
+  {
+    title:       '乙女どもよ。 - Otomedomo yo',
+    type:        'Digital Single',
+    releaseDate: '2023.02.04',
+    color:       '#F87590',
+    cover:       'img/disco/otome.jpg',
+  },
+  {
+    title:       '男の子の目的は何？ - Otokonoko no Mokuteki wa Nani?',
+    type:        'Digital Single',
+    releaseDate: '2023.03.20',
+    color:       '#4883E0',
+    cover:       'img/disco/otokonoko.jpg',
+  },
+  {
+    title:       '僕は君になれない - Boku wa Kimi ni Narenai',
+    type:        'Digital Single',
+    releaseDate: '2023.04.04',
+    color:       '#2d5fb8',
+    cover:       'img/disco/bokukimi.jpg',
+  },
+  {
+    title:       '革命の女王 - Kakumei no Jyoou',
+    type:        'Digital Single',
+    releaseDate: '2023.04.04',
+    color:       '#2d5fb8',
+    cover:       'img/disco/kakumei.jpg',
+  },
+  {
+    title:       'ヒロインは平均以下。 - Heroin wa Heikin ika.',
+    type:        'Digital Single',
+    releaseDate: '2023.06.21',
+    color:       '#2d5fb8',
+    cover:       'img/disco/.jpg',
+  },
+  {
+    title:       '決戦スピリット - Kessen Spirit',
+    type:        'Digital Single',
+    releaseDate: '2023.06.22',
+    color:       '#2d5fb8',
+    cover:       'img/disco/kessen.jpg',
+  },
+  {
+    title:       '初恋のひと。 - Hatsukoi no Hito.',
+    type:        'Digital Single',
+    releaseDate: '2023.07.04',
+    color:       '#2d5fb8',
+    cover:       'img/disco/hatsuhito.jpg',
+  },
+  {
+    title:       '月曜日の憂鬱 - Getsuyoubi no Yuutsu',
+    type:        'Digital Single',
+    releaseDate: '2023.07.21',
+    color:       '#2d5fb8',
+    cover:       'img/disco/getsuyobi.jpg',
+  },
+  {
+    title:       'すきっちゅーの！ - Sukicchuuno!',
+    type:        'Digital Single',
+    releaseDate: '2023.09.01',
+    color:       '#2d5fb8',
+    cover:       'img/disco/sukichuno.png',
+  },
+  {
+    title:       '17歳 - 17sai',
+    type:        'Digital Single',
+    releaseDate: '2023.09.03',
+    color:       '#2d5fb8',
+    cover:       'img/disco/17sai.png',
+  },
+  {
+    title:       'いつか私がママになったら - Itsuka Watashi ga Mama ni Nattara',
+    type:        'Digital Single',
+    releaseDate: '2023.10.16',
+    color:       '#2d5fb8',
+    cover:       'img/disco/itsumama.jpg',
+  },
+  {
+    title:       '可愛いって言われたい - Kawaiitte Iwaretai',
+    type:        'Digital Single',
+    releaseDate: '2024.02.03',
+    color:       '#2d5fb8',
+    cover:       'img/disco/-.jpg',
+  },
+  {
+    title:       '私は怪物 - Watashi wa Kaibutsu',
+    type:        'Digital Single',
+    releaseDate: '2024.02.06',
+    color:       '#2d5fb8',
+    cover:       'img/disco/-.jpg',
+  },
+  {
+    title:       '推しの魔法 - Oshi no Mahou',
+    type:        'Digital Single',
+    releaseDate: '2024.03.25',
+    color:       '#2d5fb8',
+    cover:       'img/disco/-.jpg',
+  },
+  {
+    title:       'メイド☆至上主義 - Maid Shijyoshugi',
+    type:        'Digital Single',
+    releaseDate: '2024.05.13',
+    color:       '#2d5fb8',
+    cover:       'img/disco/-.jpg',
+  },
+  {
+    title:       '私より好きでいて - Watashi Yori Sukide Ite',
+    type:        'Digital Single',
+    releaseDate: '2024.06.05',
+    color:       '#2d5fb8',
+    cover:       'img/disco/-.jpg',
+  },
+  {
+    title:       '小悪魔だってかまわない! - Koakuma Datte Kamawanai!',
+    type:        'Digital Single',
+    releaseDate: '2025.02.09',
+    color:       '#2d5fb8',
+    cover:       'img/disco/-.jpg',
+  },
+  {
+    title:       'Cute for Life',
+    type:        'Digital Single',
+    releaseDate: '2025.04.07',
+    color:       '#2d5fb8',
+    cover:       'img/disco/cfl.jpg',
+  },
+  {
+    title:       'メランコリックハニー - Melancholic Honey',
+    type:        'Digital Single',
+    releaseDate: '2025.04.30',
+    color:       '#2d5fb8',
+    cover:       'img/disco/meraho.jpg',
+  },
+  {
+    title:       '美しく生きろ - Utsukushiku Ikiro',
+    type:        'Single',
+    releaseDate: '2024.02.21',
+    color:       '#2d5fb8',
+    cover:       'img/disco/utsukushi.jpg',
+  },
+  {
+    title:       'I’M YOUR IDOL / アドレナリンゲーム - I’M YOUR IDOL / Adrenaline Game',
+    type:        'Single',
+    releaseDate: '2024.12.11',
+    color:       '#2d5fb8',
+    cover:       'img/disco/imidol.jpg',
+  },
 ];
 
 /* ============================================================
@@ -214,7 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeaderScroll();         // 3. Sticky header shadow on scroll
   initHamburger();            // 4. Mobile nav toggle
   createPetals();             // 5. Hero falling petals
-  initNews();                 // 6. News list + filter tabs
+  initMedia();               // 6. Media grid + filter tabs
   renderMembers();            // 7. Member grid
   renderDisco();              // 8. Discography cards + nav
   initBackToTop();            // 9. Back-to-top button
@@ -369,115 +641,143 @@ function createPetals() {
 }
 
 /* ============================================================
-   7. NEWS RENDERING
-   Renders filtered news items into #newsList with pagination.
+   6. MEDIA RENDERING
+   Renders filtered media cards into #mediaGrid sorted by date
+   (newest first). Supports All / News / Fun Facts / Memories tabs.
    ============================================================ */
 
-/** How many news items to show per page load */
-const NEWS_PAGE_SIZE = 5;
+/** How many media cards to show per page load */
+const MEDIA_PAGE_SIZE = 6;
 
-/** Tracks the current filter category ('all' or a category string) */
-let currentFilter = 'all';
+/** Tracks the current media filter category */
+let currentMediaFilter = 'all';
 
-/** Tracks how many items are currently visible */
-let visibleCount = NEWS_PAGE_SIZE;
+/** Tracks how many media cards are currently visible */
+let visibleMediaCount = MEDIA_PAGE_SIZE;
 
 /**
- * initNews
+ * initMedia
  * Sets up filter tab click handlers and performs the initial render.
+ * Called from DOMContentLoaded if #mediaGrid exists on the page.
  */
-function initNews() {
-  // Initial render — show all, first page
-  renderNews('all');
+function initMedia() {
+  const grid = document.getElementById('mediaGrid');
+  if (!grid) return;
+
+  // Initial render — show all, sorted by date
+  renderMedia('all');
 
   // Attach click handlers to each filter tab
-  const tabs = document.querySelectorAll('.filter-tab');
+  const tabs = document.querySelectorAll('.media-tab');
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
       const filter = tab.dataset.filter;
 
       // Update active tab styling
       tabs.forEach((t) => {
-        t.classList.remove('filter-tab--active');
+        t.classList.remove('media-tab--active');
         t.setAttribute('aria-selected', 'false');
       });
-      tab.classList.add('filter-tab--active');
+      tab.classList.add('media-tab--active');
       tab.setAttribute('aria-selected', 'true');
 
-      // Reset pagination and re-render with new filter
-      visibleCount = NEWS_PAGE_SIZE;
-      renderNews(filter);
+      // Reset pagination and re-render
+      visibleMediaCount = MEDIA_PAGE_SIZE;
+      renderMedia(filter);
     });
   });
 
   // Load more button
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
+  const loadMoreBtn = document.getElementById('mediaLoadMoreBtn');
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
-      visibleCount += NEWS_PAGE_SIZE;
-      renderNews(currentFilter, false); // false = don't reset scroll
+      visibleMediaCount += MEDIA_PAGE_SIZE;
+      renderMedia(currentMediaFilter, false);
     });
   }
 }
 
 /**
- * renderNews
- * Filters newsData by category, then renders up to `visibleCount`
- * items as <li> elements inside #newsList.
+ * renderMedia
+ * Filters mediaData by category, sorts by date (newest first),
+ * then renders up to visibleMediaCount cards into #mediaGrid.
  *
- * @param {string} filter - Category to filter by, or 'all' for no filter.
- * @param {boolean} [resetCount=true] - Whether to reset visibleCount to PAGE_SIZE.
+ * @param {string} filter - 'all' | 'news' | 'funfacts' | 'memories'
+ * @param {boolean} [resetCount=true] - Whether to reset visible count
  */
-function renderNews(filter, resetCount = true) {
-  currentFilter = filter;
-  if (resetCount) visibleCount = NEWS_PAGE_SIZE;
+function renderMedia(filter, resetCount = true) {
+  currentMediaFilter = filter;
+  if (resetCount) visibleMediaCount = MEDIA_PAGE_SIZE;
 
-  const list = document.getElementById('newsList');
-  const loadMoreBtn = document.getElementById('loadMoreBtn');
-  if (!list) return;
+  const grid = document.getElementById('mediaGrid');
+  const loadMoreBtn = document.getElementById('mediaLoadMoreBtn');
+  if (!grid) return;
 
-  // Filter the data
+  // Filter by category
   const filtered = filter === 'all'
-    ? newsData
-    : newsData.filter((item) => item.category === filter);
+    ? [...mediaData]
+    : mediaData.filter((item) => item.category === filter);
 
-  // Slice to the current visible count
-  const visible = filtered.slice(0, visibleCount);
+  // Sort by date descending (newest first)
+  // Date format: 'YYYY.MM.DD' — replace dots for reliable comparison
+  filtered.sort((a, b) => {
+    const da = a.date.replace(/\./g, '');
+    const db = b.date.replace(/\./g, '');
+    return db.localeCompare(da);
+  });
 
-  // Build HTML string for all visible items
-  list.innerHTML = visible.map((item) => createNewsItemHTML(item)).join('');
+  // Slice to visible count
+  const visible = filtered.slice(0, visibleMediaCount);
 
-  // Show/hide the load more button
+  // Render cards
+  grid.innerHTML = visible.map((item) => createMediaCardHTML(item)).join('');
+
+  // Show/hide load more button
   if (loadMoreBtn) {
-    const hasMore = visibleCount < filtered.length;
-    loadMoreBtn.style.display = hasMore ? 'inline-flex' : 'none';
+    loadMoreBtn.style.display = visibleMediaCount < filtered.length ? 'inline-flex' : 'none';
   }
 }
 
 /**
- * createNewsItemHTML
- * Returns the HTML string for a single news list item.
+ * createMediaCardHTML
+ * Returns the HTML string for a single media card.
+ * Card style mirrors the member card: dark background, colored
+ * accent, cover image area, title + date + category in footer.
  *
- * @param {Object} item - A news data object.
- * @returns {string} HTML string for an <li> element.
+ * @param {Object} item - A mediaData object.
+ * @returns {string} HTML string for a .media-card div.
  */
-function createNewsItemHTML(item) {
-  // Map category values to Japanese display labels
+function createMediaCardHTML(item) {
+  // Category label map
   const categoryLabels = {
-    live:  'LIVE',
-    event: 'EVENT',
-    goods: 'GOODS',
-    info:  'INFO',
+    news:     'NEWS',
+    funfacts: 'FUN FACTS',
+    memories: 'MEMORIES',
   };
+  const catLabel = categoryLabels[item.category] || item.category.toUpperCase();
 
-  const label = categoryLabels[item.category] || item.category.toUpperCase();
+  // Cover image or gradient placeholder
+  const coverHTML = item.image
+    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" class="media-card-img" loading="lazy" />`
+    : `<div class="media-card-placeholder" style="background:linear-gradient(160deg,${escapeHTML(item.color)}44,${escapeHTML(item.color)})">
+         <span class="media-card-placeholder-icon">✿</span>
+       </div>`;
 
   return `
-    <li class="news-item">
-      <span class="news-date">${escapeHTML(item.date)}</span>
-      <span class="news-category" data-category="${escapeHTML(item.category)}">${label}</span>
-      <span class="news-title">${escapeHTML(item.title)}</span>
-    </li>
+    <div class="media-card" tabindex="0" aria-label="${escapeHTML(item.title)}">
+      <!-- [COVER] Post cover image or gradient placeholder -->
+      <div class="media-card-cover">
+        ${coverHTML}
+        <!-- [CATEGORY BADGE] Shown on top of the cover -->
+        <span class="media-card-badge media-card-badge--${escapeHTML(item.category)}">${catLabel}</span>
+      </div>
+      <!-- [FOOTER] Title, excerpt, date -->
+      <div class="media-card-footer">
+        <p class="media-card-title">${escapeHTML(item.title)}</p>
+        <p class="media-card-excerpt">${escapeHTML(item.excerpt)}</p>
+        <p class="media-card-date">${escapeHTML(item.date)}</p>
+      </div>
+    </div>
   `;
 }
 
@@ -510,48 +810,52 @@ function renderMembers() {
  * @returns {string} HTML string for a .member-card div.
  */
 function createMemberCardHTML(member) {
-  // SVG icons inlined
-  const igSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
-  const xSVG   = `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-  const ttSVG  = `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
+  // SVG icons — plain, no background pill
+  const igSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
+  const xSVG   = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+  const ttSVG  = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
 
-  // Photo inner: real image or ✿ placeholder
+  // Photo inner: real image only — no ✿ overlay when photo is set
   const photoInner = member.photo
     ? `<img src="${escapeHTML(member.photo)}"
             alt="${escapeHTML(member.nameJp)}"
             class="member-photo-img"
             loading="lazy"
-            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-       <div class="member-photo-icon" aria-hidden="true" style="display:none">✿</div>`
+            onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<div class=\\'member-photo-icon\\' aria-hidden=\\'true\\'>✿</div>')" />`
     : `<div class="member-photo-icon" aria-hidden="true">✿</div>`;
 
   return `
-    <div class="member-card" tabindex="0" aria-label="${escapeHTML(member.nameJp)}">
+    <div class="member-card" tabindex="0" aria-label="${escapeHTML(member.nameJp)}"
+         data-member-id="${member.id}"
+         role="button"
+         onclick="openMemberModal(${member.id})"
+         onkeydown="if(event.key==='Enter'||event.key===' ')openMemberModal(${member.id})">
 
-      <!-- [CARD UPPER] Dark outer area containing the color block + photo + social rail -->
-      <div class="member-card-upper">
+      <!-- [CARD BODY] Photo + color block only — no social rail here -->
+      <div class="member-card-body">
 
-        <!-- [COLOR BLOCK] Member color rounded rectangle — sits behind the photo -->
-        <div class="member-color-block" style="background-color: ${escapeHTML(member.color)};"></div>
+        <!-- [COLOR BLOCK] Member color rect behind the photo -->
+        <div class="member-color-block" style="background-color:${escapeHTML(member.color)};"></div>
 
-        <!-- [SOCIAL RAIL] White pill strip on the left with social icons -->
-        <div class="member-social-rail" aria-label="${escapeHTML(member.nameJp)}のSNS">
-          <a href="${escapeHTML(member.instagram)}" class="member-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">${igSVG}</a>
-          <a href="${escapeHTML(member.twitter)}"   class="member-social-btn" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">${xSVG}</a>
-          <a href="${escapeHTML(member.tiktok)}"    class="member-social-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">${ttSVG}</a>
-        </div>
-
-        <!-- [PHOTO] Sits on top of the color block -->
+        <!-- [PHOTO] Fills the card body -->
         <div class="member-photo">
           ${photoInner}
         </div>
 
       </div>
 
-      <!-- [CARD FOOTER] Dark footer with member name in color -->
+      <!-- [CARD FOOTER] Name on left, social icons on right -->
       <div class="member-card-footer">
-        <p class="member-name-jp" style="color: ${escapeHTML(member.color)};">${escapeHTML(member.nameJp)}</p>
-        <p class="member-name-en">${escapeHTML(member.nameEn)}</p>
+        <div class="member-footer-names">
+          <p class="member-name-jp" style="color:${escapeHTML(member.color)};">${escapeHTML(member.nameJp)}</p>
+          <p class="member-name-en">${escapeHTML(member.nameEn)}</p>
+        </div>
+        <!-- Social icons: X → Instagram → TikTok -->
+        <div class="member-social-rail" aria-label="${escapeHTML(member.nameJp)}のSNS">
+          <a href="${escapeHTML(member.twitter)}"   class="member-social-btn" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">${xSVG}</a>
+          <a href="${escapeHTML(member.instagram)}" class="member-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">${igSVG}</a>
+          <a href="${escapeHTML(member.tiktok)}"    class="member-social-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">${ttSVG}</a>
+        </div>
       </div>
 
     </div>
@@ -560,45 +864,82 @@ function createMemberCardHTML(member) {
 
 /* ============================================================
    8. DISCOGRAPHY RENDERING
-   Creates .disco-card elements in a grid — same structure as
-   the member section cards.
+   Renders disco cards sorted by releaseDate.
+   Sort order is controlled by #discoSortBtn on discography.html.
    ============================================================ */
+
+/** Current sort direction: 'desc' = newest first, 'asc' = oldest first */
+let discoSortOrder = 'desc';
 
 /**
  * renderDisco
- * Injects one .disco-card per release into #discoTrack (.disco-grid).
- * Card structure mirrors .member-card exactly.
+ * Sorts discoData by releaseDate then injects cards into #discoTrack.
+ * Called on init and whenever the sort button is clicked.
  */
 function renderDisco() {
   const grid = document.getElementById('discoTrack');
   if (!grid) return;
 
-  // Build all cards as a single HTML string for one DOM write
-  grid.innerHTML = discoData.map((release) => createDiscoCardHTML(release)).join('');
+  // Sort a copy — never mutate the source array
+  const sorted = [...discoData].sort((a, b) => {
+    const da = a.releaseDate.replace(/\./g, '');
+    const db = b.releaseDate.replace(/\./g, '');
+    return discoSortOrder === 'desc'
+      ? db.localeCompare(da)   // newest first
+      : da.localeCompare(db);  // oldest first
+  });
+
+  grid.innerHTML = sorted.map((release) => createDiscoCardHTML(release)).join('');
+
+  // Update sort button label if it exists
+  const btn = document.getElementById('discoSortBtn');
+  if (btn) {
+    btn.textContent = discoSortOrder === 'desc' ? '↓ Newest First' : '↑ Oldest First';
+    btn.setAttribute('aria-label', discoSortOrder === 'desc'
+      ? 'Sort oldest first'
+      : 'Sort newest first');
+  }
+}
+
+/**
+ * toggleDiscoSort
+ * Flips the sort order and re-renders. Called by the sort button.
+ */
+function toggleDiscoSort() {
+  discoSortOrder = discoSortOrder === 'desc' ? 'asc' : 'desc';
+  renderDisco();
 }
 
 /**
  * createDiscoCardHTML
- * Returns the HTML string for a single discography card.
- * Mirrors createMemberCardHTML: cover (photo), info block, color bar.
- *
- * @param {Object} release - A disco data object.
- * @returns {string} HTML string for a .disco-card div.
+ * Returns HTML for a single discography card.
+ * Shows cover image if set, gradient placeholder otherwise.
+ * Displays exact releaseDate instead of just year.
  */
 function createDiscoCardHTML(release) {
+  const coverContent = release.cover
+    ? `<img src="${escapeHTML(release.cover)}"
+            alt="${escapeHTML(release.title)}"
+            class="disco-cover-img"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+       <div class="disco-cover-icon" aria-hidden="true" style="display:none">✿</div>`
+    : `<div class="disco-cover-icon" aria-hidden="true">✿</div>`;
+
+  const coverBg = release.cover
+    ? `background-color: ${escapeHTML(release.color)}22;`
+    : `background: linear-gradient(160deg, ${escapeHTML(release.color)}55 0%, ${escapeHTML(release.color)} 100%);`;
+
   return `
     <div class="disco-card" tabindex="0" aria-label="${escapeHTML(release.title)} — ${escapeHTML(release.type)}">
-      <!-- Cover art placeholder: gradient using the release color (mirrors .member-photo) -->
-      <div class="disco-cover" style="background: linear-gradient(160deg, ${escapeHTML(release.color)}55 0%, ${escapeHTML(release.color)} 100%);">
-        <!-- Decorative ✿ centered on the placeholder -->
-        <div class="disco-cover-icon" aria-hidden="true">✿</div>
+      <div class="disco-cover" style="${coverBg}">
+        ${coverContent}
       </div>
-      <!-- Release title and type · year (mirrors .member-info) -->
       <div class="disco-info">
         <p class="disco-title">${escapeHTML(release.title)}</p>
-        <p class="disco-meta">${escapeHTML(release.type)} · ${escapeHTML(release.year)}</p>
+        <p class="disco-meta">${escapeHTML(release.type)}</p>
+        <p class="disco-date">${escapeHTML(release.releaseDate)}</p>
       </div>
-      <!-- Thin color accent bar at the bottom (mirrors .member-color-bar) -->
       <div class="disco-color-bar" style="background-color: ${escapeHTML(release.color)};"></div>
     </div>
   `;
@@ -805,3 +1146,119 @@ function initAboutReveal() {
 
 // Run on DOMContentLoaded (works on about.html and any page with [data-reveal])
 document.addEventListener('DOMContentLoaded', initAboutReveal);
+
+/* ============================================================
+   MEMBER PROFILE MODAL
+   Opens a popup with full biodata when a member card is clicked.
+   ============================================================ */
+
+/**
+ * openMemberModal
+ * Finds the member by id, builds the modal HTML, injects it
+ * into #memberModal, and shows the overlay.
+ *
+ * @param {number} id - The member's id from membersData.
+ */
+function openMemberModal(id) {
+  const member = membersData.find((m) => m.id === id);
+  if (!member) return;
+
+  const modal = document.getElementById('memberModal');
+  const content = document.getElementById('memberModalContent');
+  if (!modal || !content) return;
+
+  // SVG icons for social links inside the modal
+  const igSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
+  const xSVG   = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+  const ttSVG  = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
+
+  // Photo or gradient placeholder
+  const photoHTML = member.photo
+    ? `<img src="${escapeHTML(member.photo)}" alt="${escapeHTML(member.nameJp)}" class="modal-photo-img" />`
+    : `<div class="modal-photo-placeholder" style="background:linear-gradient(160deg,${escapeHTML(member.color)}44,${escapeHTML(member.color)})">✿</div>`;
+
+  // Build biodata rows — only show rows where data exists
+  const bioRows = [
+    { label: 'Blood Type', value: member.bloodType },
+    { label: 'Height',   value: member.height    },
+    { label: 'Birthday', value: member.birthday },
+    { label: 'Hometown', value: member.hometown  },
+  ]
+    .filter((row) => row.value)
+    .map((row) => `
+      <tr class="modal-bio-row">
+        <td class="modal-bio-label">${escapeHTML(row.label)}</td>
+        <td class="modal-bio-value">${escapeHTML(row.value)}</td>
+      </tr>`)
+    .join('');
+
+  // Inject modal content
+  content.innerHTML = `
+    <!-- [MODAL HEADER] "profile" label + close button -->
+    <div class="modal-header">
+      <span class="modal-profile-label">p r o f i l e</span>
+      <button class="modal-close" onclick="closeMemberModal()" aria-label="閉じる">&times;</button>
+    </div>
+
+    <!-- [MODAL BODY] Photo left, biodata right -->
+    <div class="modal-body">
+
+      <!-- [MODAL PHOTO] Member photo -->
+      <div class="modal-photo-wrap">
+        ${photoHTML}
+      </div>
+
+      <!-- [MODAL INFO] Name + biodata table + social links -->
+      <div class="modal-info">
+
+        <!-- [MODAL NAME] Japanese name in member color, romanized below -->
+        <h2 class="modal-name-jp" style="color:${escapeHTML(member.color)};">${escapeHTML(member.nameJp)}</h2>
+        <p class="modal-name-en">${escapeHTML(member.nameEn)}</p>
+
+        <!-- [MODAL BIODATA TABLE] Edit fields in membersData in main.js -->
+        <table class="modal-bio-table" aria-label="プロフィール">
+          <tbody>${bioRows}</tbody>
+        </table>
+
+        <!-- [MODAL SOCIAL] Social media links — order: X, Instagram, TikTok -->
+        <div class="modal-social">
+          <a href="${escapeHTML(member.twitter)}"   class="modal-social-btn" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">${xSVG}</a>
+          <a href="${escapeHTML(member.instagram)}" class="modal-social-btn" aria-label="Instagram"   target="_blank" rel="noopener noreferrer">${igSVG}</a>
+          <a href="${escapeHTML(member.tiktok)}"    class="modal-social-btn" aria-label="TikTok"      target="_blank" rel="noopener noreferrer">${ttSVG}</a>
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  // Show the modal
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden'; // prevent background scroll
+}
+
+/**
+ * closeMemberModal
+ * Hides the modal and restores page scrolling.
+ */
+function closeMemberModal() {
+  const modal = document.getElementById('memberModal');
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+// Close modal when clicking the dark overlay backdrop
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('memberModal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      // Only close if the click is directly on the overlay, not the content
+      if (e.target === modal) closeMemberModal();
+    });
+  }
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMemberModal();
+  });
+});
