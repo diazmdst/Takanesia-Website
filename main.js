@@ -47,110 +47,110 @@
 const mediaData = [
   {
     id: 1,
-    date: '2024.07.15',
+    date: '2026.07.15',
     category: 'news',
-    title: '高嶺のなでしこ 4周年 Special LIVE 開催決定！',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '4周年を記念したスペシャルライブの開催が決定しました。',
+    excerpt: 'COMING SOON',
     color: '#4883E0',
   },
   {
     id: 2,
-    date: '2024.07.10',
+    date: '2026.07.10',
     category: 'funfacts',
-    title: 'メンバーの好きな食べ物は？',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '9人のメンバーそれぞれのお気に入りフードを大公開！',
+    excerpt: 'COMING SOON',
     color: '#F87590',
   },
   {
     id: 3,
-    date: '2024.07.05',
+    date: '2026.07.05',
     category: 'news',
-    title: 'Live Tour -Bouquet of 9 Flowers– スタンプラリー企画',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '7会場・13公演特典の申請につきまして詳細をお知らせします。',
+    excerpt: 'COMING SOON',
     color: '#4883E0',
   },
   {
     id: 4,
-    date: '2024.06.28',
+    date: '2026.06.28',
     category: 'memories',
-    title: 'たかねこフェス Vol.6 〜サマーセッション〜 思い出フォト',
+    title: 'COMING SOON',
     image: null,
-    excerpt: 'フェスの楽しかった瞬間をメンバーが振り返ります。',
+    excerpt: 'COMING SOON',
     color: '#2d5fb8',
   },
   {
     id: 5,
-    date: '2024.06.20',
+    date: '2026.06.20',
     category: 'funfacts',
-    title: 'メンバーの意外な特技を大公開！',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '知られざるメンバーの隠れた才能をご紹介します。',
+    excerpt: 'COMING SOON',
     color: '#F87590',
   },
   {
     id: 6,
-    date: '2024.06.15',
+    date: '2025.06.15',
     category: 'news',
-    title: '個別2ショット撮影会 2次受付のご案内',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '5月16日（土）東京流通センターでの2次受付情報です。',
+    excerpt: 'COMING SOON',
     color: '#4883E0',
   },
   {
     id: 7,
-    date: '2024.06.10',
+    date: '2025.06.10',
     category: 'memories',
-    title: 'ツアー初日の舞台裏をチラ見せ',
+    title: 'COMING SOON',
     image: null,
-    excerpt: 'ライブツアー初日、メンバーの本番前の様子をお届けします。',
+    excerpt: 'COMING SOON',
     color: '#2d5fb8',
   },
   {
     id: 8,
-    date: '2024.06.05',
+    date: '2025.06.05',
     category: 'funfacts',
-    title: 'メンバーの朝のルーティンは？',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '9人それぞれの朝の過ごし方を大調査しました！',
+    excerpt: 'COMING SOON',
     color: '#F87590',
   },
   {
     id: 9,
-    date: '2024.05.30',
+    date: '2025.05.30',
     category: 'news',
-    title: 'たかねこブーケラッピングプロジェクト FINAL',
+    title: 'COMING SOON',
     image: null,
-    excerpt: 'ツアーFINALに向けた特別プロジェクトの詳細です。',
+    excerpt: 'COMING SOON',
     color: '#4883E0',
   },
   {
     id: 10,
-    date: '2024.05.22',
+    date: '2025.05.22',
     category: 'memories',
-    title: '4周年記念 メンバーからのメッセージ',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '4年間の感謝を込めて、メンバー全員からのメッセージをお届けします。',
+    excerpt: 'COMING SOON',
     color: '#2d5fb8',
   },
   {
     id: 11,
-    date: '2024.05.15',
+    date: '2025.05.15',
     category: 'news',
-    title: 'Live Tour 追加公演決定のお知らせ',
+    title: 'COMING SOON',
     image: null,
-    excerpt: 'ファンの皆様のご要望にお応えして追加公演が決定しました。',
+    excerpt: 'COMING SOON',
     color: '#4883E0',
   },
   {
     id: 12,
-    date: '2024.05.08',
+    date: '2025.05.08',
     category: 'funfacts',
-    title: 'メンバーが選ぶ！おすすめ曲ランキング',
+    title: 'COMING SOON',
     image: null,
-    excerpt: '9人のメンバーがそれぞれのおすすめ楽曲を選びました。',
+    excerpt: 'COMING SOON',
     color: '#F87590',
   },
 ];
@@ -864,20 +864,29 @@ function createMemberCardHTML(member) {
 
 /* ============================================================
    8. DISCOGRAPHY RENDERING
-   Renders disco cards sorted by releaseDate.
-   Sort order is controlled by #discoSortBtn on discography.html.
+   Renders disco cards in a paginated grid.
+   - Desktop: 3 columns × 4 rows = 12 per page
+   - Mobile:  2 columns × 6 rows = 12 per page
+   Sort order toggled by #discoSortBtn.
    ============================================================ */
 
-/** Current sort direction: 'desc' = newest first, 'asc' = oldest first */
+/** Items per page — 12 fills both 3×4 and 2×6 layouts */
+const DISCO_PAGE_SIZE = 12;
+
+/** Current page (1-indexed) */
+let discoCurrentPage = 1;
+
+/** Current sort direction */
 let discoSortOrder = 'desc';
 
 /**
  * renderDisco
- * Sorts discoData by releaseDate then injects cards into #discoTrack.
- * Called on init and whenever the sort button is clicked.
+ * Sorts discoData, slices to the current page, renders cards,
+ * and rebuilds the pagination controls.
  */
 function renderDisco() {
-  const grid = document.getElementById('discoTrack');
+  const grid       = document.getElementById('discoTrack');
+  const pagination = document.getElementById('discoPagination');
   if (!grid) return;
 
   // Sort a copy — never mutate the source array
@@ -885,36 +894,80 @@ function renderDisco() {
     const da = a.releaseDate.replace(/\./g, '');
     const db = b.releaseDate.replace(/\./g, '');
     return discoSortOrder === 'desc'
-      ? db.localeCompare(da)   // newest first
-      : da.localeCompare(db);  // oldest first
+      ? db.localeCompare(da)
+      : da.localeCompare(db);
   });
 
-  grid.innerHTML = sorted.map((release) => createDiscoCardHTML(release)).join('');
+  const totalPages = Math.ceil(sorted.length / DISCO_PAGE_SIZE);
 
-  // Update sort button label if it exists
+  // Clamp current page within valid range
+  discoCurrentPage = Math.max(1, Math.min(discoCurrentPage, totalPages));
+
+  // Slice to current page
+  const start   = (discoCurrentPage - 1) * DISCO_PAGE_SIZE;
+  const visible = sorted.slice(start, start + DISCO_PAGE_SIZE);
+
+  // Render cards
+  grid.innerHTML = visible.map((release) => createDiscoCardHTML(release)).join('');
+
+  // Update sort button label
   const btn = document.getElementById('discoSortBtn');
   if (btn) {
     btn.textContent = discoSortOrder === 'desc' ? '↓ Newest First' : '↑ Oldest First';
-    btn.setAttribute('aria-label', discoSortOrder === 'desc'
-      ? 'Sort oldest first'
-      : 'Sort newest first');
+  }
+
+  // Render pagination
+  if (pagination) {
+    if (totalPages <= 1) {
+      pagination.innerHTML = '';
+      return;
+    }
+
+    pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => {
+      const page    = i + 1;
+      const isActive = page === discoCurrentPage;
+      return `<button
+        class="disco-page-btn${isActive ? ' disco-page-btn--active' : ''}"
+        onclick="goToDiscoPage(${page})"
+        aria-label="ページ ${page}"
+        aria-current="${isActive ? 'page' : 'false'}"
+      >${page}</button>`;
+    }).join('');
+  }
+}
+
+/**
+ * goToDiscoPage
+ * Navigates to a specific page and scrolls the section into view.
+ *
+ * @param {number} page - Target page number (1-indexed).
+ */
+function goToDiscoPage(page) {
+  discoCurrentPage = page;
+  renderDisco();
+  // Scroll to the top of the disco section smoothly
+  const section = document.getElementById('discography');
+  if (section) {
+    const header = document.getElementById('siteHeader');
+    const offset = header ? header.offsetHeight + 16 : 80;
+    const top    = section.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
   }
 }
 
 /**
  * toggleDiscoSort
- * Flips the sort order and re-renders. Called by the sort button.
+ * Flips sort order, resets to page 1, and re-renders.
  */
 function toggleDiscoSort() {
-  discoSortOrder = discoSortOrder === 'desc' ? 'asc' : 'desc';
+  discoSortOrder   = discoSortOrder === 'desc' ? 'asc' : 'desc';
+  discoCurrentPage = 1;
   renderDisco();
 }
 
 /**
  * createDiscoCardHTML
  * Returns HTML for a single discography card.
- * Shows cover image if set, gradient placeholder otherwise.
- * Displays exact releaseDate instead of just year.
  */
 function createDiscoCardHTML(release) {
   const coverContent = release.cover
