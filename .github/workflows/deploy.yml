@@ -1,0 +1,74 @@
+name: Deploy Takanesia Website
+
+on:
+  push:
+    branches: [ "**" ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    env:
+      CONTAINER_NAME: takanesia-website
+      IMAGE_NAME: takanesia-website
+      PUBLIC_PORT: 3004
+      CONTAINER_PORT: 8080
+      DEPLOY_PATH: /opt/Takanesia-Website
+
+    steps:
+      - name: Sync Code from Repository
+        run: |
+          # Create directory if it doesn't exist
+          if [ ! -d "${{ env.DEPLOY_PATH }}" ]; then
+            echo "LOG: Creating deployment directory..."
+            sudo mkdir -p ${{ env.DEPLOY_PATH }}
+            sudo chown -R $USER:$USER ${{ env.DEPLOY_PATH }}
+          fi
+
+          # Clone if .git doesn't exist, otherwise pull
+          if [ ! -d "${{ env.DEPLOY_PATH }}/.git" ]; then
+            echo "LOG: Initializing repository..."
+            git clone https://github.com/${{ github.repository }}.git ${{ env.DEPLOY_PATH }}
+          fi
+
+          cd ${{ env.DEPLOY_PATH }}
+          echo "LOG: Syncing branch: ${{ github.ref_name }}..."
+          git fetch origin ${{ github.ref_name }} --quiet
+          git checkout ${{ github.ref_name }} --quiet || git checkout -b ${{ github.ref_name }} origin/${{ github.ref_name }} --quiet
+          git pull origin ${{ github.ref_name }} --quiet
+
+      - name: Build Docker Image
+        working-directory: ${{ env.DEPLOY_PATH }}
+        run: |
+          # Building with quiet flag
+          docker build -q -t ${{ env.IMAGE_NAME }}:${{ github.run_number }} -t ${{ env.IMAGE_NAME }}:latest .
+
+      - name: Stop and Remove Old Container
+        working-directory: ${{ env.DEPLOY_PATH }}
+        run: |
+          # Silently remove old containers if they exist
+          docker stop ${{ env.CONTAINER_NAME }} >/dev/null 2>&1 || true
+          docker rm ${{ env.CONTAINER_NAME }} >/dev/null 2>&1 || true
+
+      - name: Run New Container
+        working-directory: ${{ env.DEPLOY_PATH }}
+        run: |
+          docker run -d \
+            --name ${{ env.CONTAINER_NAME }} \
+            --restart always \
+            -p ${{ env.PUBLIC_PORT }}:${{ env.CONTAINER_PORT }} \
+            ${{ env.IMAGE_NAME }}:${{ github.run_number }} >/dev/null
+
+      - name: Verify Deployment
+        working-directory: ${{ env.DEPLOY_PATH }}
+        run: |
+          # Verifying without dumping excessive logs
+          sleep 5
+          docker ps --filter "name=${{ env.CONTAINER_NAME }}" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+
+      - name: Cleanup Old Images
+        working-directory: ${{ env.DEPLOY_PATH }}
+        run: |
+          # Silently prune images
+          docker image prune -f >/dev/null

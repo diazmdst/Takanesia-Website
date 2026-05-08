@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Development
+.vscode
+.idea
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.backup
+.env.production
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Build output (handled by Dockerfile stages)
+dist
+build
+.next
+.nuxt
+
+# OS Files
+.DS_Store
+Thumbs.db
