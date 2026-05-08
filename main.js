@@ -125,19 +125,70 @@ const newsData = [
 
 /**
  * membersData — 9 members.
- * Each item: { id, nameJp, nameEn, color }
- * Colors are each member's individual image color.
+ * Each item: { id, nameJp, nameEn, color, position, photo, instagram, twitter, tiktok }
+ *
+ * HOW TO ADD A PHOTO:
+ *   1. Put the image file in the img/members/ folder
+ *      (e.g. img/members/shiraishi-miku.jpg)
+ *   2. Set the photo field to that path, e.g.:
+ *      photo: 'img/members/shiraishi-miku.jpg'
+ *   3. Leave photo: null to keep the gradient placeholder.
  */
 const membersData = [
-  { id: 1, nameJp: '白石みく',   nameEn: 'Miku Shiraishi',   color: '#f9a8c9' },
-  { id: 2, nameJp: '桜井ことね', nameEn: 'Kotone Sakurai',   color: '#ffb3ba' },
-  { id: 3, nameJp: '藤本りな',   nameEn: 'Rina Fujimoto',    color: '#c0396b' },
-  { id: 4, nameJp: '中村あかり', nameEn: 'Akari Nakamura',   color: '#ff8fa3' },
-  { id: 5, nameJp: '山田ゆい',   nameEn: 'Yui Yamada',       color: '#e8a0bf' },
-  { id: 6, nameJp: '田中さくら', nameEn: 'Sakura Tanaka',    color: '#d4527e' },
-  { id: 7, nameJp: '鈴木はな',   nameEn: 'Hana Suzuki',      color: '#f4c2d0' },
-  { id: 8, nameJp: '伊藤めい',   nameEn: 'Mei Ito',          color: '#b5338a' },
-  { id: 9, nameJp: '小林なな',   nameEn: 'Nana Kobayashi',   color: '#e07aaa' },
+  {
+    id: 1, nameJp: '城月 菜央',   nameEn: 'KIZUKI NAO',
+    color: '#f3d104', position: 'センター',
+    photo: 'img/members/nao.jpg',
+    instagram: 'https://www.instagram.com/nao_kizuki_', twitter: 'https://x.com/nao_kizuki', tiktok: 'https://www.tiktok.com/@nao_kizuki',
+  },
+  {
+    id: 2, nameJp: '涼海 すう', nameEn: 'SUZUMI SU',
+    color: '#209aca', position: 'リーダー',
+    photo: 'img/members/suu.jpg',
+    instagram: 'https://www.instagram.com/su_suzumi_/', twitter: 'https://x.com/su_suzumi_', tiktok: 'https://www.tiktok.com/@suu._.suu',
+  },
+  {
+    id: 3, nameJp: '橋本 桃呼',   nameEn: 'HASHIMOTO MOMOKO',
+    color: '#c72e85', position: 'メンバー',
+    photo: 'img/members/momoko.jpg',
+    instagram: 'https://www.instagram.com/momoko__3628/', twitter: 'https://x.com/MomokoHashimoto', tiktok: 'https://www.tiktok.com/@momoko_hashimoto',
+  },
+  {
+    id: 4, nameJp: '葉月 紗蘭', nameEn: 'HAZUKI SAARA',
+    color: '#ffffff', position: 'メンバー',
+    photo: 'img/members/saara.jpg',
+    instagram: 'https://www.instagram.com/saara_hazuki/', twitter: 'https://x.com/saara_hazuki', tiktok: 'https://www.tiktok.com/@saara_hazuki',
+  },
+  {
+    id: 5, nameJp: '東山 恵里沙',   nameEn: 'HIGASHIYAMA ERISA',
+    color: '#f98c27', position: 'メンバー',
+    photo: 'img/members/erisa.jpg',
+    instagram: 'https://www.instagram.com/erisa_higashiyama/', twitter: 'https://x.com/erisahigasiyama', tiktok: 'https://www.tiktok.com/@erisahigasiyama',
+  },
+  {
+    id: 6, nameJp: '日向端 ひな', nameEn: 'HINAHATA HINA',
+    color: '#8017bc', position: 'メンバー',
+    photo: 'img/members/hinatama.jpg',
+    instagram: 'https://www.instagram.com/hinatama18', twitter: 'https://x.com/hina_hinahata', tiktok: 'https://www.tiktok.com/@hinatam_18',
+  },
+  {
+    id: 7, nameJp: '星谷 美来',   nameEn: 'HOSHITANI MIKURU',
+    color: '#d21919', position: 'メンバー',
+    photo: 'img/members/mikuru.jpg',
+    instagram: 'https://www.instagram.com/mikuru_1106/', twitter: 'https://x.com/mikuru_hositani', tiktok: 'https://www.instagram.com/mikuru_1106/',
+  },
+  {
+    id: 8, nameJp: '松本ももな',   nameEn: 'MATSUMOTO MOMONA',
+    color: '#e87dd4', position: 'メンバー',
+    photo: 'img/members/momona.jpg',
+    instagram: 'https://www.instagram.com/momona.1012/', twitter: 'https://x.com/momonamatsumoto', tiktok: 'https://www.tiktok.com/@momona.1012',
+  },
+  {
+    id: 9, nameJp: '籾山 ひめり',   nameEn: 'MOMIYAMA HIMERI',
+    color: '#1864c1', position: 'メンバー',
+    photo: 'img/members/himeri.jpg',
+    instagram: 'https://www.instagram.com/momichan_hime/', twitter: 'https://x.com/himeri_momiyama', tiktok: 'https://www.tiktok.com/@momichan_hime',
+  },
 ];
 
 /**
@@ -145,12 +196,12 @@ const membersData = [
  * Each item: { title, type, year, color }
  */
 const discoData = [
-  { title: 'Bouquet of 9 Flowers',  type: 'Album',  year: '2024', color: '#f9a8c9' },
-  { title: 'なでしこ色の空',          type: 'Single', year: '2023', color: '#c0396b' },
-  { title: 'ハナコトバ',              type: 'Single', year: '2023', color: '#e07aaa' },
-  { title: '高嶺の花よ',              type: 'Single', year: '2022', color: '#d4527e' },
-  { title: 'First Bloom',            type: 'Album',  year: '2022', color: '#b5338a' },
-  { title: 'たかねこ☆スターター',     type: 'Single', year: '2021', color: '#ff8fa3' },
+  { title: 'Bouquet of 9 Flowers',  type: 'Album',  year: '2024', color: '#4883E0' },
+  { title: 'なでしこ色の空',          type: 'Single', year: '2023', color: '#F87590' },
+  { title: 'ハナコトバ',              type: 'Single', year: '2023', color: '#2d5fb8' },
+  { title: '高嶺の花よ',              type: 'Single', year: '2022', color: '#F87590' },
+  { title: 'First Bloom',            type: 'Album',  year: '2022', color: '#4883E0' },
+  { title: 'たかねこ☆スターター',     type: 'Single', year: '2021', color: '#2d5fb8' },
 ];
 
 /* ============================================================
@@ -452,35 +503,57 @@ function renderMembers() {
 /**
  * createMemberCardHTML
  * Returns the HTML string for a single member card.
+ * Layout mirrors the reference: colored photo area, social icons
+ * on the left rail, Japanese name + romanized name at the bottom.
  *
  * @param {Object} member - A member data object.
  * @returns {string} HTML string for a .member-card div.
  */
 function createMemberCardHTML(member) {
+  // SVG icons inlined
+  const igSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
+  const xSVG   = `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+  const ttSVG  = `<svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
+
+  // Photo inner: real image or ✿ placeholder
+  const photoInner = member.photo
+    ? `<img src="${escapeHTML(member.photo)}"
+            alt="${escapeHTML(member.nameJp)}"
+            class="member-photo-img"
+            loading="lazy"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+       <div class="member-photo-icon" aria-hidden="true" style="display:none">✿</div>`
+    : `<div class="member-photo-icon" aria-hidden="true">✿</div>`;
+
   return `
     <div class="member-card" tabindex="0" aria-label="${escapeHTML(member.nameJp)}">
-      <!-- Photo placeholder: gradient using the member's color -->
-      <div class="member-photo" style="background: linear-gradient(160deg, ${escapeHTML(member.color)}55 0%, ${escapeHTML(member.color)} 100%);">
-        <!-- Decorative ✿ centered on the placeholder -->
-        <div style="
-          position: absolute;
-          inset: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 3rem;
-          color: rgba(255,255,255,0.45);
-          pointer-events: none;
-          z-index: 1;
-        " aria-hidden="true">✿</div>
+
+      <!-- [CARD UPPER] Dark outer area containing the color block + photo + social rail -->
+      <div class="member-card-upper">
+
+        <!-- [COLOR BLOCK] Member color rounded rectangle — sits behind the photo -->
+        <div class="member-color-block" style="background-color: ${escapeHTML(member.color)};"></div>
+
+        <!-- [SOCIAL RAIL] White pill strip on the left with social icons -->
+        <div class="member-social-rail" aria-label="${escapeHTML(member.nameJp)}のSNS">
+          <a href="${escapeHTML(member.instagram)}" class="member-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">${igSVG}</a>
+          <a href="${escapeHTML(member.twitter)}"   class="member-social-btn" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">${xSVG}</a>
+          <a href="${escapeHTML(member.tiktok)}"    class="member-social-btn" aria-label="TikTok" target="_blank" rel="noopener noreferrer">${ttSVG}</a>
+        </div>
+
+        <!-- [PHOTO] Sits on top of the color block -->
+        <div class="member-photo">
+          ${photoInner}
+        </div>
+
       </div>
-      <!-- Member name and romanization -->
-      <div class="member-info">
-        <p class="member-name-jp">${escapeHTML(member.nameJp)}</p>
+
+      <!-- [CARD FOOTER] Dark footer with member name in color -->
+      <div class="member-card-footer">
+        <p class="member-name-jp" style="color: ${escapeHTML(member.color)};">${escapeHTML(member.nameJp)}</p>
         <p class="member-name-en">${escapeHTML(member.nameEn)}</p>
       </div>
-      <!-- Thin color accent bar at the bottom of the card -->
-      <div class="member-color-bar" style="background-color: ${escapeHTML(member.color)};"></div>
+
     </div>
   `;
 }
@@ -682,3 +755,53 @@ function escapeHTML(str) {
     .replace(/"/g,  '&quot;')
     .replace(/'/g,  '&#39;');
 }
+
+/* ============================================================
+   ABOUT PAGE — STAGGERED SCROLL REVEAL
+   Observes every [data-reveal] element on the about page.
+   When each enters the viewport, .is-revealed is added after
+   a staggered delay based on data-reveal-delay index.
+   ============================================================ */
+
+/**
+ * initAboutReveal
+ * Uses IntersectionObserver to watch all [data-reveal] elements.
+ * Each element fires after a delay of (index × 120ms) so they
+ * appear one by one as the user scrolls down.
+ */
+function initAboutReveal() {
+  const items = document.querySelectorAll('[data-reveal]');
+  if (!items.length) return;
+
+  // Base stagger step in milliseconds between each element
+  const STAGGER_MS = 120;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const el    = entry.target;
+        // data-reveal-delay is the sequential index (0, 1, 2 …)
+        const index = parseInt(el.dataset.revealDelay || '0', 10);
+
+        // Apply the staggered delay then reveal
+        setTimeout(() => {
+          el.classList.add('is-revealed');
+        }, index * STAGGER_MS);
+
+        // Stop observing once revealed — no need to re-animate
+        observer.unobserve(el);
+      });
+    },
+    {
+      threshold: 0.12,              // trigger when 12% of element is visible
+      rootMargin: '0px 0px -40px 0px', // start slightly before fully in view
+    }
+  );
+
+  items.forEach((el) => observer.observe(el));
+}
+
+// Run on DOMContentLoaded (works on about.html and any page with [data-reveal])
+document.addEventListener('DOMContentLoaded', initAboutReveal);
