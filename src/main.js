@@ -487,6 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHamburger();            // 4. Mobile nav toggle
   createPetals();             // 5. Hero falling petals
   initMedia();               // 6. Media grid + filter tabs
+  renderHomeNews();           // 6.5 Home Community News
   renderMembers();            // 7. Member grid
   renderDisco();              // 8. Discography cards + nav
   initBackToTop();            // 9. Back-to-top button
@@ -780,6 +781,46 @@ function createMediaCardHTML(item) {
     </div>
   `;
 }
+
+/**
+ * renderHomeNews
+ * Finds the 5 newest media items and renders them into #homeNewsGrid
+ */
+function renderHomeNews() {
+  const grid = document.getElementById('homeNewsGrid');
+  if (!grid) return;
+
+  // Copy and sort by date descending (newest first)
+  const sorted = [...mediaData].sort((a, b) => {
+    const da = a.date.replace(/\./g, '');
+    const db = b.date.replace(/\./g, '');
+    return db.localeCompare(da);
+  });
+
+  // Get the top 5
+  const top5 = sorted.slice(0, 5);
+
+  // Render cards reusing the existing HTML generator
+  grid.innerHTML = top5.map((item) => createHomeMediaCardHTML(item)).join('');
+}
+
+/**
+ * createHomeMediaCardHTML
+ * Returns the HTML string for a single media card on the homepage.
+ * Matches the requested light-theme text card layout.
+ */
+function createHomeMediaCardHTML(item) {
+  return `
+    <a href="media.html" class="home-media-card" aria-label="${escapeHTML(item.title)}">
+      <div class="home-media-card-header">
+        <span class="home-media-card-badge">TOPICS</span>
+        <span class="home-media-card-date">${escapeHTML(item.date)}</span>
+      </div>
+      <p class="home-media-card-title">${escapeHTML(item.title)}</p>
+    </a>
+  `;
+}
+
 
 /* ============================================================
    8. MEMBER RENDERING

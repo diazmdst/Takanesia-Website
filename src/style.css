@@ -1763,91 +1763,6 @@ img {
 }
 
 /* ============================================================
-   SECTION CARDS � homepage grid of clickable page links
-   ============================================================ */
-
-/* --- Outer section: cream background, generous padding --- */
-.section-cards-section {
-  background-color: var(--color-cream);
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-16);
-}
-
-/* --- Grid: 2 cols on mobile, 3 tablet, 5 desktop --- */
-.section-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-6);
-  max-width: var(--max-width);
-  margin-inline: auto;
-  padding-inline: var(--space-4);
-}
-
-/* --- Card: white rounded card, acts as a full link --- */
-.section-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3);
-  padding: var(--space-10) var(--space-4);
-  background-color: var(--color-white);
-  border-radius: var(--border-radius-xl);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-  color: var(--color-charcoal);
-  border: 2px solid transparent;
-  transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base),
-    border-color var(--transition-base);
-}
-
-.section-card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-pink);
-  border-color: var(--color-pink);
-  text-decoration: none;
-  color: var(--color-charcoal);
-}
-
-/* --- Card icon: SVG icon above the title --- */
-.section-card-icon {
-  color: var(--color-rose);
-  transition: color var(--transition-base), transform var(--transition-base);
-  line-height: 1;
-}
-
-.section-card:hover .section-card-icon {
-  color: var(--color-rose-dark);
-  transform: scale(1.12);
-}
-
-/* --- Card title: section name in display font --- */
-.section-card-title {
-  font-family: var(--font-display);
-  font-size: clamp(0.9rem, 4vw, var(--fs-lg));
-  font-weight: 700;
-  color: var(--color-charcoal);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  line-height: 1.2;
-  word-break: break-word;
-}
-
-.section-card:hover .section-card-title {
-  color: var(--color-rose);
-}
-
-/* --- Card subtitle: Japanese label below the title --- */
-.section-card-sub {
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  color: var(--color-muted);
-  letter-spacing: 0.1em;
-}
-
-/* ============================================================
    PAGE HERO � compact banner used on all sub-pages
    ============================================================ */
 
@@ -2060,21 +1975,11 @@ img {
    ============================================================ */
 
 @media (min-width: 768px) {
-  .section-cards-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   .page-hero {
     padding: var(--space-20) var(--space-6) var(--space-16);
   }
 }
 
-@media (min-width: 1024px) {
-  .section-cards-grid {
-    grid-template-columns: repeat(5, 1fr);
-    /* all 5 cards in one row on desktop */
-  }
-}
 
 /* ============================================================
    MEMBER PROFILE MODAL
@@ -2540,4 +2445,69 @@ img {
   color: var(--color-muted);
   letter-spacing: 0.06em;
   margin-top: 2px;
+}
+
+/* ============================================================
+   HOME COMMUNITY NEWS
+   ============================================================ */
+
+.home-news-section {
+  background-color: var(--color-cream);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-16);
+}
+
+.home-news-header {
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.home-news-title {
+  display: inline-block;
+  color: #000000;
+  letter-spacing: 0.35em;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0;
+  padding-left: 0.35em;
+}
+
+.home-news-footer {
+  text-align: center;
+  margin-top: var(--space-12);
+}
+
+.home-news-btn {
+  min-width: 140px;
+}
+
+.home-news-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 1024px) {
+  .home-news-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: min-content;
+    gap: var(--space-6);
+  }
+
+  /* First item spans 2 columns and takes up 2 rows worth of space
+     Since the other 4 will fill the 2 columns on the right as a 2x2 grid */
+  .home-news-grid .media-card:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  /* Make sure titles of the large card scale up nicely */
+  .home-news-grid .media-card:nth-child(1) .media-card-title {
+    font-size: clamp(1.2rem, 3vw, var(--fs-xl));
+  }
 }
