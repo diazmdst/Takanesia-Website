@@ -1974,6 +1974,12 @@ body.dark-mode .page-hero {
   padding: var(--space-1) var(--space-4);
   border-radius: var(--border-radius-pill);
   backdrop-filter: blur(4px);
+  transition: color var(--transition-base), background-color var(--transition-base);
+}
+
+body.dark-mode .page-hero-eyebrow {
+  color: #8ba8db;
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 /* --- Title: page name as h1 --- */
@@ -1981,7 +1987,7 @@ body.dark-mode .page-hero {
   font-family: var(--font-display);
   font-size: clamp(var(--fs-2xl), 6vw, var(--fs-4xl));
   font-weight: 700;
-  color: var(--color-rose);
+  color: var(--color-charcoal);
   letter-spacing: 0.06em;
   line-height: 1.1;
   transition: color var(--transition-base);
@@ -1998,6 +2004,12 @@ body.dark-mode .page-hero-title {
   color: var(--color-charcoal);
   opacity: 0.65;
   letter-spacing: 0.1em;
+  transition: color var(--transition-base);
+}
+
+body.dark-mode .page-hero-sub {
+  color: #c8d8f0;
+  opacity: 0.75;
 }
 
 /* ============================================================
@@ -2379,7 +2391,7 @@ body.dark-mode .about-stat-num {
 /* --- Media section background --- */
 .media-section {
   background-color: var(--color-cream);
-  padding-top: var(--space-24);
+  padding-top: var(--space-16);
   /* generous gap below the page hero */
 }
 
