@@ -189,109 +189,109 @@ const membersData = [
     color: '#f3d104', position: 'センター',
     photo: 'img/members/nao.jpg',
     instagram: 'https://www.instagram.com/nao_kizuki_',
-    twitter:   'https://x.com/nao_kizuki',
-    tiktok:    'https://www.tiktok.com/@nao_kizuki',
+    twitter: 'https://x.com/nao_kizuki',
+    tiktok: 'https://www.tiktok.com/@nao_kizuki',
     // --- MODAL BIODATA (edit these fields) ---
     bloodType: 'B',
-    height:    '153cm',
-    birthday:  'December 25, 2003',
-    hometown:  'Saitama Prefecture',
+    height: '153cm',
+    birthday: 'December 25, 2003',
+    hometown: 'Saitama Prefecture',
   },
   {
     id: 2, nameJp: '涼海 すう', nameEn: 'SUZUMI SU',
     color: '#209aca', position: 'リーダー',
     photo: 'img/members/suu.jpg',
     instagram: 'https://www.instagram.com/su_suzumi_/',
-    twitter:   'https://x.com/su_suzumi_',
-    tiktok:    'https://www.tiktok.com/@suu._.suu',
+    twitter: 'https://x.com/su_suzumi_',
+    tiktok: 'https://www.tiktok.com/@suu._.suu',
     bloodType: 'AB',
-    height:    '148cm',
-    birthday:  'August 22, 2007',
-    hometown:  'Osaka Prefecture',
+    height: '148cm',
+    birthday: 'August 22, 2007',
+    hometown: 'Osaka Prefecture',
   },
   {
     id: 3, nameJp: '橋本 桃呼', nameEn: 'HASHIMOTO MOMOKO',
     color: '#c72e85', position: 'メンバー',
     photo: 'img/members/momoko.jpg',
     instagram: 'https://www.instagram.com/momoko__3628/',
-    twitter:   'https://x.com/MomokoHashimoto',
-    tiktok:    'https://www.tiktok.com/@momoko_hashimoto',
+    twitter: 'https://x.com/MomokoHashimoto',
+    tiktok: 'https://www.tiktok.com/@momoko_hashimoto',
     bloodType: 'AB',
-    height:    '160cm',
-    birthday:  'June 28, 2003',
-    hometown:  'Yamaguchi Prefecture',
+    height: '160cm',
+    birthday: 'June 28, 2003',
+    hometown: 'Yamaguchi Prefecture',
   },
   {
     id: 4, nameJp: '葉月 紗蘭', nameEn: 'HAZUKI SAARA',
     color: '#ffffff', position: 'メンバー',
     photo: 'img/members/saara.jpg',
     instagram: 'https://www.instagram.com/saara_hazuki/',
-    twitter:   'https://x.com/saara_hazuki',
-    tiktok:    'https://www.tiktok.com/@saara_hazuki',
+    twitter: 'https://x.com/saara_hazuki',
+    tiktok: 'https://www.tiktok.com/@saara_hazuki',
     bloodType: '-',
-    height:    '160cm',
-    birthday:  'March 3, 2007',
-    hometown:  'Mie Prefecture',
+    height: '160cm',
+    birthday: 'March 3, 2007',
+    hometown: 'Mie Prefecture',
   },
   {
     id: 5, nameJp: '東山 恵里沙', nameEn: 'HIGASHIYAMA ERISA',
     color: '#f98c27', position: 'メンバー',
     photo: 'img/members/erisa.jpg',
     instagram: 'https://www.instagram.com/erisa_higashiyama/',
-    twitter:   'https://x.com/erisahigasiyama',
-    tiktok:    'https://www.tiktok.com/@erisahigasiyama',
+    twitter: 'https://x.com/erisahigasiyama',
+    tiktok: 'https://www.tiktok.com/@erisahigasiyama',
     bloodType: 'AB',
-    height:    '157cm',
-    birthday:  'May 28, 2006',
-    hometown:  'Gifu Prefecture',
+    height: '157cm',
+    birthday: 'May 28, 2006',
+    hometown: 'Gifu Prefecture',
   },
   {
     id: 6, nameJp: '日向端 ひな', nameEn: 'HINAHATA HINA',
     color: '#8017bc', position: 'メンバー',
     photo: 'img/members/hinatama.jpg',
     instagram: 'https://www.instagram.com/hinatama18',
-    twitter:   'https://x.com/hina_hinahata',
-    tiktok:    'https://www.tiktok.com/@hinatam_18',
+    twitter: 'https://x.com/hina_hinahata',
+    tiktok: 'https://www.tiktok.com/@hinatam_18',
     bloodType: 'O',
-    height:    '158cm',
-    birthday:  'October 30, 2002',
-    hometown:  'Kanagawa Prefecture',
+    height: '158cm',
+    birthday: 'October 30, 2002',
+    hometown: 'Kanagawa Prefecture',
   },
   {
     id: 7, nameJp: '星谷 美来', nameEn: 'HOSHITANI MIKURU',
     color: '#d21919', position: 'メンバー',
     photo: 'img/members/mikuru.jpg',
     instagram: 'https://www.instagram.com/mikuru_1106/',
-    twitter:   'https://x.com/mikuru_hositani',
-    tiktok:    'https://www.tiktok.com/@mikuru_1106',
+    twitter: 'https://x.com/mikuru_hositani',
+    tiktok: 'https://www.tiktok.com/@mikuru_1106',
     bloodType: 'O',
-    height:    '161cm',
-    birthday:  'November 6, 2003',
-    hometown:  'Tokyo',
+    height: '161cm',
+    birthday: 'November 6, 2003',
+    hometown: 'Tokyo',
   },
   {
     id: 8, nameJp: '松本ももな', nameEn: 'MATSUMOTO MOMONA',
     color: '#e87dd4', position: 'メンバー',
     photo: 'img/members/momona.jpg',
     instagram: 'https://www.instagram.com/momona.1012/',
-    twitter:   'https://x.com/momonamatsumoto',
-    tiktok:    'https://www.tiktok.com/@momona.1012',
+    twitter: 'https://x.com/momonamatsumoto',
+    tiktok: 'https://www.tiktok.com/@momona.1012',
     bloodType: 'B',
-    height:    '159cm',
-    birthday:  'October 12, 2002',
-    hometown:  'Kanagawa Prefecture',
+    height: '159cm',
+    birthday: 'October 12, 2002',
+    hometown: 'Kanagawa Prefecture',
   },
   {
     id: 9, nameJp: '籾山 ひめり', nameEn: 'MOMIYAMA HIMERI',
     color: '#1864c1', position: 'メンバー',
     photo: 'img/members/himeri.jpg',
     instagram: 'https://www.instagram.com/momichan_hime/',
-    twitter:   'https://x.com/himeri_momiyama',
-    tiktok:    'https://www.tiktok.com/@momichan_hime',
+    twitter: 'https://x.com/himeri_momiyama',
+    tiktok: 'https://www.tiktok.com/@momichan_hime',
     bloodType: 'B',
-    height:    '158cm',
-    birthday:  'March 22, 2004',
-    hometown:  'Tochigi Prefecture',
+    height: '158cm',
+    birthday: 'March 22, 2004',
+    hometown: 'Tochigi Prefecture',
   },
 ];
 
@@ -307,172 +307,172 @@ const membersData = [
  */
 const discoData = [
   {
-    title:       'アンチファン - Anti-fan',
-    type:        'Single',
+    title: 'アンチファン - Anti-fan',
+    type: 'Single',
     releaseDate: '2022.10.26',
-    color:       '#4883E0',
-    cover:       'img/disco/antifan.jpg',
+    color: '#4883E0',
+    cover: 'img/disco/antifan.jpg',
   },
   {
-    title:       '女の子は強い - Onnanoko wa Tsuyoi',
-    type:        'Digital Single',
+    title: '女の子は強い - Onnanoko wa Tsuyoi',
+    type: 'Digital Single',
     releaseDate: '2022.12.26',
-    color:       '#F87590',
-    cover:       'img/disco/onnanoko.jpg',
+    color: '#F87590',
+    cover: 'img/disco/onnanoko.jpg',
   },
   {
-    title:       '可愛くてごめん - Kawaikute gomen',
-    type:        'Digital Single',
+    title: '可愛くてごめん - Kawaikute gomen',
+    type: 'Digital Single',
     releaseDate: '2023.01.27',
-    color:       '#2d5fb8',
-    cover:       'img/disco/kawaikute.png',
+    color: '#2d5fb8',
+    cover: 'img/disco/kawaikute.png',
   },
   {
-    title:       '乙女どもよ。 - Otomedomo yo',
-    type:        'Digital Single',
+    title: '乙女どもよ。 - Otomedomo yo',
+    type: 'Digital Single',
     releaseDate: '2023.02.04',
-    color:       '#F87590',
-    cover:       'img/disco/otome.jpg',
+    color: '#F87590',
+    cover: 'img/disco/otome.jpg',
   },
   {
-    title:       '男の子の目的は何？ - Otokonoko no Mokuteki wa Nani?',
-    type:        'Digital Single',
+    title: '男の子の目的は何？ - Otokonoko no Mokuteki wa Nani?',
+    type: 'Digital Single',
     releaseDate: '2023.03.20',
-    color:       '#4883E0',
-    cover:       'img/disco/otokonoko.jpg',
+    color: '#4883E0',
+    cover: 'img/disco/otokonoko.jpg',
   },
   {
-    title:       '僕は君になれない - Boku wa Kimi ni Narenai',
-    type:        'Digital Single',
+    title: '僕は君になれない - Boku wa Kimi ni Narenai',
+    type: 'Digital Single',
     releaseDate: '2023.04.04',
-    color:       '#2d5fb8',
-    cover:       'img/disco/bokukimi.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/bokukimi.jpg',
   },
   {
-    title:       '革命の女王 - Kakumei no Jyoou',
-    type:        'Digital Single',
+    title: '革命の女王 - Kakumei no Jyoou',
+    type: 'Digital Single',
     releaseDate: '2023.04.04',
-    color:       '#2d5fb8',
-    cover:       'img/disco/kakumei.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/kakumei.jpg',
   },
   {
-    title:       'ヒロインは平均以下。 - Heroin wa Heikin ika.',
-    type:        'Digital Single',
+    title: 'ヒロインは平均以下。 - Heroin wa Heikin ika.',
+    type: 'Digital Single',
     releaseDate: '2023.06.21',
-    color:       '#2d5fb8',
-    cover:       'img/disco/.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/.jpg',
   },
   {
-    title:       '決戦スピリット - Kessen Spirit',
-    type:        'Digital Single',
+    title: '決戦スピリット - Kessen Spirit',
+    type: 'Digital Single',
     releaseDate: '2023.06.22',
-    color:       '#2d5fb8',
-    cover:       'img/disco/kessen.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/kessen.jpg',
   },
   {
-    title:       '初恋のひと。 - Hatsukoi no Hito.',
-    type:        'Digital Single',
+    title: '初恋のひと。 - Hatsukoi no Hito.',
+    type: 'Digital Single',
     releaseDate: '2023.07.04',
-    color:       '#2d5fb8',
-    cover:       'img/disco/hatsuhito.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/hatsuhito.jpg',
   },
   {
-    title:       '月曜日の憂鬱 - Getsuyoubi no Yuutsu',
-    type:        'Digital Single',
+    title: '月曜日の憂鬱 - Getsuyoubi no Yuutsu',
+    type: 'Digital Single',
     releaseDate: '2023.07.21',
-    color:       '#2d5fb8',
-    cover:       'img/disco/getsuyobi.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/getsuyobi.jpg',
   },
   {
-    title:       'すきっちゅーの！ - Sukicchuuno!',
-    type:        'Digital Single',
+    title: 'すきっちゅーの！ - Sukicchuuno!',
+    type: 'Digital Single',
     releaseDate: '2023.09.01',
-    color:       '#2d5fb8',
-    cover:       'img/disco/sukichuno.png',
+    color: '#2d5fb8',
+    cover: 'img/disco/sukichuno.png',
   },
   {
-    title:       '17歳 - 17sai',
-    type:        'Digital Single',
+    title: '17歳 - 17sai',
+    type: 'Digital Single',
     releaseDate: '2023.09.03',
-    color:       '#2d5fb8',
-    cover:       'img/disco/17sai.png',
+    color: '#2d5fb8',
+    cover: 'img/disco/17sai.png',
   },
   {
-    title:       'いつか私がママになったら - Itsuka Watashi ga Mama ni Nattara',
-    type:        'Digital Single',
+    title: 'いつか私がママになったら - Itsuka Watashi ga Mama ni Nattara',
+    type: 'Digital Single',
     releaseDate: '2023.10.16',
-    color:       '#2d5fb8',
-    cover:       'img/disco/itsumama.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/itsumama.jpg',
   },
   {
-    title:       '可愛いって言われたい - Kawaiitte Iwaretai',
-    type:        'Digital Single',
+    title: '可愛いって言われたい - Kawaiitte Iwaretai',
+    type: 'Digital Single',
     releaseDate: '2024.02.03',
-    color:       '#2d5fb8',
-    cover:       'img/disco/-.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/-.jpg',
   },
   {
-    title:       '私は怪物 - Watashi wa Kaibutsu',
-    type:        'Digital Single',
+    title: '私は怪物 - Watashi wa Kaibutsu',
+    type: 'Digital Single',
     releaseDate: '2024.02.06',
-    color:       '#2d5fb8',
-    cover:       'img/disco/-.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/-.jpg',
   },
   {
-    title:       '推しの魔法 - Oshi no Mahou',
-    type:        'Digital Single',
+    title: '推しの魔法 - Oshi no Mahou',
+    type: 'Digital Single',
     releaseDate: '2024.03.25',
-    color:       '#2d5fb8',
-    cover:       'img/disco/-.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/-.jpg',
   },
   {
-    title:       'メイド☆至上主義 - Maid Shijyoshugi',
-    type:        'Digital Single',
+    title: 'メイド☆至上主義 - Maid Shijyoshugi',
+    type: 'Digital Single',
     releaseDate: '2024.05.13',
-    color:       '#2d5fb8',
-    cover:       'img/disco/-.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/-.jpg',
   },
   {
-    title:       '私より好きでいて - Watashi Yori Sukide Ite',
-    type:        'Digital Single',
+    title: '私より好きでいて - Watashi Yori Sukide Ite',
+    type: 'Digital Single',
     releaseDate: '2024.06.05',
-    color:       '#2d5fb8',
-    cover:       'img/disco/-.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/-.jpg',
   },
   {
-    title:       '小悪魔だってかまわない! - Koakuma Datte Kamawanai!',
-    type:        'Digital Single',
+    title: '小悪魔だってかまわない! - Koakuma Datte Kamawanai!',
+    type: 'Digital Single',
     releaseDate: '2025.02.09',
-    color:       '#2d5fb8',
-    cover:       'img/disco/-.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/-.jpg',
   },
   {
-    title:       'Cute for Life',
-    type:        'Digital Single',
+    title: 'Cute for Life',
+    type: 'Digital Single',
     releaseDate: '2025.04.07',
-    color:       '#2d5fb8',
-    cover:       'img/disco/cfl.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/cfl.jpg',
   },
   {
-    title:       'メランコリックハニー - Melancholic Honey',
-    type:        'Digital Single',
+    title: 'メランコリックハニー - Melancholic Honey',
+    type: 'Digital Single',
     releaseDate: '2025.04.30',
-    color:       '#2d5fb8',
-    cover:       'img/disco/meraho.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/meraho.jpg',
   },
   {
-    title:       '美しく生きろ - Utsukushiku Ikiro',
-    type:        'Single',
+    title: '美しく生きろ - Utsukushiku Ikiro',
+    type: 'Single',
     releaseDate: '2024.02.21',
-    color:       '#2d5fb8',
-    cover:       'img/disco/utsukushi.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/utsukushi.jpg',
   },
   {
-    title:       'I’M YOUR IDOL / アドレナリンゲーム - I’M YOUR IDOL / Adrenaline Game',
-    type:        'Single',
+    title: 'I’M YOUR IDOL / アドレナリンゲーム - I’M YOUR IDOL / Adrenaline Game',
+    type: 'Single',
     releaseDate: '2024.12.11',
-    color:       '#2d5fb8',
-    cover:       'img/disco/imidol.jpg',
+    color: '#2d5fb8',
+    cover: 'img/disco/imidol.jpg',
   },
 ];
 
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function initHeaderScroll() {
   const header = document.getElementById('siteHeader');
-  const hero   = document.getElementById('hero');
+  const hero = document.getElementById('hero');
   if (!header || !hero) return;
 
   const observer = new IntersectionObserver(
@@ -751,7 +751,7 @@ function renderMedia(filter, resetCount = true) {
 function createMediaCardHTML(item) {
   // Category label map
   const categoryLabels = {
-    news:     'NEWS',
+    news: 'NEWS',
     funfacts: 'FUN FACTS',
     memories: 'MEMORIES',
   };
@@ -801,24 +801,7 @@ function renderHomeNews() {
   const top5 = sorted.slice(0, 5);
 
   // Render cards reusing the existing HTML generator
-  grid.innerHTML = top5.map((item) => createHomeMediaCardHTML(item)).join('');
-}
-
-/**
- * createHomeMediaCardHTML
- * Returns the HTML string for a single media card on the homepage.
- * Matches the requested light-theme text card layout.
- */
-function createHomeMediaCardHTML(item) {
-  return `
-    <a href="media.html" class="home-media-card" aria-label="${escapeHTML(item.title)}">
-      <div class="home-media-card-header">
-        <span class="home-media-card-badge">TOPICS</span>
-        <span class="home-media-card-date">${escapeHTML(item.date)}</span>
-      </div>
-      <p class="home-media-card-title">${escapeHTML(item.title)}</p>
-    </a>
-  `;
+  grid.innerHTML = top5.map((item) => createMediaCardHTML(item)).join('');
 }
 
 
@@ -853,8 +836,8 @@ function renderMembers() {
 function createMemberCardHTML(member) {
   // SVG icons — plain, no background pill
   const igSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
-  const xSVG   = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-  const ttSVG  = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
+  const xSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+  const ttSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
 
   // Photo inner: real image only — no ✿ overlay when photo is set
   const photoInner = member.photo
@@ -926,7 +909,7 @@ let discoSortOrder = 'desc';
  * and rebuilds the pagination controls.
  */
 function renderDisco() {
-  const grid       = document.getElementById('discoTrack');
+  const grid = document.getElementById('discoTrack');
   const pagination = document.getElementById('discoPagination');
   if (!grid) return;
 
@@ -945,7 +928,7 @@ function renderDisco() {
   discoCurrentPage = Math.max(1, Math.min(discoCurrentPage, totalPages));
 
   // Slice to current page
-  const start   = (discoCurrentPage - 1) * DISCO_PAGE_SIZE;
+  const start = (discoCurrentPage - 1) * DISCO_PAGE_SIZE;
   const visible = sorted.slice(start, start + DISCO_PAGE_SIZE);
 
   // Render cards
@@ -965,7 +948,7 @@ function renderDisco() {
     }
 
     pagination.innerHTML = Array.from({ length: totalPages }, (_, i) => {
-      const page    = i + 1;
+      const page = i + 1;
       const isActive = page === discoCurrentPage;
       return `<button
         class="disco-page-btn${isActive ? ' disco-page-btn--active' : ''}"
@@ -991,7 +974,7 @@ function goToDiscoPage(page) {
   if (section) {
     const header = document.getElementById('siteHeader');
     const offset = header ? header.offsetHeight + 16 : 80;
-    const top    = section.getBoundingClientRect().top + window.scrollY - offset;
+    const top = section.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: 'smooth' });
   }
 }
@@ -1001,7 +984,7 @@ function goToDiscoPage(page) {
  * Flips sort order, resets to page 1, and re-renders.
  */
 function toggleDiscoSort() {
-  discoSortOrder   = discoSortOrder === 'desc' ? 'asc' : 'desc';
+  discoSortOrder = discoSortOrder === 'desc' ? 'asc' : 'desc';
   discoCurrentPage = 1;
   renderDisco();
 }
@@ -1184,11 +1167,11 @@ function initIntersectionObserver() {
 function escapeHTML(str) {
   if (typeof str !== 'string') return String(str);
   return str
-    .replace(/&/g,  '&amp;')
-    .replace(/</g,  '&lt;')
-    .replace(/>/g,  '&gt;')
-    .replace(/"/g,  '&quot;')
-    .replace(/'/g,  '&#39;');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 /* ============================================================
@@ -1216,7 +1199,7 @@ function initAboutReveal() {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
-        const el    = entry.target;
+        const el = entry.target;
         // data-reveal-delay is the sequential index (0, 1, 2 …)
         const index = parseInt(el.dataset.revealDelay || '0', 10);
 
@@ -1263,8 +1246,8 @@ function openMemberModal(id) {
 
   // SVG icons for social links inside the modal
   const igSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`;
-  const xSVG   = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-  const ttSVG  = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
+  const xSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+  const ttSVG = `<svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>`;
 
   // Photo or gradient placeholder
   const photoHTML = member.photo
@@ -1274,9 +1257,9 @@ function openMemberModal(id) {
   // Build biodata rows — only show rows where data exists
   const bioRows = [
     { label: 'Blood Type', value: member.bloodType },
-    { label: 'Height',   value: member.height    },
+    { label: 'Height', value: member.height },
     { label: 'Birthday', value: member.birthday },
-    { label: 'Hometown', value: member.hometown  },
+    { label: 'Hometown', value: member.hometown },
   ]
     .filter((row) => row.value)
     .map((row) => `
