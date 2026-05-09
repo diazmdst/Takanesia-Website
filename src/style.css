@@ -47,7 +47,9 @@ html {
 }
 
 body {
+  overflow-x: hidden; /* Fallback for browsers that don't support clip */
   overflow-x: clip; /* clip (not hidden) prevents horizontal scroll without breaking sticky */
+  width: 100%;
 }
 
 /* --- CSS Custom Properties (design tokens) --- */
@@ -822,7 +824,7 @@ img {
 /* --- Member grid: 2 cols mobile, 3 cols desktop --- */
 .member-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 2vw, 24px);
   max-width: var(--max-width);
   margin-inline: auto;
@@ -1001,7 +1003,7 @@ img {
 /* --- Disco grid: 2 cols mobile, 3 cols desktop --- */
 .disco-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-6);
   max-width: var(--max-width);
   margin-inline: auto;
@@ -1648,7 +1650,7 @@ img {
 /* --- Grid: 2 cols on mobile, 3 tablet, 5 desktop --- */
 .section-cards-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-6);
   max-width: var(--max-width);
   margin-inline: auto;
@@ -1698,12 +1700,13 @@ img {
 /* --- Card title: section name in display font --- */
 .section-card-title {
   font-family: var(--font-display);
-  font-size: var(--fs-lg);
+  font-size: clamp(0.9rem, 4vw, var(--fs-lg));
   font-weight: 700;
   color: var(--color-charcoal);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   line-height: 1.2;
+  word-break: break-word;
 }
 
 .section-card:hover .section-card-title {
@@ -2224,7 +2227,7 @@ img {
 /* --- Media grid: 2 cols mobile, 3 cols tablet+ --- */
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(12px, 2vw, 24px);
   max-width: var(--max-width);
   margin-inline: auto;
