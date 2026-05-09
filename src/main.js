@@ -43,16 +43,21 @@
  *   3. Set category to 'news', 'funfacts', or 'memories'
  *   4. Add a cover image to img/media/ and set the image field
  *   5. The card will automatically appear in the correct sorted position
- */
+*/
 const mediaData = [
   {
     id: 1,
-    date: '2026.07.15',
+    date: '2025.09.15',
     category: 'news',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
+    title: 'Takanesia Project Anniversary Takaneko',
+    image: 'img/media/ebookproj.jpg',
+    excerpt: 'E-Book Project ',
+    content: 'Perayaan tiga tahun penuh kenangan bersama Takane no Nadeshiko daripara penggemar Indonesia. Kisah, karya, dan cinta yang dirangkai dalam satu e-book spesial',
     color: '#4883E0',
+    links: [
+      { label: 'Online Read', url: 'https://online.fliphtml5.com/TakanesiaID/dzck/#p=1', type: 'blue' },
+      { label: 'Read PDF', url: 'https://drive.google.com/file/d/1ZQ-r5gaqEc4DwUuXIY8jttX53pW_n6yb/view', type: 'blue' }
+    ]
   },
   {
     id: 2,
@@ -61,7 +66,11 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
+    content: 'Did you know that each member of Takane no Nadeshiko has a unique member color? These colors represent their individual personalities and are used in their outfits and official goods. When you attend our live performances, try waving a penlight in your favorite member\'s color to show your support! It\'s one of the best ways to connect with the members on stage.',
     color: '#F87590',
+    links: [
+      { label: 'Read More', url: '#', type: 'blue' },
+    ]
   },
   {
     id: 3,
@@ -70,7 +79,11 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
+    content: 'We are excited to announce that new official merchandise will be available soon! From acrylic stands to photo cards and T-shirts, there\'s something for every fan. Keep an eye on our official store and social media channels for the launch date and exclusive items. Don\'t miss out on adding these to your collection!',
     color: '#4883E0',
+    links: [
+      { label: 'Read More', url: '#', type: 'blue' },
+    ]
   },
   {
     id: 4,
@@ -79,7 +92,11 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
+    content: 'Looking back at our very first performance, the members remember the nervous excitement and the warm welcome from the fans. It was a day that marked the beginning of our journey together. We are so grateful for all the memories we\'ve shared with you so far and look forward to creating many more in the years to come!',
     color: '#2d5fb8',
+    links: [
+      { label: 'Read More', url: '#', type: 'blue' },
+    ]
   },
   {
     id: 5,
@@ -88,7 +105,11 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
+    content: 'The members of Takanesia often spend their free time practicing choreography and bonding as a team. Some members enjoy cooking together, while others love visiting cafes or watching movies. These strong bonds are what make our group unique and help us deliver the best performances for our amazing fans!',
     color: '#F87590',
+    links: [
+      { label: 'Read More', url: '#', type: 'blue' },
+    ]
   },
   {
     id: 6,
@@ -97,61 +118,11 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
+    content: 'Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can\'t wait to see you at our next event! Please continue to cheer for us!',
     color: '#4883E0',
-  },
-  {
-    id: 7,
-    date: '2025.06.10',
-    category: 'memories',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    color: '#2d5fb8',
-  },
-  {
-    id: 8,
-    date: '2025.06.05',
-    category: 'funfacts',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    color: '#F87590',
-  },
-  {
-    id: 9,
-    date: '2025.05.30',
-    category: 'news',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    color: '#4883E0',
-  },
-  {
-    id: 10,
-    date: '2025.05.22',
-    category: 'memories',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    color: '#2d5fb8',
-  },
-  {
-    id: 11,
-    date: '2025.05.15',
-    category: 'news',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    color: '#4883E0',
-  },
-  {
-    id: 12,
-    date: '2025.05.08',
-    category: 'funfacts',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    color: '#F87590',
+    links: [
+      { label: 'Read More', url: '#', type: 'blue' },
+    ]
   },
 ];
 
@@ -182,7 +153,7 @@ const mediaData = [
  *   skills    — 特技    e.g. '色々な怪獣の顔マネ・変な動き'
  *   message   — ひとこと (personal message to fans)
  * ============================================================
- */
+*/
 const membersData = [
   {
     id: 1, nameJp: '城月 菜央', nameEn: 'KIZUKI NAO',
@@ -360,7 +331,7 @@ const discoData = [
     type: 'Digital Single',
     releaseDate: '2023.06.21',
     color: '#2d5fb8',
-    cover: 'img/disco/.jpg',
+    cover: 'img/disco/heroine.jpg',
   },
   {
     title: '決戦スピリット - Kessen Spirit',
@@ -409,42 +380,42 @@ const discoData = [
     type: 'Digital Single',
     releaseDate: '2024.02.03',
     color: '#2d5fb8',
-    cover: 'img/disco/-.jpg',
+    cover: 'img/disco/kawaiiwaretai.jpg',
   },
   {
     title: '私は怪物 - Watashi wa Kaibutsu',
     type: 'Digital Single',
     releaseDate: '2024.02.06',
     color: '#2d5fb8',
-    cover: 'img/disco/-.jpg',
+    cover: 'img/disco/watashikaibutsu.jpg',
   },
   {
     title: '推しの魔法 - Oshi no Mahou',
     type: 'Digital Single',
     releaseDate: '2024.03.25',
     color: '#2d5fb8',
-    cover: 'img/disco/-.jpg',
+    cover: 'img/disco/oshinomahou.jpg',
   },
   {
     title: 'メイド☆至上主義 - Maid Shijyoshugi',
     type: 'Digital Single',
     releaseDate: '2024.05.13',
     color: '#2d5fb8',
-    cover: 'img/disco/-.jpg',
+    cover: 'img/disco/maid.jpg',
   },
   {
     title: '私より好きでいて - Watashi Yori Sukide Ite',
     type: 'Digital Single',
     releaseDate: '2024.06.05',
     color: '#2d5fb8',
-    cover: 'img/disco/-.jpg',
+    cover: 'img/disco/lovememore.jpg',
   },
   {
     title: '小悪魔だってかまわない! - Koakuma Datte Kamawanai!',
     type: 'Digital Single',
     releaseDate: '2025.02.09',
     color: '#2d5fb8',
-    cover: 'img/disco/-.jpg',
+    cover: 'img/disco/koakuma.jpg',
   },
   {
     title: 'Cute for Life',
@@ -474,6 +445,13 @@ const discoData = [
     color: '#2d5fb8',
     cover: 'img/disco/imidol.jpg',
   },
+  {
+    title: '見上げるたびに、恋をする。 - Miageru Tabi ni, Koi o Suru.',
+    type: 'Album',
+    releaseDate: '2025.12.17',
+    color: '#2d5fb8',
+    cover: 'img/disco/miageru.jpg',
+  },
 ];
 
 /* ============================================================
@@ -483,6 +461,7 @@ const discoData = [
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();               // 2.5 Theme management
   initHeaderScroll();         // 3. Sticky header shadow on scroll
   initHamburger();            // 4. Mobile nav toggle
   createPetals();             // 5. Hero falling petals
@@ -765,7 +744,10 @@ function createMediaCardHTML(item) {
        </div>`;
 
   return `
-    <div class="media-card" tabindex="0" aria-label="${escapeHTML(item.title)}">
+    <div class="media-card" tabindex="0" aria-label="${escapeHTML(item.title)}"
+         role="button"
+         onclick="openMediaModal(${item.id})"
+         onkeydown="if(event.key==='Enter'||event.key===' ')openMediaModal(${item.id})">
       <!-- [COVER] Post cover image or gradient placeholder -->
       <div class="media-card-cover">
         ${coverHTML}
@@ -1317,6 +1299,10 @@ function openMemberModal(id) {
  * closeMemberModal
  * Hides the modal and restores page scrolling.
  */
+/**
+ * closeMemberModal
+ * Hides the modal and restores page scrolling.
+ */
 function closeMemberModal() {
   const modal = document.getElementById('memberModal');
   if (!modal) return;
@@ -1324,18 +1310,179 @@ function closeMemberModal() {
   document.body.style.overflow = '';
 }
 
+/* ============================================================
+   MEDIA MODAL
+   Opens a popup with full news content when a media card is clicked.
+   ============================================================ */
+
+/**
+ * openMediaModal
+ * Finds the media item by id, builds the modal HTML, injects it
+ * into #mediaModalContent, and shows the overlay.
+ *
+ * @param {number} id - The media item's id from mediaData.
+ */
+function openMediaModal(id) {
+  const item = mediaData.find((m) => m.id === id);
+  if (!item) return;
+
+  const modal = document.getElementById('mediaModal');
+  const content = document.getElementById('mediaModalContent');
+  if (!modal || !content) return;
+
+  // Cover image or gradient placeholder
+  const coverHTML = item.image
+    ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" class="modal-media-img" />`
+    : `<div class="modal-media-placeholder" style="background:linear-gradient(160deg,${escapeHTML(item.color)}44,${escapeHTML(item.color)})">✿</div>`;
+
+  // Inject modal content
+  content.innerHTML = `
+    <!-- [MODAL HEADER] Close button -->
+    <div class="modal-header">
+      <span class="modal-profile-label">${item.category.split('').join(' ')}</span>
+      <button class="modal-close" onclick="closeMediaModal()" aria-label="閉じる">&times;</button>
+    </div>
+
+    <!-- [MODAL BODY] Image at top, text below -->
+    <div class="media-modal-body">
+      <!-- [MODAL PHOTO] Media cover -->
+      <div class="modal-media-cover">
+        ${coverHTML}
+        <span class="media-card-badge media-card-badge--${escapeHTML(item.category)}" style="position:absolute; top:1rem; left:1rem;">
+          ${item.category.toUpperCase()}
+        </span>
+      </div>
+
+      <!-- [MODAL INFO] Title, Date, Content -->
+      <div class="modal-media-info">
+        <h2 class="modal-media-title">${escapeHTML(item.title)}</h2>
+        <p class="modal-media-date">${escapeHTML(item.date)}</p>
+        <div class="modal-media-content">
+          <p>${escapeHTML(item.content)}</p>
+        </div>
+
+        <!-- [MODAL LINKS] Render buttons if links exist in data -->
+        ${item.links ? `
+          <div class="modal-media-links">
+            ${item.links.map(link => `
+              <a href="${escapeHTML(link.url)}" 
+                 class="btn btn--${link.type || 'primary'} modal-media-btn" 
+                 target="_blank" rel="noopener noreferrer">
+                ${escapeHTML(link.label)}
+              </a>
+            `).join('')}
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `;
+
+  // Show the modal
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden'; // prevent background scroll
+}
+
+/**
+ * closeMediaModal
+ * Hides the media modal and restores page scrolling.
+ */
+function closeMediaModal() {
+  const modal = document.getElementById('mediaModal');
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
 // Close modal when clicking the dark overlay backdrop
 document.addEventListener('DOMContentLoaded', () => {
-  const modal = document.getElementById('memberModal');
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      // Only close if the click is directly on the overlay, not the content
-      if (e.target === modal) closeMemberModal();
+  const memberModal = document.getElementById('memberModal');
+  if (memberModal) {
+    memberModal.addEventListener('click', (e) => {
+      if (e.target === memberModal) closeMemberModal();
     });
   }
 
-  // Close modal with Escape key
+  const mediaModal = document.getElementById('mediaModal');
+  if (mediaModal) {
+    mediaModal.addEventListener('click', (e) => {
+      if (e.target === mediaModal) closeMediaModal();
+    });
+  }
+
+  // Close modals with Escape key
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMemberModal();
+    if (e.key === 'Escape') {
+      closeMemberModal();
+      closeMediaModal();
+    }
   });
 });
+
+/* ============================================================
+   12. THEME MANAGEMENT
+   Handles dark/light mode toggling and persistence.
+   ============================================================ */
+
+/**
+ * initTheme
+ * Checks localStorage for 'theme' and applies it.
+ * If no theme is saved, checks system prefers-color-scheme.
+ */
+function initTheme() {
+  const toggleBtn = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme');
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // 1. Determine which theme to use
+  let theme = 'light';
+  if (savedTheme) {
+    theme = savedTheme;
+  } else if (systemDark) {
+    theme = 'dark';
+  }
+
+  // 2. Apply theme to body
+  if (theme === 'dark') {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+
+  // 3. Setup click listener
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.body.classList.toggle('dark-mode');
+      const newTheme = isDark ? 'dark' : 'light';
+      localStorage.setItem('theme', newTheme);
+      
+      // Update aria-label for accessibility
+      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+    });
+  }
+
+  // 4. Listen for system theme changes if no user preference is set
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      if (e.matches) {
+        document.body.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+      }
+    }
+  });
+}
+
+/**
+ * escapeHTML
+ * Simple utility to prevent XSS when injecting data into strings
+ */
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+

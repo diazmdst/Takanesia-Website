@@ -54,6 +54,32 @@ body {
   width: 100%;
 }
 
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d0ddf7;
+  /* soft blue-grey */
+  border: 2px solid var(--color-cream);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rose);
+}
+
+/* Firefox support */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d0ddf7 var(--color-cream);
+}
+
 /* --- CSS Custom Properties (design tokens) --- */
 :root {
   /* -- New brand palette -- */
@@ -142,6 +168,37 @@ body {
   --transition-fast: 150ms ease;
   --transition-base: 250ms ease;
   --transition-slow: 400ms ease;
+
+  /* Theme-specific surfaces (will be overridden in dark mode) */
+  --color-surface: var(--color-white);
+  --color-card-bg: #ffffff;
+  --color-text: var(--color-charcoal);
+  --color-text-muted: rgba(10, 10, 10, 0.6);
+  --color-text-dim: rgba(10, 10, 10, 0.4);
+  --color-nav-bg: var(--color-white);
+  --color-footer-bg: var(--color-charcoal);
+}
+
+/* --- Dark Mode Variable Overrides --- */
+body.dark-mode {
+  --color-white: #0f172a;
+  --color-charcoal: #f1f5f9;
+  --color-cream: #1e293b;
+  --color-border: #334155;
+  --color-muted: #94a3b8;
+  --color-pink-light: #4c1d24;
+  
+  /* Overrides for dynamic surfaces */
+  --color-surface: #0f172a;
+  --color-card-bg: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-muted: rgba(241, 245, 249, 0.6);
+  --color-text-dim: rgba(241, 245, 249, 0.4);
+  --color-nav-bg: #0f172a;
+  --color-footer-bg: #020617; /* even darker for footer */
+  
+  /* Shimmer adjustment */
+  --shimmer-color: rgba(255, 255, 255, 0.05);
 }
 
 /* ============================================================
@@ -152,12 +209,13 @@ body {
 body {
   font-family: var(--font-body);
   font-size: var(--fs-base);
-  color: var(--color-charcoal);
-  background-color: var(--color-white);
+  color: var(--color-text);
+  background-color: var(--color-surface);
   line-height: 1.7;
   /* generous line-height for Japanese text readability */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 /* --- Headings: use display font for decorative headings --- */
@@ -170,7 +228,7 @@ h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-charcoal);
+  color: var(--color-text);
 }
 
 /* --- Paragraph spacing --- */
@@ -259,7 +317,7 @@ img {
 /* --- .btn--primary: filled pink/rose button --- */
 .btn--primary {
   background-color: var(--color-rose);
-  color: var(--color-white);
+  color: #ffffff;
   border-color: var(--color-rose);
   box-shadow: var(--shadow-pink);
 }
@@ -268,8 +326,22 @@ img {
 .btn--primary:focus-visible {
   background-color: var(--color-rose-dark);
   border-color: var(--color-rose-dark);
-  color: var(--color-white);
+  color: #ffffff;
   box-shadow: 0 6px 20px rgba(72, 131, 224, 0.40);
+}
+
+/* --- .btn--secondary: light filled button for secondary actions --- */
+.btn--secondary {
+  background-color: var(--color-cream);
+  color: var(--color-rose);
+  border-color: var(--color-rose);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus-visible {
+  background-color: #e2e8f0;
+  border-color: #e2e8f0;
+  color: var(--color-rose);
 }
 
 /* --- .btn--outline: transparent with rose border --- */
@@ -285,17 +357,43 @@ img {
   color: var(--color-white);
 }
 
-/* --- .btn--white: white-filled button (used on dark/colored backgrounds) --- */
+/* --- .btn--white: white-filled button with border --- */
 .btn--white {
   background-color: var(--color-white);
-  color: var(--color-rose);
-  border-color: var(--color-white);
+  color: var(--color-charcoal);
+  border-color: var(--color-border);
 }
 
-.btn--white:hover,
-.btn--white:focus-visible {
-  background-color: var(--color-pink-light);
-  color: var(--color-rose-dark);
+.btn--white:hover {
+  background-color: var(--color-cream);
+  border-color: var(--color-rose);
+  color: var(--color-rose);
+}
+
+/* --- .btn--dark: dark-filled button --- */
+.btn--dark {
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  border-color: var(--color-charcoal);
+}
+
+.btn--dark:hover {
+  background-color: #333333;
+  border-color: #333333;
+}
+
+/* --- .btn--blue: blue-filled button with glow --- */
+.btn--blue {
+  background-color: #4883E0;
+  color: #ffffff;
+  border-color: #4883E0;
+  box-shadow: 0 4px 14px rgba(72, 131, 224, 0.35);
+}
+
+.btn--blue:hover {
+  background-color: #366ac0;
+  border-color: #366ac0;
+  box-shadow: 0 6px 20px rgba(72, 131, 224, 0.55);
 }
 
 /* --- .section: standard vertical padding wrapper for all page sections --- */
@@ -373,9 +471,9 @@ img {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--color-white);
+  background-color: var(--color-nav-bg);
   height: var(--header-height);
-  transition: box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base), background-color var(--transition-base);
 }
 
 /* When JS adds .site-header--scrolled (after hero passes), show shadow */
@@ -392,7 +490,7 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: var(--space-2);
 }
 
 /* --- Logo: image mark --- */
@@ -401,6 +499,7 @@ img {
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
+  order: 1; /* Always first on the left */
 }
 
 .logo:hover {
@@ -416,6 +515,11 @@ img {
   /* preserve aspect ratio */
   display: block;
   object-fit: contain;
+  transition: filter var(--transition-base);
+}
+
+body.dark-mode .logo-img {
+  filter: brightness(0) invert(1);
 }
 
 /* --- Hamburger button: 3-line icon, mobile only --- */
@@ -434,10 +538,61 @@ img {
   border-radius: var(--border-radius-sm);
   transition: background-color var(--transition-fast);
   flex-shrink: 0;
+  order: 3; /* Last on the right on mobile */
 }
 
 .hamburger:hover {
   background-color: var(--color-pink-light);
+}
+
+/* --- Theme Toggle Button --- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: 1.5px solid var(--color-border);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: 
+    background-color var(--transition-fast), 
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+  order: 2; /* Middle on mobile */
+  margin-left: auto; /* Push itself and hamburger to the right */
+}
+
+.theme-toggle:hover {
+  background-color: var(--color-pink-light);
+  border-color: var(--color-rose);
+  transform: scale(1.05);
+}
+
+/* Icon rotation and swap */
+.theme-toggle .sun-icon { display: block; }
+.theme-toggle .moon-icon { display: none; }
+
+body.dark-mode .theme-toggle .sun-icon { display: none; }
+body.dark-mode .theme-toggle .moon-icon { display: block; }
+
+@media (min-width: 768px) {
+  .theme-toggle {
+    margin-left: var(--space-2);
+    margin-right: 0;
+    order: 3; /* Far right on desktop */
+  }
+  
+  .logo {
+    order: 1; /* Left on desktop */
+  }
+  
+  .main-nav {
+    order: 2; /* Middle on desktop */
+  }
 }
 
 /* Each span is one horizontal line of the hamburger icon */
@@ -445,7 +600,7 @@ img {
   display: block;
   width: 100%;
   height: 2px;
-  background-color: var(--color-charcoal);
+  background-color: var(--color-text);
   border-radius: var(--border-radius-pill);
   transition:
     transform var(--transition-base),
@@ -467,19 +622,20 @@ img {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* --- Main nav: hidden on mobile by default, shown when open --- */
 .main-nav {
   /* Mobile: collapsed dropdown below header */
   position: absolute;
   top: var(--header-height);
   left: 0;
   right: 0;
-  background-color: var(--color-white);
+  background-color: var(--color-nav-bg);
   box-shadow: var(--shadow-md);
   max-height: 0;
   overflow: hidden;
   transition: max-height var(--transition-slow), opacity var(--transition-slow);
   opacity: 0;
+  z-index: 90;
+  display: block; /* Ensure it's not flex on mobile */
 }
 
 /* When hamburger is open, expand the nav */
@@ -505,7 +661,7 @@ img {
   font-size: var(--fs-sm);
   font-weight: 500;
   letter-spacing: 0.1em;
-  color: var(--color-charcoal);
+  color: var(--color-text);
   text-decoration: none;
   border-radius: var(--border-radius-sm);
   position: relative;
@@ -640,7 +796,7 @@ img {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 8vw, var(--fs-4xl));
   font-weight: 700;
-  color: var(--color-white);
+  color: #ffffff;
   letter-spacing: 0.04em;
   line-height: 1.1;
   text-shadow:
@@ -775,7 +931,7 @@ img {
 .filter-tab[aria-selected="true"] {
   background-color: var(--color-rose);
   border-color: var(--color-rose);
-  color: var(--color-white);
+  color: #ffffff;
 }
 
 /* --- News list: clean unstyled list --- */
@@ -879,12 +1035,12 @@ img {
    name footer with accent border.
    ============================================================ */
 
-/* --- Member section background: white --- */
+/* --- Member section background: cream --- */
 .member-section {
-  background-color: var(--color-white);
+  background-color: var(--color-cream);
 }
 
-/* --- Member grid: fixed 3�3 layout --- */
+/* --- Member grid: fixed 33 layout --- */
 /* --- Member grid: 2 cols mobile, 3 cols desktop --- */
 .member-grid {
   display: grid;
@@ -897,7 +1053,7 @@ img {
 
 /* --- Member card: fully proportional dark card --- */
 .member-card {
-  background-color: #1a1a2e;
+  background-color: var(--color-card-bg);
   border-radius: clamp(12px, 2vw, 20px);
   overflow: hidden;
   /* clip everything inside — no overflow collisions */
@@ -917,7 +1073,9 @@ img {
 /* --- Card body: wraps color block + photo + social rail --- */
 .member-card-body {
   position: relative;
+  aspect-ratio: 3 / 4;
   flex: 1;
+  overflow: hidden;
 }
 
 /* --- Color block: hidden — photo fills full card body --- */
@@ -927,12 +1085,11 @@ img {
 
 /* --- Photo: fills the card body --- */
 .member-photo {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
-  aspect-ratio: 3 / 4;
-  overflow: hidden;
   z-index: 1;
-  background-color: #1a1a2e;
+  background-color: var(--color-card-bg);
 }
 
 /* Shimmer — only on placeholder */
@@ -957,9 +1114,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-size: clamp(2rem, 5vw, 4rem);
   color: rgba(255, 255, 255, 0.45);
-  z-index: 1;
   pointer-events: none;
 }
 
@@ -969,8 +1125,7 @@ img {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center top;
+  object-fit: cover;
   display: block;
   z-index: 1;
 }
@@ -999,6 +1154,7 @@ img {
   font-size: clamp(0.75rem, 2.5vw, var(--fs-xl));
   font-weight: 700;
   line-height: 1.2;
+  color: var(--color-text);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1009,7 +1165,7 @@ img {
   font-family: var(--font-body);
   font-size: clamp(0.45rem, 1.1vw, var(--fs-xs));
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.8);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-top: clamp(2px, 0.3vw, 4px);
@@ -1034,7 +1190,7 @@ img {
   justify-content: center;
   width: clamp(20px, 2.8vw, 32px);
   height: clamp(20px, 2.8vw, 32px);
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: color var(--transition-fast), transform var(--transition-fast);
 }
@@ -1059,7 +1215,7 @@ img {
 
 /* ============================================================
    9. DISCOGRAPHY SECTION
-   Grid of release cards � mirrors the member section layout.
+   Grid of release cards  mirrors the member section layout.
    ============================================================ */
 
 /* --- Discography section background: white (same as member section) --- */
@@ -1174,7 +1330,7 @@ img {
   z-index: 1;
 }
 
-/* Shimmer overlay � same as .member-photo::after */
+/* Shimmer overlay  same as .member-photo::after */
 .disco-cover::after {
   content: '';
   position: absolute;
@@ -1200,23 +1356,23 @@ img {
   pointer-events: none;
 }
 
-/* --- Disco info: text block below the cover � mirrors .member-info --- */
+/* --- Disco info: text block below the cover  mirrors .member-info --- */
 .disco-info {
   padding: var(--space-3) var(--space-3) var(--space-2);
   text-align: center;
   flex: 1;
 }
 
-/* Release title � mirrors .member-name-jp */
+/* Release title  mirrors .member-name-jp */
 .disco-title {
   font-family: var(--font-body);
   font-size: var(--fs-sm);
   font-weight: 700;
-  color: var(--color-charcoal);
+  color: var(--color-text);
   line-height: 1.3;
 }
 
-/* Type � year � mirrors .member-name-en */
+/* Type  year  mirrors .member-name-en */
 .disco-meta {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
@@ -1225,7 +1381,7 @@ img {
   margin-top: var(--space-1);
 }
 
-/* --- Disco color bar: thin strip at card bottom � mirrors .member-color-bar --- */
+/* --- Disco color bar: thin strip at card bottom  mirrors .member-color-bar --- */
 .disco-color-bar {
   height: 4px;
   width: 100%;
@@ -1596,7 +1752,7 @@ img {
    ============================================================ */
 
 /* ----------------------------------------------------------
-   768px � Tablet breakpoint
+   768px  Tablet breakpoint
    ---------------------------------------------------------- */
 @media (min-width: 768px) {
 
@@ -1612,15 +1768,14 @@ img {
   }
 
   .main-nav {
-    /* Reset mobile dropdown styles — smooth transition to inline */
     position: static;
     max-height: none;
-    overflow: visible;
-    box-shadow: none;
-    background-color: transparent;
     opacity: 1;
-    transition: none;
-    /* no transition needed on desktop */
+    background: none;
+    box-shadow: none;
+    width: auto;
+    margin-left: auto; /* Push nav to the right, before the theme toggle */
+    order: 2;
   }
 
   .nav-list {
@@ -1661,7 +1816,7 @@ img {
 }
 
 /* ----------------------------------------------------------
-   1024px � Desktop breakpoint
+   1024px  Desktop breakpoint
    ---------------------------------------------------------- */
 @media (min-width: 1024px) {
 
@@ -1763,14 +1918,14 @@ img {
 }
 
 /* ============================================================
-   PAGE HERO � compact banner used on all sub-pages
+   PAGE HERO  compact banner used on all sub-pages
    ============================================================ */
 
 /* --- Outer banner: shorter than the homepage hero --- */
 .page-hero {
   background: linear-gradient(160deg,
-      var(--color-pink) 0%,
-      #a8c4f5 40%,
+      #F87590 0%,
+      #8ba8db 45%,
       var(--color-cream) 100%);
   padding: var(--space-16) var(--space-4) var(--space-12);
   display: flex;
@@ -1781,7 +1936,14 @@ img {
   overflow: hidden;
 }
 
-/* Dot pattern overlay � same as hero-bg */
+body.dark-mode .page-hero {
+  background: linear-gradient(160deg,
+      #4a1d26 0%,
+      #1a2a4a 50%,
+      #0f172a 100%);
+}
+
+/* Dot pattern overlay  same as hero-bg */
 .page-hero::before {
   content: '';
   position: absolute;
@@ -1822,6 +1984,11 @@ img {
   color: var(--color-rose);
   letter-spacing: 0.06em;
   line-height: 1.1;
+  transition: color var(--transition-base);
+}
+
+body.dark-mode .page-hero-title {
+  color: #ffffff;
 }
 
 /* --- Sub: Japanese subtitle --- */
@@ -1957,7 +2124,12 @@ img {
   font-size: var(--fs-4xl);
   font-weight: 700;
   color: var(--color-rose);
+  transition: color var(--transition-base);
   line-height: 1;
+}
+
+body.dark-mode .about-stat-num {
+  color: #8ba8db; /* Lighter blue for dark mode */
 }
 
 /* Label below the number */
@@ -1971,7 +2143,7 @@ img {
 }
 
 /* ============================================================
-   RESPONSIVE � member grid & social rail mobile adjustments
+   RESPONSIVE  member grid & social rail mobile adjustments
    ============================================================ */
 
 @media (min-width: 768px) {
@@ -2212,7 +2384,7 @@ img {
 }
 
 /* --- Filter tabs: same style as news filter --- */
-.media-filter {
+.media-tabs {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
@@ -2254,7 +2426,7 @@ img {
 .media-tab[aria-selected="true"] {
   background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-rose-dark) 100%);
   border-color: transparent;
-  color: var(--color-white);
+  color: #ffffff;
   box-shadow: 0 4px 16px rgba(72, 131, 224, 0.35);
   transform: translateY(-2px);
 }
@@ -2277,7 +2449,7 @@ img {
 
 /* --- Media card: dark card matching member card style --- */
 .media-card {
-  background-color: #1a1a2e;
+  background-color: var(--color-card-bg);
   border-radius: clamp(12px, 2vw, 20px);
   overflow: hidden;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
@@ -2364,7 +2536,7 @@ img {
   font-family: var(--font-body);
   font-size: clamp(0.7rem, 1.8vw, var(--fs-sm));
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-text);
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -2376,7 +2548,7 @@ img {
 .media-card-excerpt {
   font-family: var(--font-body);
   font-size: clamp(0.55rem, 1.2vw, var(--fs-xs));
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-muted);
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -2388,7 +2560,7 @@ img {
 .media-card-date {
   font-family: var(--font-body);
   font-size: 0.6rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--color-text-dim);
   letter-spacing: 0.08em;
   margin-top: auto;
   padding-top: var(--space-2);
@@ -2489,7 +2661,8 @@ img {
   max-width: var(--max-width);
   margin-inline: auto;
   padding-inline: var(--space-4);
-  min-height: 200px; /* prevent collapse before JS renders */
+  min-height: 200px;
+  /* prevent collapse before JS renders */
 }
 
 @media (min-width: 768px) {
@@ -2514,9 +2687,186 @@ img {
     grid-column: span 2;
     grid-row: span 2;
   }
-  
+
   /* Make sure titles of the large card scale up nicely */
   .home-news-grid .media-card:nth-child(1) .media-card-title {
     font-size: clamp(1.2rem, 3vw, var(--fs-xl));
   }
+}
+
+/* ============================================================
+   MEDIA MODAL SPECIFIC STYLES
+   ============================================================ */
+
+.media-modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.modal-media-cover {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  max-height: 70vh;
+  margin-inline: auto;
+  /* aspect-ratio: 16 / 9; — Removed to fit natural ratio */
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-media-img {
+  max-width: 100%;
+  max-height: 70vh;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+.modal-media-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-media-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.modal-media-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.modal-media-date {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  color: var(--color-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2);
+}
+
+.modal-media-content {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-text);
+  line-height: 1.8;
+}
+
+.modal-media-content p {
+  margin-bottom: var(--space-4);
+}
+
+.modal-media-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.modal-media-btn {
+  min-width: 180px;
+  color: #ffffff;
+}
+
+/* Mobile adjustments for media modal content */
+@media (max-width: 600px) {
+  .modal-media-title {
+    font-size: var(--fs-lg);
+  }
+
+  .modal-media-content {
+    font-size: var(--fs-sm);
+  }
+}
+
+.modal-media-btn:hover {
+  color: #ffffff !important;
+}
+
+/* ============================================================
+   9. FOOTER SECTION
+   ============================================================ */
+.site-footer {
+  background-color: var(--color-footer-bg);
+  color: #ffffff;
+  padding: var(--space-12) 0;
+  transition: background-color var(--transition-base);
+}
+
+.footer-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  text-align: center;
+}
+
+.footer-logo-img {
+  height: 40px;
+  width: auto;
+  opacity: 0.9;
+  transition: opacity var(--transition-base), filter var(--transition-base);
+}
+
+body.dark-mode .footer-logo-img {
+  filter: brightness(0) invert(1);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+  transform: translateY(-4px);
+  color: #ffffff;
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.copyright {
+  font-size: var(--fs-xs);
+  opacity: 0.5;
+  letter-spacing: 0.08em;
+  margin-top: var(--space-2);
 }
