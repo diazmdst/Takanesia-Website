@@ -651,7 +651,7 @@ function initMedia() {
   const tabs = document.querySelectorAll('.media-tab');
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
-      const filter = tab.dataset.filter;
+      const filter = tab.dataset.category;
 
       // Update active tab styling
       tabs.forEach((t) => {
@@ -668,7 +668,7 @@ function initMedia() {
   });
 
   // Load more button
-  const loadMoreBtn = document.getElementById('mediaLoadMoreBtn');
+  const loadMoreBtn = document.getElementById('loadMoreMedia');
   if (loadMoreBtn) {
     loadMoreBtn.addEventListener('click', () => {
       visibleMediaCount += MEDIA_PAGE_SIZE;
@@ -690,7 +690,7 @@ function renderMedia(filter, resetCount = true) {
   if (resetCount) visibleMediaCount = MEDIA_PAGE_SIZE;
 
   const grid = document.getElementById('mediaGrid');
-  const loadMoreBtn = document.getElementById('mediaLoadMoreBtn');
+  const loadMoreBtn = document.getElementById('loadMoreMedia');
   if (!grid) return;
 
   // Filter by category
