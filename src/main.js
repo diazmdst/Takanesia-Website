@@ -65,83 +65,97 @@ const mediaData = [
   },
   {
     id: 2,
-    date: '2026.07.10',
-    category: 'funfacts',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    content: `Did you know that each member of Takane no Nadeshiko has a unique member color?
-              These colors represent their individual personalities and are used in their outfits 
-              and official goods. When you attend our live performances, try waving a penlight in 
-              your favorite member's color to show your support! It's one of the best ways to connect with the members on stage.`,
+    date: '2026.05.06',
+    category: 'news',
+    title: 'Erisa Absen di Beberapa Pertunjukan',
+    image: 'img/media/erisa absen.jpg',
+    excerpt: 'Member Absen',
+    content: `Erisa dikabarkan absen dari beberapa pertunjukan sejak 2 Mei 2026 karena kondisi kesehatan yang kurang baik 🤍
+
+                Selama masa istirahat, posisinya akan digantikan sementara oleh Momoko.
+                Semoga Erisa segera pulih dan bisa kembali tampil dengan kondisi terbaiknya!
+
+                Tetap kirimkan dukungan dan doa terbaik ya 🙏✨
+
+                #Takanesia #TakaneNews #GetWellSoonErisa`,
     color: '#F87590',
     links: [
-      { label: 'Read More', url: '#', type: 'blue' },
+      { label: 'Instagram', url: 'https://www.instagram.com/p/DX9RSpaEtSW/', type: 'blue' },
     ]
   },
   {
     id: 3,
-    date: '2026.07.05',
+    date: '2026.04.30',
     category: 'news',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    content: `We are excited to announce that new official merchandise will be available soon! From acrylic stands to photo cards and T-shirts, there's something for every fan. Keep an eye on our official store and social media channels for the launch date and exclusive items. Don't miss out on adding these to your collection!`,
+    title: 'Takaneko Tampil di Asia Culture Festival',
+    image: 'img/media/cultfest.jpg',
+    excerpt: '#TKNKONSTAGE',
+    content: `Takaneko diumumkan sebagai salah satu lineup dalam Asia Culture Festival 2026 
+              yang akan digelar pada 9-10 Juni 2026 di Tokyo Garden Theater, Jepang. Kehadiran 
+              mereka dalam festival ini menjadi bagian dari rangkaian penampilan bersama berbagai 
+              artis lain yang meramaikan acara tersebut.
+
+              Buat yang di Jepang, jangan sampai kelewatan 👀`,
     color: '#4883E0',
     links: [
-      { label: 'Read More', url: '#', type: 'blue' },
+      { label: 'Instagram', url: 'https://www.instagram.com/p/DXvdW0BEkRy/', type: 'blue' },
     ]
   },
   {
     id: 4,
-    date: '2026.06.28',
+    date: '2026.03.17',
     category: 'memories',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    content: `Looking back at our very first performance, the members remember the nervous excitement and the warm welcome from the fans. It was a day that marked the beginning of our journey together. We are so grateful for all the memories we've shared with you so far and look forward to creating many more in the years to come!`,
+    title: 'Takanesia Berbagi Kebaikan',
+    image: 'img/media/berbagi.jpg',
+    excerpt: 'Berbagi Manfaat',
+    content: `Otsukare - Takanesia Berbagi Kebaikan ✨
+
+              Alhamdulillah, kemarin Takanesia bersama beberapa komunitas jejepangan lainnya 
+              berhasil membagikan 300 paket takjil kepada masyarakat di sekitar Mangga Dua Square.
+
+              Terima kasih sebesar-besarnya untuk semua yang sudah berpartisipasi, baik melalui 
+              tenaga maupun donasi. Semoga kebaikan ini bisa terus berlanjut ke depannya 🌸
+
+              #高嶺のなでしこ #たかねこ #takanenonadeshiko #takanenonadeshikoindonesia #takanememory`,
     color: '#2d5fb8',
     links: [
-      { label: 'Read More', url: '#', type: 'blue' },
+      { label: 'Instagram', url: 'https://www.instagram.com/p/DV-LMvoEgLC/', type: 'blue' },
     ]
   },
   {
     id: 5,
-    date: '2026.06.20',
-    category: 'funfacts',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    content: `The members of Takanesia often spend their free time practicing choreography and bonding as a team. Some members enjoy cooking together, while others love visiting cafes or watching movies. These strong bonds are what make our group unique and help us deliver the best performances for our amazing fans!`,
+    date: '2026.03.11',
+    category: 'memories',
+    title: 'Otsukare BOUQUET OF 9 FLOWERS 🌸',
+    image: 'img/media/bouq9flow.jpg',
+    excerpt: 'Bouquet of 9 Flowers',
+    content: `Live Tour Takaneko yang keempat di Zepp DiverCity (Tokyo) dan Live tour selanjutnya tanggal 21 Maret di Zepp Fukuoka 💕
+
+              Banyak juga fancam dan potret setiap member dengan hastag "#たかねこツアー2026" bisa cari di X atau Tiktok ❤️
+
+              #高嶺のなでしこ #たかねこ #takanenonadeshiko #takanenonadeshikoindonesia takanememory`,
     color: '#F87590',
     links: [
-      { label: 'Read More', url: '#', type: 'blue' },
+      { label: 'Instagram', url: 'https://www.instagram.com/p/DVvYbcnkjZc/', type: 'blue' },
     ]
   },
   {
     id: 6,
-    date: '2025.06.15',
-    category: 'news',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    content: `Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can't wait to see you at our next event! Please continue to cheer for us!`,
+    date: '2026.03.20',
+    category: 'funfacts',
+    title: 'Funfact Watashi no Koto ga Suki',
+    image: 'img/media/Funfact Watashi no Koto ga Suki.jpg',
+    excerpt: 'Nao x Momoko',
+    content: `【TAKANE FUNFACT】
+
+              Lagu bertema self-love ini juga mendapatkan versi odotte mita (dance cover) yang menampilkan 
+              duo center sambil cosplay sebagai karakter dari Cosmic Princess Kaguya Nao sebagai Kaguya dan 
+              Momoko sebagai Sakayori Iroha
+
+              Ini juga menjadi momen pertama bagi Takane no Nadeshiko merilis dance cover dengan konsep cosplay`,
     color: '#4883E0',
     links: [
-      { label: 'Read More', url: '#', type: 'blue' },
-    ]
-  },
-  {
-    id: 7,
-    date: '2025.06.15',
-    category: 'news',
-    title: 'COMING SOON',
-    image: null,
-    excerpt: 'COMING SOON',
-    content: `Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can't wait to see you at our next event! Please continue to cheer for us!`,
-    color: '#4883E0',
-    links: [
-      { label: 'Read More', url: '#', type: 'blue' },
+      { label: 'Instagram', url: 'https://www.instagram.com/p/DXV7gYdktUp/', type: 'blue' },
     ]
   },
 ];
