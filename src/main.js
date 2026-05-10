@@ -124,6 +124,19 @@ const mediaData = [
       { label: 'Read More', url: '#', type: 'blue' },
     ]
   },
+  {
+    id: 7,
+    date: '2025.06.15',
+    category: 'news',
+    title: 'COMING SOON',
+    image: null,
+    excerpt: 'COMING SOON',
+    content: 'Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can\'t wait to see you at our next event! Please continue to cheer for us!',
+    color: '#4883E0',
+    links: [
+      { label: 'Read More', url: '#', type: 'blue' },
+    ]
+  },
 ];
 
 /**
@@ -1454,7 +1467,7 @@ function initTheme() {
       const isDark = document.body.classList.toggle('dark-mode');
       const newTheme = isDark ? 'dark' : 'light';
       localStorage.setItem('theme', newTheme);
-      
+
       // Update aria-label for accessibility
       toggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
     });
