@@ -51,8 +51,12 @@ const mediaData = [
     category: 'news',
     title: 'Takanesia Project Anniversary Takaneko',
     image: 'img/media/ebookproj.jpg',
-    excerpt: 'E-Book Project ',
-    content: 'Perayaan tiga tahun penuh kenangan bersama Takane no Nadeshiko daripara penggemar Indonesia. Kisah, karya, dan cinta yang dirangkai dalam satu e-book spesial',
+    excerpt: 'E-Book Project',
+    content: `Perayaan tiga tahun penuh kenangan bersama Takane no Nadeshiko dari para penggemar Indonesia.
+
+              Kisah, karya, dan cinta dirangkai dalam satu e-book spesial yang menghadirkan berbagai kontribusi kreatif dari komunitas.
+
+              Proyek ini menjadi simbol kebersamaan dan dedikasi fans dalam merayakan perjalanan idol yang mereka cintai.`,
     color: '#4883E0',
     links: [
       { label: 'Online Read', url: 'https://online.fliphtml5.com/TakanesiaID/dzck/#p=1', type: 'blue' },
@@ -66,7 +70,10 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
-    content: 'Did you know that each member of Takane no Nadeshiko has a unique member color? These colors represent their individual personalities and are used in their outfits and official goods. When you attend our live performances, try waving a penlight in your favorite member\'s color to show your support! It\'s one of the best ways to connect with the members on stage.',
+    content: `Did you know that each member of Takane no Nadeshiko has a unique member color?
+              These colors represent their individual personalities and are used in their outfits 
+              and official goods. When you attend our live performances, try waving a penlight in 
+              your favorite member's color to show your support! It's one of the best ways to connect with the members on stage.`,
     color: '#F87590',
     links: [
       { label: 'Read More', url: '#', type: 'blue' },
@@ -79,7 +86,7 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
-    content: 'We are excited to announce that new official merchandise will be available soon! From acrylic stands to photo cards and T-shirts, there\'s something for every fan. Keep an eye on our official store and social media channels for the launch date and exclusive items. Don\'t miss out on adding these to your collection!',
+    content: `We are excited to announce that new official merchandise will be available soon! From acrylic stands to photo cards and T-shirts, there's something for every fan. Keep an eye on our official store and social media channels for the launch date and exclusive items. Don't miss out on adding these to your collection!`,
     color: '#4883E0',
     links: [
       { label: 'Read More', url: '#', type: 'blue' },
@@ -92,7 +99,7 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
-    content: 'Looking back at our very first performance, the members remember the nervous excitement and the warm welcome from the fans. It was a day that marked the beginning of our journey together. We are so grateful for all the memories we\'ve shared with you so far and look forward to creating many more in the years to come!',
+    content: `Looking back at our very first performance, the members remember the nervous excitement and the warm welcome from the fans. It was a day that marked the beginning of our journey together. We are so grateful for all the memories we've shared with you so far and look forward to creating many more in the years to come!`,
     color: '#2d5fb8',
     links: [
       { label: 'Read More', url: '#', type: 'blue' },
@@ -105,7 +112,7 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
-    content: 'The members of Takanesia often spend their free time practicing choreography and bonding as a team. Some members enjoy cooking together, while others love visiting cafes or watching movies. These strong bonds are what make our group unique and help us deliver the best performances for our amazing fans!',
+    content: `The members of Takanesia often spend their free time practicing choreography and bonding as a team. Some members enjoy cooking together, while others love visiting cafes or watching movies. These strong bonds are what make our group unique and help us deliver the best performances for our amazing fans!`,
     color: '#F87590',
     links: [
       { label: 'Read More', url: '#', type: 'blue' },
@@ -118,7 +125,7 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
-    content: 'Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can\'t wait to see you at our next event! Please continue to cheer for us!',
+    content: `Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can't wait to see you at our next event! Please continue to cheer for us!`,
     color: '#4883E0',
     links: [
       { label: 'Read More', url: '#', type: 'blue' },
@@ -131,7 +138,7 @@ const mediaData = [
     title: 'COMING SOON',
     image: null,
     excerpt: 'COMING SOON',
-    content: 'Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can\'t wait to see you at our next event! Please continue to cheer for us!',
+    content: `Thank you for your continuous support for Takanesia! We are working hard on new music and performances to show you a different side of our group. Your energy and love keep us going every single day. We can't wait to see you at our next event! Please continue to cheer for us!`,
     color: '#4883E0',
     links: [
       { label: 'Read More', url: '#', type: 'blue' },
@@ -1169,6 +1176,22 @@ function escapeHTML(str) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * renderParagraphs
+ * Converts a string with double newlines (\n\n) into multiple
+ * HTML <p> tags, while escaping each paragraph for safety.
+ *
+ * @param {string} text - The raw text content.
+ * @returns {string} HTML string with <p> tags.
+ */
+function renderParagraphs(text) {
+  if (!text) return '';
+  return text
+    .split('\n\n')
+    .map((p) => `<p>${escapeHTML(p.trim())}</p>`)
+    .join('');
+}
+
 /* ============================================================
    ABOUT PAGE — STAGGERED SCROLL REVEAL
    Observes every [data-reveal] element on the about page.
@@ -1371,7 +1394,7 @@ function openMediaModal(id) {
         <h2 class="modal-media-title">${escapeHTML(item.title)}</h2>
         <p class="modal-media-date">${escapeHTML(item.date)}</p>
         <div class="modal-media-content">
-          <p>${escapeHTML(item.content)}</p>
+          ${renderParagraphs(item.content)}
         </div>
 
         <!-- [MODAL LINKS] Render buttons if links exist in data -->
@@ -1485,17 +1508,5 @@ function initTheme() {
   });
 }
 
-/**
- * escapeHTML
- * Simple utility to prevent XSS when injecting data into strings
- */
-function escapeHTML(str) {
-  if (!str) return '';
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
+
 

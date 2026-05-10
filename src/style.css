@@ -2776,6 +2776,7 @@ body.dark-mode .about-stat-num {
   font-size: var(--fs-base);
   color: var(--color-text);
   line-height: 1.8;
+  text-align: justify;
 }
 
 .modal-media-content p {
