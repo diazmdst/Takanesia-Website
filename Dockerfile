@@ -1,36 +1,84 @@
-# STAGE 1: Build
-FROM node:18-alpine AS builder
+# --- PHP Dependencies Stage ---
+FROM composer:2.6 AS vendor
 WORKDIR /app
+COPY composer.json composer.lock ./
+RUN composer install \
+    --no-interaction \
+    --no-plugins \
+    --no-scripts \
+    --no-dev \
+    --prefer-dist
+
+# --- Frontend Assets Stage ---
+FROM node:18-alpine AS frontend
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN npm ci --quiet
 COPY . .
-RUN if [ -f package.json ]; then \
-    npm install --quiet && npm run build --quiet || echo "LOG: Build failed"; \
-    fi
+RUN npm run build --quiet
 
-# STAGE 2: Production (Secure non-root setup)
-FROM nginx:stable-alpine
+# --- Final Production Image ---
+FROM php:8.2-fpm-alpine
 
-# Set up a non-root execution environment
-# We use the existing 'nginx' user and move the port to 8080
-WORKDIR /usr/share/nginx/html
+# Install system dependencies & Nginx
+RUN apk add --no-cache \
+    nginx \
+    supervisor \
+    libpng-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    git \
+    curl \
+    oniguruma-dev \
+    libzip-dev
 
-# Update Nginx config to run on 8080 (non-privileged port)
-RUN sed -i 's/listen\(.*\)80;/listen 8080;/g' /etc/nginx/conf.d/default.conf && \
-    sed -i '/user  nginx;/d' /etc/nginx/nginx.conf && \
-    touch /var/run/nginx.pid && \
-    chown -R nginx:nginx /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx/conf.d /var/run/nginx.pid
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Clean and copy assets with proper ownership
-COPY --from=builder --chown=nginx:nginx /app /app
-RUN rm -rf ./* && \
-    if [ -d /app/dist ]; then cp -a /app/dist/. ./; \
-    else cp -a /app/src/. ./; fi && \
-    rm -rf /app
+# Set up working directory
+WORKDIR /var/www/html
 
-# Switch to non-root user
-USER nginx
+# Copy application code
+COPY --chown=www-data:www-data . .
 
-# Security: Healthcheck on the new port
-HEALTHCHECK --interval=30s --timeout=3s CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1
+# Compatibility: Copy src/ files to public/ if they exist (for "not fully Laravel" state)
+RUN if [ -d src ]; then cp -rn src/* public/ || true; fi
 
+# Copy composer dependencies
+COPY --from=vendor --chown=www-data:www-data /app/vendor ./vendor
+
+# Copy frontend assets
+COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
+
+# Copy Nginx configuration
+COPY docker/nginx/production/takanesia.conf /etc/nginx/http.d/default.conf
+
+# Set up Supervisor to run both PHP-FPM and Nginx
+COPY docker/supervisor/production.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Prepare directories and permissions
+RUN mkdir -p /var/log/supervisor /var/run/nginx && \
+    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
+    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Security: Set up non-root user (using www-data which already exists in php-fpm image)
+# We need to allow www-data to run nginx and supervisor
+RUN touch /var/run/nginx.pid && \
+    chown -R www-data:www-data /var/run/nginx.pid /var/cache/nginx /var/log/nginx /var/lib/nginx /var/log/supervisor /var/run
+
+USER www-data
+
+# Environment variables (can be overridden)
+ENV APP_ENV=production
+ENV APP_DEBUG=false
+
+# Expose the port Nginx is listening on
 EXPOSE 8080
-CMD ["nginx", "-g", "daemon off;"]
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:8080/ || exit 1
+
+# Start supervisor to manage PHP-FPM and Nginx
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]

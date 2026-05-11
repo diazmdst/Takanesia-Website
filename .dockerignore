@@ -19,6 +19,9 @@ Dockerfile
 .dockerignore
 
 # Build output (handled by Dockerfile stages)
+vendor
+public/build
+node_modules
 dist
 build
 .next
