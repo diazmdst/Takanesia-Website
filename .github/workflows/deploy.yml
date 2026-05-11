@@ -2,7 +2,7 @@ name: Deploy Takanesia Website
 
 on:
   push:
-    branches: [ "main", "master", "devel" ]
+  pull_request:
   workflow_dispatch:
 
 jobs:
