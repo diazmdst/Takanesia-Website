@@ -13,7 +13,7 @@ RUN composer install \
 FROM node:18-alpine AS frontend
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci --quiet
+RUN npm ci --quiet || npm install --quiet
 COPY . .
 RUN npm run build --quiet
 
