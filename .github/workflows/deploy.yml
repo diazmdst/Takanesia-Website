@@ -2,8 +2,8 @@ name: Deploy Takanesia Website
 
 on:
   push:
-  pull_request:
-  workflow_dispatch:
+    branches:
+      - "**"
 
 jobs:
   deploy:
@@ -14,6 +14,7 @@ jobs:
       IMAGE_NAME: takanesia-website
       PUBLIC_PORT: 3004
       CONTAINER_PORT: 8080
+      TARGET_DIR: /opt/Takanesia-Website
 
     steps:
       - name: Checkout Code
@@ -21,24 +22,21 @@ jobs:
         with:
           path: deploy
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Sync codebase to Production
+        run: |
+          cd "${{ env.TARGET_DIR }}" || exit 1
+          git config --global --add safe.directory "${{ env.TARGET_DIR }}"
+          git fetch origin
+          git checkout ${{ github.ref_name }}
+          git pull origin ${{ github.ref_name }}
 
       - name: Build Docker Image
-        uses: docker/build-push-action@v5
-        with:
-          context: ./deploy
-          load: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.run_number }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-
-      - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+          docker buildx build \
+            --no-cache \
+            --tag ${{ env.IMAGE_NAME }}:latest \
+            --tag ${{ env.IMAGE_NAME }}:${{ github.run_number }} \
+            --load ./deploy
 
       - name: Remove Previous Image
         run: |
