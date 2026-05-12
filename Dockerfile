@@ -7,7 +7,10 @@ WORKDIR /app
 
 COPY composer.json composer.lock* ./
 
-RUN composer install \
+ENV COMPOSER_PROCESS_TIMEOUT=2000
+
+RUN --mount=type=cache,target=/tmp/composer-cache \
+    composer install \
     --no-dev \
     --no-interaction \
     --prefer-dist \
