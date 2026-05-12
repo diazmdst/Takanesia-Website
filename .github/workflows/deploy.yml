@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-    
+
     env:
       CONTAINER_NAME: takanesia-website
       IMAGE_NAME: takanesia-website
@@ -17,48 +17,91 @@ jobs:
       TARGET_DIR: /opt/Takanesia-Website
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Repository
         uses: actions/checkout@v4
-        with:
-          path: deploy
 
-      - name: Sync codebase to Production
+      - name: Sync Codebase to Production
         run: |
-          cd "${{ env.TARGET_DIR }}" || exit 1
-          git config --global --add safe.directory "${{ env.TARGET_DIR }}"
+          if [ ! -d "$TARGET_DIR/.git" ]; then
+            git clone https://github.com/${{ github.repository }}.git $TARGET_DIR
+          fi
+
+          cd $TARGET_DIR
+
+          git config --global --add safe.directory $TARGET_DIR
+
           git fetch origin
           git checkout ${{ github.ref_name }}
           git pull origin ${{ github.ref_name }}
 
+      - name: Generate Image Tag
+        id: version
+        run: |
+          LAST_TAG=$(docker images $IMAGE_NAME --format "{{.Tag}}" | grep -E '^[0-9]+$' | sort -n | tail -1)
+
+          if [ -z "$LAST_TAG" ]; then
+            NEXT_TAG=1
+          else
+            NEXT_TAG=$((LAST_TAG + 1))
+          fi
+
+          echo "NEXT_TAG=$NEXT_TAG" >> $GITHUB_ENV
+
       - name: Build Docker Image
         run: |
-          docker buildx build \
-            --no-cache \
-            --tag ${{ env.IMAGE_NAME }}:latest \
-            --tag ${{ env.IMAGE_NAME }}:${{ github.run_number }} \
-            --load ./deploy
+          docker build \
+            -t $IMAGE_NAME:latest \
+            -t $IMAGE_NAME:$NEXT_TAG \
+            $TARGET_DIR
+
+      - name: Run New Container
+        run: |
+          docker run -d \
+            --name ${CONTAINER_NAME}-new \
+            --restart unless-stopped \
+            -p 127.0.0.1:3999:$CONTAINER_PORT \
+            --env-file $TARGET_DIR/.env \
+            $IMAGE_NAME:$NEXT_TAG
+
+      - name: Wait Until Healthy
+        run: |
+          for i in {1..30}; do
+            STATUS=$(docker inspect --format='{{json .State.Health.Status}}' ${CONTAINER_NAME}-new | tr -d '"')
+
+            if [ "$STATUS" = "healthy" ]; then
+              echo "Container healthy"
+              exit 0
+            fi
+
+            echo "Waiting for healthcheck..."
+            sleep 5
+          done
+
+          echo "Container failed healthcheck"
+          docker logs ${CONTAINER_NAME}-new
+          exit 1
+
+      - name: Swap Containers
+        run: |
+          docker stop $CONTAINER_NAME || true
+          docker rm $CONTAINER_NAME || true
+
+          docker stop ${CONTAINER_NAME}-new
+
+          docker run -d \
+            --name $CONTAINER_NAME \
+            --restart unless-stopped \
+            -p $PUBLIC_PORT:$CONTAINER_PORT \
+            --env-file $TARGET_DIR/.env \
+            $IMAGE_NAME:$NEXT_TAG
+
+          docker rm ${CONTAINER_NAME}-new || true
 
       - name: Remove Previous Image
         run: |
-          # Calculate previous run number
-          PREV_RUN=$(( ${{ github.run_number }} - 1 ))
-          docker rmi ${{ env.IMAGE_NAME }}:$PREV_RUN || true
+          PREVIOUS_TAG=$((NEXT_TAG - 1))
+          docker rmi $IMAGE_NAME:$PREVIOUS_TAG || true
 
-      - name: Deploy Container
+      - name: Cleanup Docker
         run: |
-          # Ensure .env exists (we might need to pull it from a safe location or secrets)
-          # For now, we assume it exists in the runner's persistent storage or is provided via secrets
-          
-          docker stop ${{ env.CONTAINER_NAME }} || true
-          docker rm ${{ env.CONTAINER_NAME }} || true
-          
-          docker run -d \
-            --name ${{ env.CONTAINER_NAME }} \
-            --restart always \
-            -p ${{ env.PUBLIC_PORT }}:${{ env.CONTAINER_PORT }} \
-            ${{ env.IMAGE_NAME }}:${{ github.run_number }}
-
-      - name: Post-Deployment Cleanup
-        run: |
-          docker image prune -f
-          docker container prune -f
+          docker image prune -af
