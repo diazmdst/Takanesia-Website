@@ -17,9 +17,6 @@ jobs:
       TARGET_DIR: /opt/Takanesia-Website
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Sync Codebase to Production
         run: |
           if [ ! -d "$TARGET_DIR/.git" ]; then
