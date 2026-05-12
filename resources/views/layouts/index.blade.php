@@ -29,7 +29,7 @@
        ============================================================ -->
     @include('includes.navbar')
 
-
+    @yield('konten')
     <!-- ============================================================
        FOOTER
        Site-wide footer with links, social icons, and copyright.
@@ -39,9 +39,6 @@
     <button class="back-to-top" id="backToTop" aria-label="ページトップへ戻る" hidden>
         &#8593;
     </button>
-
-
-
     <!-- [SCRIPT] Main JavaScript file — loaded at end of body for performance -->
     @include('includes.script')
 

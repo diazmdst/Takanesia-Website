@@ -35,11 +35,11 @@
            <nav class="main-nav" id="mainNav" role="navigation" aria-label="MAIN NAV">
                <ul class="nav-list" role="list">
                    <!-- [NAV ITEM] Each li links to its own dedicated page -->
-                   <li><a href="index.html" class="nav-link nav-link--active">HOME</a></li>
-                   <li><a href="about.html" class="nav-link">ABOUT</a></li>
-                   <li><a href="media.html" class="nav-link">MEDIA</a></li>
-                   <li><a href="member.html" class="nav-link">MEMBER</a></li>
-                   <li><a href="discography.html" class="nav-link">DISCOGRAPHY</a></li>
+                   <li><a href="{{ route('HalamanBeranda') }}" class="nav-link nav-link--active">HOME</a></li>
+                   <li><a href="{{ route('HalamanAbout') }}" class="nav-link">ABOUT</a></li>
+                   <li><a href="{{ route('HalamanMedia') }}" class="nav-link">MEDIA</a></li>
+                   <li><a href="{{ route('HalamanMember') }}" class="nav-link">MEMBER</a></li>
+                   <li><a href="{{ route('HalamanDiscography') }}" class="nav-link">DISCOGRAPHY</a></li>
                    <li><a href="https://www.instagram.com/takanesia.id/" class="nav-link" target="_blank"
                            rel="noopener noreferrer">GOODS</a></li>
                </ul>

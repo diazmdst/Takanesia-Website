@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BerandaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [MasterController::class, 'beranda'])->name('HalamanBeranda');
+Route::get('/', [BerandaController::class, 'beranda'])->name('HalamanBeranda');
+Route::get('/about', [BerandaController::class, 'about'])->name('HalamanAbout');
+Route::get('/media', [BerandaController::class, 'media'])->name('HalamanMedia');
+Route::get('/member', [BerandaController::class, 'member'])->name('HalamanMember');
+Route::get('/discography', [BerandaController::class, 'discography'])->name('HalamanDiscography');
