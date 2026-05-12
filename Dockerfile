@@ -2,7 +2,9 @@
 FROM composer:2.6 AS vendor
 WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install \
+ENV COMPOSER_PROCESS_TIMEOUT=2000
+RUN --mount=type=cache,target=/tmp/cache \
+    composer install \
     --no-interaction \
     --no-plugins \
     --no-scripts \
@@ -13,7 +15,8 @@ RUN composer install \
 FROM node:18-alpine AS frontend
 WORKDIR /app
 COPY package.json package-lock.json* ./
-RUN npm ci --quiet || npm install --quiet
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --quiet || npm install --quiet
 COPY . .
 RUN npm run build --quiet
 
