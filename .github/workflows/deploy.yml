@@ -98,7 +98,3 @@ jobs:
         run: |
           PREVIOUS_TAG=$((NEXT_TAG - 1))
           docker rmi $IMAGE_NAME:$PREVIOUS_TAG || true
-
-      - name: Cleanup Docker
-        run: |
-          docker image prune -af
