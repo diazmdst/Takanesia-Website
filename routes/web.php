@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
 
+use App\Http\Controllers\MasterController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
