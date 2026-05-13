@@ -68,6 +68,12 @@ WORKDIR /var/www/html
 # Copy application
 COPY . .
 
+# Copy src to public
+RUN if [ -d src ]; then \
+    cp -r src/* public/; \
+fi
+
+
 # Copy vendor dependencies
 COPY --from=vendor /app/vendor ./vendor
 
