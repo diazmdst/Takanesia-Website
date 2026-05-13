@@ -2679,6 +2679,10 @@ body.dark-mode .about-stat-num {
   padding-left: 0.35em;
 }
 
+body.dark-mode .home-news-title {
+  color: #ffffff; /* Explicitly white for dark mode as requested */
+}
+
 .home-news-footer {
   text-align: center;
   margin-top: var(--space-12);

@@ -1,84 +1,108 @@
-# --- PHP Dependencies Stage ---
-FROM composer:2.6 AS vendor
+# =========================
+# Composer Dependencies
+# =========================
+FROM composer:2.8 AS vendor
+
 WORKDIR /app
-COPY composer.json composer.lock ./
-RUN composer install \
-    --no-interaction \
-    --no-plugins \
-    --no-scripts \
+
+COPY composer.json composer.lock* ./
+
+ENV COMPOSER_PROCESS_TIMEOUT=2000
+
+RUN --mount=type=cache,target=/tmp/composer-cache \
+    composer install \
     --no-dev \
-    --prefer-dist
+    --no-interaction \
+    --prefer-dist \
+    --optimize-autoloader \
+    --no-scripts \
+    --ignore-platform-reqs
 
-# --- Frontend Assets Stage ---
-FROM node:18-alpine AS frontend
+# =========================
+# Frontend Builder
+# =========================
+FROM node:20-alpine AS frontend
+
 WORKDIR /app
-COPY package.json package-lock.json* ./
-RUN npm ci --quiet
-COPY . .
-RUN npm run build --quiet
 
-# --- Final Production Image ---
+COPY package*.json ./
+
+RUN if [ -f package-lock.json ]; then npm ci; else npm install; fi
+
+COPY . .
+
+RUN npm run build
+
+# =========================
+# Production Image
+# =========================
 FROM php:8.2-fpm-alpine
 
-# Install system dependencies & Nginx
+# Runtime dependencies
 RUN apk add --no-cache \
     nginx \
     supervisor \
-    libpng-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    git \
     curl \
+    libpng \
+    libzip \
+    oniguruma
+
+# Build dependencies
+RUN apk add --no-cache --virtual .build-deps \
+    $PHPIZE_DEPS \
+    libpng-dev \
+    libzip-dev \
     oniguruma-dev \
-    libzip-dev
+    && docker-php-ext-install \
+        pdo_mysql \
+        mbstring \
+        bcmath \
+        exif \
+        pcntl \
+        gd \
+        zip \
+    && apk del .build-deps
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
-
-# Set up working directory
 WORKDIR /var/www/html
 
-# Copy application code
-COPY --chown=www-data:www-data . .
+# Copy application
+COPY . .
 
-# Compatibility: Copy src/ files to public/ if they exist (for "not fully Laravel" state)
-RUN if [ -d src ]; then cp -rn src/* public/ || true; fi
+# Copy src to public
+RUN if [ -d src ]; then \
+    cp -r src/* public/; \
+fi
 
-# Copy composer dependencies
-COPY --from=vendor --chown=www-data:www-data /app/vendor ./vendor
+
+# Copy vendor dependencies
+COPY --from=vendor /app/vendor ./vendor
 
 # Copy frontend assets
-COPY --from=frontend --chown=www-data:www-data /app/public/build ./public/build
+COPY --from=frontend /app/public/build ./public/build
 
-# Copy Nginx configuration
+# Laravel permissions
+RUN mkdir -p \
+    storage/framework/cache \
+    storage/framework/sessions \
+    storage/framework/views \
+    storage/logs \
+    bootstrap/cache \
+    /run/nginx \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 storage bootstrap/cache
+
+# Nginx config
 COPY docker/nginx/production/takanesia.conf /etc/nginx/http.d/default.conf
 
-# Set up Supervisor to run both PHP-FPM and Nginx
+# Supervisor config
 COPY docker/supervisor/production.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Prepare directories and permissions
-RUN mkdir -p /var/log/supervisor /var/run/nginx && \
-    chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
-    chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+# Opcache config
+COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 
-# Security: Set up non-root user (using www-data which already exists in php-fpm image)
-# We need to allow www-data to run nginx and supervisor
-RUN touch /var/run/nginx.pid && \
-    chown -R www-data:www-data /var/run/nginx.pid /var/cache/nginx /var/log/nginx /var/lib/nginx /var/log/supervisor /var/run
-
-USER www-data
-
-# Environment variables (can be overridden)
-ENV APP_ENV=production
-ENV APP_DEBUG=false
-
-# Expose the port Nginx is listening on
 EXPOSE 8080
 
-# Healthcheck
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/ || exit 1
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+    CMD curl -f http://127.0.0.1:8080 || exit 1
 
-# Start supervisor to manage PHP-FPM and Nginx
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
