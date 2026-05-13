@@ -187,7 +187,7 @@ body.dark-mode {
   --color-border: #334155;
   --color-muted: #94a3b8;
   --color-pink-light: #4c1d24;
-  
+
   /* Overrides for dynamic surfaces */
   --color-surface: #0f172a;
   --color-card-bg: #1e293b;
@@ -195,8 +195,9 @@ body.dark-mode {
   --color-text-muted: rgba(241, 245, 249, 0.6);
   --color-text-dim: rgba(241, 245, 249, 0.4);
   --color-nav-bg: #0f172a;
-  --color-footer-bg: #020617; /* even darker for footer */
-  
+  --color-footer-bg: #020617;
+  /* even darker for footer */
+
   /* Shimmer adjustment */
   --shimmer-color: rgba(255, 255, 255, 0.05);
 }
@@ -499,7 +500,8 @@ img {
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
-  order: 1; /* Always first on the left */
+  order: 1;
+  /* Always first on the left */
 }
 
 .logo:hover {
@@ -538,7 +540,8 @@ body.dark-mode .logo-img {
   border-radius: var(--border-radius-sm);
   transition: background-color var(--transition-fast);
   flex-shrink: 0;
-  order: 3; /* Last on the right on mobile */
+  order: 3;
+  /* Last on the right on mobile */
 }
 
 .hamburger:hover {
@@ -558,12 +561,14 @@ body.dark-mode .logo-img {
   border-radius: 50%;
   cursor: pointer;
   color: var(--color-text);
-  transition: 
-    background-color var(--transition-fast), 
+  transition:
+    background-color var(--transition-fast),
     border-color var(--transition-fast),
     transform var(--transition-fast);
-  order: 2; /* Middle on mobile */
-  margin-left: auto; /* Push itself and hamburger to the right */
+  order: 2;
+  /* Middle on mobile */
+  margin-left: auto;
+  /* Push itself and hamburger to the right */
 }
 
 .theme-toggle:hover {
@@ -573,25 +578,38 @@ body.dark-mode .logo-img {
 }
 
 /* Icon rotation and swap */
-.theme-toggle .sun-icon { display: block; }
-.theme-toggle .moon-icon { display: none; }
+.theme-toggle .sun-icon {
+  display: block;
+}
 
-body.dark-mode .theme-toggle .sun-icon { display: none; }
-body.dark-mode .theme-toggle .moon-icon { display: block; }
+.theme-toggle .moon-icon {
+  display: none;
+}
+
+body.dark-mode .theme-toggle .sun-icon {
+  display: none;
+}
+
+body.dark-mode .theme-toggle .moon-icon {
+  display: block;
+}
 
 @media (min-width: 768px) {
   .theme-toggle {
     margin-left: var(--space-2);
     margin-right: 0;
-    order: 3; /* Far right on desktop */
+    order: 3;
+    /* Far right on desktop */
   }
-  
+
   .logo {
-    order: 1; /* Left on desktop */
+    order: 1;
+    /* Left on desktop */
   }
-  
+
   .main-nav {
-    order: 2; /* Middle on desktop */
+    order: 2;
+    /* Middle on desktop */
   }
 }
 
@@ -635,7 +653,8 @@ body.dark-mode .theme-toggle .moon-icon { display: block; }
   transition: max-height var(--transition-slow), opacity var(--transition-slow);
   opacity: 0;
   z-index: 90;
-  display: block; /* Ensure it's not flex on mobile */
+  display: block;
+  /* Ensure it's not flex on mobile */
 }
 
 /* When hamburger is open, expand the nav */
@@ -1774,7 +1793,8 @@ body.dark-mode .theme-toggle .moon-icon { display: block; }
     background: none;
     box-shadow: none;
     width: auto;
-    margin-left: auto; /* Push nav to the right, before the theme toggle */
+    margin-left: auto;
+    /* Push nav to the right, before the theme toggle */
     order: 2;
   }
 
@@ -2141,7 +2161,8 @@ body.dark-mode .page-hero-sub {
 }
 
 body.dark-mode .about-stat-num {
-  color: #8ba8db; /* Lighter blue for dark mode */
+  color: #8ba8db;
+  /* Lighter blue for dark mode */
 }
 
 /* Label below the number */
@@ -2648,7 +2669,8 @@ body.dark-mode .about-stat-num {
 
 .home-news-title {
   display: inline-block;
-  color: #000000;
+  color: var(--color-text);
+  font-family: var(--font-display);
   letter-spacing: 0.35em;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 600;
