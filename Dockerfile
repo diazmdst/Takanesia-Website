@@ -89,7 +89,7 @@ RUN mkdir -p \
     bootstrap/cache \
     /run/nginx \
     /var/log/supervisor \
-    && chown -R www-data:www-data /var/www/html \
+    && chown -R www-data:www-data /var/www/html /var/log/supervisor /run/nginx \
     && chmod -R 775 storage bootstrap/cache
 
 # Nginx config
