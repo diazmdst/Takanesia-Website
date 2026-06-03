@@ -31,18 +31,43 @@
                                        </div>
                                        <div class="form-group">
                                            <label for="exampleFormControlInput1">Deskripsi</label>
-                                           <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="masukkan about">{{ strip_tags($about->deskripsi) }}</textarea>
+                                           <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="masukkan Tulisan"></textarea>
                                        </div>
                                        <div class="form-group">
-                                           <label for="exampleFormControlInput1">Judul</label>
-                                           <select id="id_kat_program" name = "unit_id" class="form-control">
+                                           <label for="exampleFormControlInput1">Kategori</label>
+                                           <select id="id_kat_program" name = "kategori_id" class="form-control">
                                                <option selected disabled riquired>Choose...</option>
-                                               @foreach ($unit as $unit)
-                                                   <option value=" {{ $unit->id }}">
-                                                       {{ $unit->name_unit }} </option>
+                                               @foreach ($kategori as $kategori)
+                                                   <option value=" {{ $kategori->id }}">
+                                                       {{ $kategori->kategori }} </option>
                                                @endforeach
 
                                            </select>
+                                       </div>
+                                       <div class="form-group col-md-6">
+                                           <label for="exampleFormControlInput1">Thumbnail</label>
+                                           <div class="input-group ">
+                                               <div class="input-group-prepend">
+                                                   <span class="input-group-text">Upload</span>
+                                               </div>
+                                               <div class="custom-file">
+                                                   <input name ="thumbnail" type="file" class="custom-file-input">
+                                                   <label class="custom-file-label">Choose file</label>
+                                               </div>
+                                           </div>
+                                       </div>
+
+                                       <div class="row">
+                                           <div class="form-group col-md-6">
+                                               <label>Detail Gambar</label>
+                                               <div class="input-group mb-3">
+                                                   <button type="button" class="btn btn-primary"
+                                                       onclick="addInput()">Tambah
+                                                       +</button>
+
+                                               </div>
+                                               <div id = "items-container"></div>
+                                           </div>
                                        </div>
                                        <div class="modal-footer">
                                            <button type="button" class="btn btn-secondary"
@@ -77,8 +102,8 @@
                                    <tr>
                                        <td>{{ $key + 1 }}</td>
                                        <td>{{ $media->judul }}</td>
-                                       <td>{{ $media->timestamp }}</td>
-                                       <td>{{ $media->kategori->kategori }}</td>
+                                       <td>{{ $media->created_at }}</td>
+                                       <td>{{ $media->rkategori?->kategori }}</td>
                                        <td>
                                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                                data-target="#Edit-{{ $media->id }}">
@@ -104,40 +129,108 @@
                                                                <span aria-hidden="true">&times;</span>
                                                            </button>
                                                        </div>
-                                                       <form class="editformmedia" data-id="{{ $media->id }}"
-                                                           enctype="multipart/form-data">
-                                                           @csrf
-                                                           <div class="modal-body">
+                                                       <div class="modal-body">
+                                                           <form id="editformmedia2" data-id="{{ $media->id }}"
+                                                               enctype="multipart/form-data">
+                                                               @csrf
+
                                                                <div class="form-group">
-                                                                   <label for="exampleFormControlInput1">Nama Warna</label>
-                                                                   <input type="text" class="form-control" name="nama"
-                                                                       id="exampleFormControlInput1"
-                                                                       value="{{ $media->nama }}">
+                                                                   <label for="exampleFormControlInput1">Judul</label>
+                                                                   <input type="text" class="form-control"
+                                                                       name="judul" id="exampleFormControlInput1"
+                                                                       placeholder="masukkan nama media"
+                                                                       value="{{ $media->judul }}">
                                                                </div>
                                                                <div class="form-group">
-                                                                   <label for="colour_code">Kode Warna</label>
+                                                                   <label for="exampleFormControlInput1">Deskripsi</label>
+                                                                   <textarea class="form-control" id="deskripsi2-{{ $media->id }}" name="deskripsi" placeholder="masukkan Tulisan">{{ strip_tags($media->deskripsi) }}</textarea>
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <label for="exampleFormControlInput1">Kategori</label>
+                                                                   <select id="id_kat_media" name = "kategori_id"
+                                                                       class="form-control">
+                                                                       <option selected disabled riquired>Choose...</option>
+                                                                       @foreach ($kategoris as $kategoriss)
+                                                                           <option value=" {{ $kategoriss->id }}"
+                                                                               @selected($kategoriss->id == $media->kategori)>
+                                                                               {{ $kategoriss->kategori }} </option>
+                                                                       @endforeach
 
-                                                                   <div class="d-flex align-items-center">
-                                                                       <input type="color" class="form-control"
-                                                                           name="colour_code" id="colour_code"
-                                                                           value="{{ $media->colour_code }}"
-                                                                           style="width: 80px; height: 40px; padding: 3px;">
-
-                                                                       <input type="text" class="form-control ml-2"
-                                                                           id="colour_code_text"
-                                                                           value="{{ $media->colour_code }}" readonly>
+                                                                   </select>
+                                                               </div>
+                                                               <div class="form-group col-md-6">
+                                                                   <label for="exampleFormControlInput1">Thumbnail</label>
+                                                                   <div class="input-group ">
+                                                                       <div class="input-group-prepend">
+                                                                           <span class="input-group-text">Upload</span>
+                                                                       </div>
+                                                                       <div class="custom-file">
+                                                                           <input name ="thumbnail" type="file"
+                                                                               class="custom-file-input">
+                                                                           <label class="custom-file-label">Choose
+                                                                               file</label>
+                                                                       </div>
                                                                    </div>
                                                                </div>
+                                                               <div class="form-group col-md-6">
+                                                                   <img src="{{ $media->thumbnail }}" alt=""
+                                                                       style="
+                                                                                                    width:100%;
+                                                                                                    height:200px;
+                                                                                                    object-fit:cover;
+                                                                                                    border-radius:6px;
+                                                                                                ">
+                                                               </div>
+                                                               <div class="col-md-6">
+                                                                   <h4>Detail Gambar</h4>
+                                                                   @if ($media->galeri->count())
+                                                                       @foreach ($media->galeri as $picture)
+                                                                           <div class="position-relative d-inline-block mr-2 mb-2"
+                                                                               id="picture-{{ $picture->id }}">
 
+                                                                               <img src="{{ asset('inputan/media/detailimg/' . $picture->foto) }}"
+                                                                                   style="
+                                                                                                    width:80px;
+                                                                                                    height:80px;
+                                                                                                    object-fit:cover;
+                                                                                                    border-radius:6px;
+                                                                                                ">
 
-                                                           </div>
-                                                           <div class="modal-footer">
-                                                               <button type="button" class="btn btn-secondary"
-                                                                   data-dismiss="modal">Close</button>
-                                                               <button type="submit" class="btn btn-primary">Save
-                                                                   changes</button>
-                                                           </div>
-                                                       </form>
+                                                                               <button type="button"
+                                                                                   class="btn btn-danger btn-sm position-absolute"
+                                                                                   style="top:2px; right:2px; padding:2px 6px;"
+                                                                                   onclick="deletePicture({{ $picture->id }})">
+                                                                                   ×
+                                                                               </button>
+
+                                                                           </div>
+                                                                       @endforeach
+                                                                   @else
+                                                                       <p>Gambar Kosong</p>
+                                                                   @endif
+                                                               </div>
+                                                               <div class="row">
+                                                                   <div class="form-group col-md-6">
+                                                                       <label>Detail Gambar</label>
+                                                                       <div class="input-group mb-3">
+                                                                           <button type="button" class="btn btn-primary"
+                                                                               onclick="addInput2({{ $media->id }})">Tambah
+                                                                               +</button>
+
+                                                                       </div>
+                                                                       <div id = "items-container2-{{ $media->id }}">
+                                                                       </div>
+                                                                   </div>
+                                                               </div>
+                                                               <div class="modal-footer">
+                                                                   <button type="button" class="btn btn-secondary"
+                                                                       data-dismiss="modal">Close</button>
+                                                                   <button type="submit" class="btn btn-primary"
+                                                                       id="btnSavemedia">Save
+                                                                       changes</button>
+                                                               </div>
+                                                           </form>
+                                                       </div>
                                                    </div>
                                                </div>
                                            </div>
@@ -183,10 +276,16 @@
                    e.target.nextElementSibling.innerText = e.target.files[0].name;
                }
            });
+           document.addEventListener("DOMContentLoaded", function() {
+               CKEDITOR.replace('deskripsi');
+           });
            $('#btnSavemedia').on('click', function() {
                let form = document.getElementById('formmedia');
                let formData = new FormData(form);
-
+               let editorId = 'deskripsi';
+               if (CKEDITOR.instances[editorId]) {
+                   formData.set('deskripsi', CKEDITOR.instances[editorId].getData());
+               }
 
                $.ajax({
                    url: "{{ route('Tambah_Media') }}",
@@ -238,13 +337,17 @@
                    }
                });
            });
-
-           $(document).on('submit', '.editformmedia', function(e) {
+           document.addEventListener("DOMContentLoaded", function() {
+               CKEDITOR.replace('deskripsi2-{{ $media->id }}');
+           });
+           $(document).on('submit', '#editformmedia2', function(e) {
                e.preventDefault();
 
                let form = $(this);
                let id = form.data('id');
                let formData = new FormData(this);
+               let editorId = 'deskripsi2-' + id;
+
                $.ajax({
                    url: "{{ url('/edit_media') }}/" + id,
                    type: "POST",
@@ -297,5 +400,177 @@
                    }
                });
            });
+
+           //  addinput()
+           function addInput() {
+               let uniqueId = Date.now();
+
+               let html = `
+        <div class="input-group mb-3" id="item-${uniqueId}">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Upload</span>
+            </div>
+
+            <div class="custom-file">
+                <input type="file" 
+                       name="files[]" 
+                       class="custom-file-input" 
+                       id="file-${uniqueId}">
+                <label class="custom-file-label" for="file-${uniqueId}">
+                    Choose file
+                </label>
+            </div>
+      
+            <div class="input-group-append">
+                <button type="button" 
+                        class="btn btn-danger"
+                        onclick="removeInput('${uniqueId}')">
+                    Hapus
+                </button>
+            </div>
+        </div>
+        `;
+
+               document.getElementById('items-container').insertAdjacentHTML('beforeend', html);
+           }
+
+           document.addEventListener('change', function(e) {
+               if (e.target.classList.contains('custom-file-input')) {
+                   e.target.nextElementSibling.innerText = e.target.files[0].name;
+               }
+           });
+
+           function removeInput(id) {
+               document.getElementById(`item-${id}`).remove();
+           }
+
+           // changedetailimage
+           function addInput2(id) {
+               let uniqueIds = Date.now();
+
+               let html = `
+    <div class="input-group mb-3" id="item-${uniqueIds}">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Upload</span>
+        </div>
+
+        <div class="custom-file">
+            <input type="file" 
+                   name="files[]" 
+                   class="custom-file-input" 
+                   id="file-${uniqueIds}">
+            <label class="custom-file-label" for="file-${uniqueIds}">
+                Choose file
+            </label>
+        </div>
+
+        <div class="input-group-append">
+            <button type="button" 
+                    class="btn btn-danger"
+                    onclick="removeInput('${uniqueIds}')">
+                Hapus
+            </button>
+        </div>
+    </div>
+    `;
+
+               document.getElementById(`items-container2-${id}`)
+                   .insertAdjacentHTML('beforeend', html);
+           }
+
+           document.addEventListener('change', function(e) {
+               if (e.target.classList.contains('custom-file-input')) {
+                   e.target.nextElementSibling.innerText = e.target.files[0].name;
+               }
+           });
+
+           function removeInput(id) {
+               document.getElementById(`item-${id}`).remove();
+           }
+
+           deletepicture
+
+           function deletePicture(id) {
+               if (!confirm('Hapus gambar ini?')) return;
+
+               fetch(`/item/detail-picture/${id}`, {
+                       method: 'DELETE',
+                       headers: {
+                           'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                           'Accept': 'application/json'
+                       }
+                   })
+                   .then(response => response.json())
+                   .then(data => {
+                       if (data.success) {
+                           document.getElementById('picture-' + id).remove();
+
+                           Swal.fire({
+                               icon: 'success',
+                               title: 'Berhasil',
+                               text: 'Gambar berhasil dihapus',
+                               timer: 1500,
+                               showConfirmButton: false
+                           });
+                       } else {
+                           alert('Gagal menghapus gambar');
+                       }
+                   })
+
+                   .catch(error => {
+                       console.error(error);
+                       alert('Terjadi kesalahan');
+                   });
+           }
+
+           // edit
+           //    $(document).on('submit', '.editformmedia2', function(e) {
+           //        e.preventDefault();
+
+           //        let form = $(this);
+           //        let id = form.data('id');
+           //        let formData = new FormData(this);
+           //        console.log('form'.form);
+           //        $.ajax({
+           //            url: "{{ url('/edit_media') }}/" + id,
+           //            type: "POST",
+           //            data: formData,
+           //            processData: false,
+           //            contentType: false,
+           //            success: function(response) {
+           //                Swal.fire('Sukses', response.message, 'success');
+           //                $('#Edit-' + id).modal('hide');
+           //                location.reload();
+           //            },
+           //            error: function(xhr) {
+           //                Swal.fire('Error', 'Terjadi kesalahan', 'error');
+           //            }
+           //        });
+           //    });
+
+           // editgaleri
+           //    $(document).on('submit', '.editfotoitem2', function(e) {
+           //        e.preventDefault();
+
+           //        let form = $(this);
+           //        let id = form.data('id');
+           //        let formData = new FormData(this);
+
+           //        $.ajax({
+           //            url: "{{ url('/edit_foto_item') }}/" + id,
+           //            type: "POST",
+           //            data: formData,
+           //            processData: false,
+           //            contentType: false,
+           //            success: function(response) {
+           //                Swal.fire('Sukses', response.message, 'success');
+           //                $('#Edit-' + id).modal('hide');
+           //                location.reload();
+           //            },
+           //            error: function(xhr) {
+           //                Swal.fire('Error', 'Terjadi kesalahan', 'error');
+           //            }
+           //        });
+           //    });
        </script>
    @endsection

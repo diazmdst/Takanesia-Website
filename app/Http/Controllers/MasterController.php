@@ -14,7 +14,9 @@ use App\Models\Kategori;
 use App\Models\Kategori_Disco;
 use App\Models\Colour_setting;
 use App\Models\About;
-
+use App\Models\Media;
+use App\Models\Galeri;
+use App\Models\Member;
 
 class MasterController extends Controller
 {
@@ -296,6 +298,293 @@ class MasterController extends Controller
             return response()->json([
                 'status'  => 1,
                 'message' => 'Data color_setting berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            return response()->json([
+                'status'  => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    // media
+    public function admin_media()
+    {
+        $media = Media::get();
+        $kategori = Kategori::get();
+        $kategoris = Kategori::get();
+        return view('pages.backend.media', compact('media', 'kategori', 'kategoris'));
+    }
+    public function tambah_media(Request $request)
+    {
+
+        DB::beginTransaction();
+
+        try {
+            $thumbnailPath = null;
+            if ($request->hasFile('thumbnail')) {
+                $thumbnail = $request->file('thumbnail');
+                $thumbnailName = uniqid() . '_thumbnail_' . $thumbnail->getClientOriginalName();
+                $thumbnail->move(public_path('inputan//media/thumbnail/'), $thumbnailName);
+                $thumbnailPath = 'inputan/media/thumbnail/' . $thumbnailName;
+            }
+            $media = Media::create([
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'kategori' => $request->kategori_id,
+                'thumbnail' =>  $thumbnailPath
+            ]);
+
+            $media_id = $media->id;
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $file) {
+                    $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path('inputan/media/detailimg'), $fileName);
+
+                    Galeri::create([
+                        'media_id' => $media_id,
+                        'foto'     => $fileName,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+
+            DB::commit();
+            return response()->json([
+                'status' => 1,
+                'message' => 'media berhasil diupdate'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function edit_media(Request $request, $id)
+    {
+
+        // $thumbnailPath = null;
+        // if ($request->hasFile('thumbnail')) {
+        //     $thumbnail = $request->file('thumbnail');
+        //     $thumbnailName = uniqid() . '_thumbnail_' . $thumbnail->getClientOriginalName();
+        //     $thumbnail->move(public_path('inputan/thumbnail/img'), $thumbnailName);
+        //     $thumbnailPath = 'inputan/thumbnail/img/' . $thumbnailName;
+        // }
+        $media = Media::find($id);
+        $data =
+            [
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'kategori' => $request->kategori_id,
+            ];
+        $data = [];
+        if ($request->hasFile('thumbnail')) {
+
+            $thumbnail = $request->file('thumbnail');
+            $thumbnailName = uniqid() . '_thumbnail_' . $thumbnail->getClientOriginalName();
+            $thumbnail->move(public_path('inputan/thumbnail/img'), $thumbnailName);
+
+            $data['thumbnail'] = 'inputan/thumbnail/img/' . $thumbnailName;
+        }
+
+        Media::where('id', $id)->update($data);
+        $media_id = $id;
+
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('inputan/media/detailimg/'), $fileName);
+
+                Galeri::create([
+                    'media_id' => $media_id,
+                    'foto'     => $fileName,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+        Media::where('id', $id)->update($data);
+        return response()->json([
+            'status' => 1,
+            'message' => 'Produk berhasil diupdate'
+        ]);
+    }
+    public function edit_foto_item(Request $request, $id)
+    {
+        // dd($request->all());
+
+        $item = Media::find($id);
+        $data = [];
+        if ($request->hasFile('thumbnail')) {
+
+            $thumbnail = $request->file('thumbnail');
+            $thumbnailName = uniqid() . '_thumbnail_' . $thumbnail->getClientOriginalName();
+            $thumbnail->move(public_path('inputan/thumbnail/img'), $thumbnailName);
+
+            $data['thumbnail'] = 'inputan/thumbnail/img/' . $thumbnailName;
+        }
+
+        Media::where('id', $id)->update($data);
+        $media_id = $id;
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('inputan/media/detailimg/'), $fileName);
+
+                Media::create([
+                    'produk_id' => $media_id,
+                    'foto'     => $fileName,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
+        return response()->json([
+            'status' => 1,
+            'message' => 'Media berhasil diupdate'
+        ]);
+    }
+    public function media_destroy(Media $media)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            // hapus file gambar jika ada
+            if ($media->image && file_exists(public_path($media->image))) {
+                unlink(public_path($media->image));
+            }
+            // hapus galeri jika ada
+            $galeris = Galeri::where('media_id', $media->id)->get();
+
+            foreach ($galeris as $galeri) {
+
+                // hapus file gambar galeri
+                $path = public_path('inputan/media/detailimg/' . $galeri->foto);
+
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+
+                $galeri->delete();
+            }
+            // hapus data
+            $media->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status'  => 1,
+                'message' => 'Data media berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            return response()->json([
+                'status'  => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function deletePicture($id)
+    {
+        $picture = Galeri::findOrFail($id);
+
+        // hapus file fisik
+        $filePath = public_path('inputan/media/detailimg/' . $picture->foto);
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $picture->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+    //admin member
+    public function admin_member()
+    {
+        $member = Member::get();
+        $color_setting = Colour_setting::get();
+        return view('pages.backend.member', compact('member', 'color_setting'));
+    }
+    public function tambah_member(Request $request)
+    {
+
+        DB::beginTransaction();
+
+        try {
+            $member = Member::create([
+                'nama' => $request->nama,
+                'nama_kanji' => $request->nama_kanji,
+                'sosmed_x' => $request->sosmed_x,
+                'sosmed_ig' => $request->sosmed_ig,
+                'sosmed_tiktok' => $request->sosmed_tiktok,
+                'profil' => $request->profil,
+                'color' => $request->color,
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'status' => 1,
+                'message' => 'member berhasil diupdate'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function edit_member(Request $request, $id)
+    {
+
+        $member = Member::find($id);
+        $data = [
+            'nama' => $request->nama,
+            'nama_kanji' => $request->nama_kanji,
+            'sosmed_x' => $request->sosmed_x,
+            'sosmed_ig' => $request->sosmed_ig,
+            'sosmed_tiktok' => $request->sosmed_tiktok,
+            'profil' => $request->profil,
+            'color' => $request->color,
+        ];
+        Member::where('id', $id)->update($data);
+        return response()->json([
+            'status'  => 1,
+            'message' => 'Data member berhasil diupdate'
+        ]);
+    }
+    public function member_destroy(Member $member)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            // hapus file gambar jika ada
+            if ($member->image && file_exists(public_path($member->image))) {
+                unlink(public_path($member->image));
+            }
+
+            // hapus data
+            $member->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status'  => 1,
+                'message' => 'Data member berhasil dihapus'
             ]);
         } catch (\Exception $e) {
 

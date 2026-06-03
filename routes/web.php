@@ -49,3 +49,4 @@ Route::get('admin_media', [MasterController::class, 'admin_media'])->name('Halam
 Route::post('/tambah_media', [MasterController::class, 'tambah_media'])->name('Tambah_Media');
 Route::post('/edit_media/{id}', [MasterController::class, 'edit_media'])->name('Edit_Media');
 Route::delete('/media/{media}', [MasterController::class, 'media_destroy'])->name('Media.destroy');
+Route::delete('/item/detail-picture/{id}', [MasterController::class, 'deletePicture']);
