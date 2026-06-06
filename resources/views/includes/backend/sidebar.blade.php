@@ -47,7 +47,7 @@
              <span>Media</span></a>
      </li>
      <li class="nav-item">
-         <a class="nav-link" href="tables.html">
+         <a class="nav-link" href="{{ route('HalamanAdminmember') }}">
              <i class="fas fa-fw fa-table"></i>
              <span>Member</span></a>
      </li>

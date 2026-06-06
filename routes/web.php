@@ -50,3 +50,10 @@ Route::post('/tambah_media', [MasterController::class, 'tambah_media'])->name('T
 Route::post('/edit_media/{id}', [MasterController::class, 'edit_media'])->name('Edit_Media');
 Route::delete('/media/{media}', [MasterController::class, 'media_destroy'])->name('Media.destroy');
 Route::delete('/item/detail-picture/{id}', [MasterController::class, 'deletePicture']);
+
+// admin_member
+Route::get('admin_member', [MasterController::class, 'admin_member'])->name('HalamanAdminmember');
+Route::post('/tambah_member', [MasterController::class, 'tambah_member'])->name('Tambah_Member');
+Route::post('/edit_member/{id}', [MasterController::class, 'edit_member'])->name('Edit_Member');
+Route::delete('/member/{member}', [MasterController::class, 'member_destroy'])->name('Member.destroy');
+Route::delete('/member/detail-picture/{id}', [MasterController::class, 'deletePictureMember']);

@@ -16,6 +16,7 @@ use App\Models\Colour_setting;
 use App\Models\About;
 use App\Models\Media;
 use App\Models\Galeri;
+use App\Models\Galeri_Member;
 use App\Models\Member;
 
 class MasterController extends Controller
@@ -383,7 +384,7 @@ class MasterController extends Controller
                 'deskripsi' => $request->deskripsi,
                 'kategori' => $request->kategori_id,
             ];
-        $data = [];
+
         if ($request->hasFile('thumbnail')) {
 
             $thumbnail = $request->file('thumbnail');
@@ -515,7 +516,8 @@ class MasterController extends Controller
     {
         $member = Member::get();
         $color_setting = Colour_setting::get();
-        return view('pages.backend.member', compact('member', 'color_setting'));
+        $color_settings = Colour_setting::get();
+        return view('pages.backend.member', compact('member', 'color_setting', 'color_settings'));
     }
     public function tambah_member(Request $request)
     {
@@ -523,15 +525,37 @@ class MasterController extends Controller
         DB::beginTransaction();
 
         try {
+            $thumbnailPath = null;
+            if ($request->hasFile('profil')) {
+                $thumbnail = $request->file('profil');
+                $thumbnailName = uniqid() . '_profil_' . $thumbnail->getClientOriginalName();
+                $thumbnail->move(public_path('inputan//media/profil/'), $thumbnailName);
+                $thumbnailPath = 'inputan/media/profil/' . $thumbnailName;
+            }
+
             $member = Member::create([
                 'nama' => $request->nama,
                 'nama_kanji' => $request->nama_kanji,
                 'sosmed_x' => $request->sosmed_x,
                 'sosmed_ig' => $request->sosmed_ig,
                 'sosmed_tiktok' => $request->sosmed_tiktok,
-                'profil' => $request->profil,
-                'color' => $request->color,
+                'profil' =>  $thumbnailPath,
+                'color' => $request->color_setting_id,
             ]);
+            $member_id  = $member->id;
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $file) {
+                    $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path('inputan/member/detailimg'), $fileName);
+
+                    Galeri_Member::create([
+                        'member_id' => $member_id,
+                        'foto'     => $fileName,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
 
             DB::commit();
             return response()->json([
@@ -557,9 +581,32 @@ class MasterController extends Controller
             'sosmed_x' => $request->sosmed_x,
             'sosmed_ig' => $request->sosmed_ig,
             'sosmed_tiktok' => $request->sosmed_tiktok,
-            'profil' => $request->profil,
-            'color' => $request->color,
+            'color' => $request->color_setting_id,
         ];
+
+        if ($request->hasFile('profil')) {
+
+            $thumbnail = $request->file('profil');
+            $thumbnailName = uniqid() . '_profil_' . $thumbnail->getClientOriginalName();
+            $thumbnail->move(public_path('inputan/profil/img'), $thumbnailName);
+
+            $data['profil'] = 'inputan/profil/img/' . $thumbnailName;
+        }
+        Member::where('id', $id)->update($data);
+        $member_id = $id;
+        if ($request->hasFile('files')) {
+            foreach ($request->file('files') as $file) {
+                $fileName = uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('inputan/member/detailimg/'), $fileName);
+
+                Galeri_Member::create([
+                    'member_id' => $member_id,
+                    'foto'     => $fileName,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]);
+            }
+        }
         Member::where('id', $id)->update($data);
         return response()->json([
             'status'  => 1,
@@ -573,8 +620,8 @@ class MasterController extends Controller
         try {
 
             // hapus file gambar jika ada
-            if ($member->image && file_exists(public_path($member->image))) {
-                unlink(public_path($member->image));
+            if ($member->profil && file_exists(public_path($member->profil))) {
+                unlink(public_path($member->profil));
             }
 
             // hapus data
@@ -595,5 +642,22 @@ class MasterController extends Controller
                 'message' => $e->getMessage()
             ], 500);
         }
+    }
+    public function deletePictureMember($id)
+    {
+        $picture = Galeri_Member::findOrFail($id);
+
+        // hapus file fisik
+        $filePath = public_path('inputan/member/detailimg/' . $picture->foto);
+
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        $picture->delete();
+
+        return response()->json([
+            'success' => true
+        ]);
     }
 }
