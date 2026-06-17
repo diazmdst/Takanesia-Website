@@ -4,7 +4,7 @@
 
            <!-- [FOOTER LOGO] Logo image repeated for brand reinforcement -->
            <div class="footer-logo">
-               <img src="img/logo.png" alt="TAKANESIA LOGO" class="footer-logo-img" />
+               <img src="{{ asset('img/logo.png') }}" alt="TAKANESIA LOGO" class="footer-logo-img" />
            </div>
 
            <!-- [SOCIAL LINKS] External social media links -->

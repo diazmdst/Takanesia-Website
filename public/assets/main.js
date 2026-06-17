@@ -44,121 +44,121 @@
  *   4. Add a cover image to img/media/ and set the image field
  *   5. The card will automatically appear in the correct sorted position
 */
-const mediaData = [
-  {
-    id: 1,
-    date: '2025.09.15',
-    category: 'news',
-    title: 'Takanesia Project Anniversary Takaneko',
-    image: 'img/media/ebookproj.jpg',
-    excerpt: 'E-Book Project',
-    content: `Perayaan tiga tahun penuh kenangan bersama Takane no Nadeshiko dari para penggemar Indonesia.
+// const mediaData = [
+//   {
+//     id: 1,
+//     date: '2025.09.15',
+//     category: 'news',
+//     title: 'Takanesia Project Anniversary Takaneko',
+//     image: 'img/media/ebookproj.jpg',
+//     excerpt: 'E-Book Project',
+//     content: `Perayaan tiga tahun penuh kenangan bersama Takane no Nadeshiko dari para penggemar Indonesia.
 
-              Kisah, karya, dan cinta dirangkai dalam satu e-book spesial yang menghadirkan berbagai kontribusi kreatif dari komunitas.
+//               Kisah, karya, dan cinta dirangkai dalam satu e-book spesial yang menghadirkan berbagai kontribusi kreatif dari komunitas.
 
-              Proyek ini menjadi simbol kebersamaan dan dedikasi fans dalam merayakan perjalanan idol yang mereka cintai.`,
-    color: '#4883E0',
-    links: [
-      { label: 'Online Read', url: 'https://online.fliphtml5.com/TakanesiaID/dzck/#p=1', type: 'blue' },
-      { label: 'Read PDF', url: 'https://drive.google.com/file/d/1ZQ-r5gaqEc4DwUuXIY8jttX53pW_n6yb/view', type: 'blue' }
-    ]
-  },
-  {
-    id: 2,
-    date: '2026.05.06',
-    category: 'news',
-    title: 'Erisa Absen di Beberapa Pertunjukan',
-    image: 'img/media/erisa absen.jpg',
-    excerpt: 'Member Absen',
-    content: `Erisa dikabarkan absen dari beberapa pertunjukan sejak 2 Mei 2026 karena kondisi kesehatan yang kurang baik 🤍
+//               Proyek ini menjadi simbol kebersamaan dan dedikasi fans dalam merayakan perjalanan idol yang mereka cintai.`,
+//     color: '#4883E0',
+//     links: [
+//       { label: 'Online Read', url: 'https://online.fliphtml5.com/TakanesiaID/dzck/#p=1', type: 'blue' },
+//       { label: 'Read PDF', url: 'https://drive.google.com/file/d/1ZQ-r5gaqEc4DwUuXIY8jttX53pW_n6yb/view', type: 'blue' }
+//     ]
+//   },
+//   {
+//     id: 2,
+//     date: '2026.05.06',
+//     category: 'news',
+//     title: 'Erisa Absen di Beberapa Pertunjukan',
+//     image: 'img/media/erisa absen.jpg',
+//     excerpt: 'Member Absen',
+//     content: `Erisa dikabarkan absen dari beberapa pertunjukan sejak 2 Mei 2026 karena kondisi kesehatan yang kurang baik 🤍
 
-                Selama masa istirahat, posisinya akan digantikan sementara oleh Momoko.
-                Semoga Erisa segera pulih dan bisa kembali tampil dengan kondisi terbaiknya!
+//                 Selama masa istirahat, posisinya akan digantikan sementara oleh Momoko.
+//                 Semoga Erisa segera pulih dan bisa kembali tampil dengan kondisi terbaiknya!
 
-                Tetap kirimkan dukungan dan doa terbaik ya 🙏✨
+//                 Tetap kirimkan dukungan dan doa terbaik ya 🙏✨
 
-                #Takanesia #TakaneNews #GetWellSoonErisa`,
-    color: '#F87590',
-    links: [
-      { label: 'Instagram', url: 'https://www.instagram.com/p/DX9RSpaEtSW/', type: 'blue' },
-    ]
-  },
-  {
-    id: 3,
-    date: '2026.04.30',
-    category: 'news',
-    title: 'Takaneko Tampil di Asia Culture Festival',
-    image: 'img/media/cultfest.jpg',
-    excerpt: '#TKNKONSTAGE',
-    content: `Takaneko diumumkan sebagai salah satu lineup dalam Asia Culture Festival 2026 
-              yang akan digelar pada 9-10 Juni 2026 di Tokyo Garden Theater, Jepang. Kehadiran 
-              mereka dalam festival ini menjadi bagian dari rangkaian penampilan bersama berbagai 
-              artis lain yang meramaikan acara tersebut.
+//                 #Takanesia #TakaneNews #GetWellSoonErisa`,
+//     color: '#F87590',
+//     links: [
+//       { label: 'Instagram', url: 'https://www.instagram.com/p/DX9RSpaEtSW/', type: 'blue' },
+//     ]
+//   },
+//   {
+//     id: 3,
+//     date: '2026.04.30',
+//     category: 'news',
+//     title: 'Takaneko Tampil di Asia Culture Festival',
+//     image: 'img/media/cultfest.jpg',
+//     excerpt: '#TKNKONSTAGE',
+//     content: `Takaneko diumumkan sebagai salah satu lineup dalam Asia Culture Festival 2026 
+//               yang akan digelar pada 9-10 Juni 2026 di Tokyo Garden Theater, Jepang. Kehadiran 
+//               mereka dalam festival ini menjadi bagian dari rangkaian penampilan bersama berbagai 
+//               artis lain yang meramaikan acara tersebut.
 
-              Buat yang di Jepang, jangan sampai kelewatan 👀`,
-    color: '#4883E0',
-    links: [
-      { label: 'Instagram', url: 'https://www.instagram.com/p/DXvdW0BEkRy/', type: 'blue' },
-    ]
-  },
-  {
-    id: 4,
-    date: '2026.03.17',
-    category: 'memories',
-    title: 'Takanesia Berbagi Kebaikan',
-    image: 'img/media/berbagi.jpg',
-    excerpt: 'Berbagi Manfaat',
-    content: `Otsukare - Takanesia Berbagi Kebaikan ✨
+//               Buat yang di Jepang, jangan sampai kelewatan 👀`,
+//     color: '#4883E0',
+//     links: [
+//       { label: 'Instagram', url: 'https://www.instagram.com/p/DXvdW0BEkRy/', type: 'blue' },
+//     ]
+//   },
+//   {
+//     id: 4,
+//     date: '2026.03.17',
+//     category: 'memories',
+//     title: 'Takanesia Berbagi Kebaikan',
+//     image: 'img/media/berbagi.jpg',
+//     excerpt: 'Berbagi Manfaat',
+//     content: `Otsukare - Takanesia Berbagi Kebaikan ✨
 
-              Alhamdulillah, kemarin Takanesia bersama beberapa komunitas jejepangan lainnya 
-              berhasil membagikan 300 paket takjil kepada masyarakat di sekitar Mangga Dua Square.
+//               Alhamdulillah, kemarin Takanesia bersama beberapa komunitas jejepangan lainnya 
+//               berhasil membagikan 300 paket takjil kepada masyarakat di sekitar Mangga Dua Square.
 
-              Terima kasih sebesar-besarnya untuk semua yang sudah berpartisipasi, baik melalui 
-              tenaga maupun donasi. Semoga kebaikan ini bisa terus berlanjut ke depannya 🌸
+//               Terima kasih sebesar-besarnya untuk semua yang sudah berpartisipasi, baik melalui 
+//               tenaga maupun donasi. Semoga kebaikan ini bisa terus berlanjut ke depannya 🌸
 
-              #高嶺のなでしこ #たかねこ #takanenonadeshiko #takanenonadeshikoindonesia #takanememory`,
-    color: '#2d5fb8',
-    links: [
-      { label: 'Instagram', url: 'https://www.instagram.com/p/DV-LMvoEgLC/', type: 'blue' },
-    ]
-  },
-  {
-    id: 5,
-    date: '2026.03.11',
-    category: 'memories',
-    title: 'Otsukare BOUQUET OF 9 FLOWERS 🌸',
-    image: 'img/media/bouq9flow.jpg',
-    excerpt: 'Bouquet of 9 Flowers',
-    content: `Live Tour Takaneko yang keempat di Zepp DiverCity (Tokyo) dan Live tour selanjutnya tanggal 21 Maret di Zepp Fukuoka 💕
+//               #高嶺のなでしこ #たかねこ #takanenonadeshiko #takanenonadeshikoindonesia #takanememory`,
+//     color: '#2d5fb8',
+//     links: [
+//       { label: 'Instagram', url: 'https://www.instagram.com/p/DV-LMvoEgLC/', type: 'blue' },
+//     ]
+//   },
+//   {
+//     id: 5,
+//     date: '2026.03.11',
+//     category: 'memories',
+//     title: 'Otsukare BOUQUET OF 9 FLOWERS 🌸',
+//     image: 'img/media/bouq9flow.jpg',
+//     excerpt: 'Bouquet of 9 Flowers',
+//     content: `Live Tour Takaneko yang keempat di Zepp DiverCity (Tokyo) dan Live tour selanjutnya tanggal 21 Maret di Zepp Fukuoka 💕
 
-              Banyak juga fancam dan potret setiap member dengan hastag "#たかねこツアー2026" bisa cari di X atau Tiktok ❤️
+//               Banyak juga fancam dan potret setiap member dengan hastag "#たかねこツアー2026" bisa cari di X atau Tiktok ❤️
 
-              #高嶺のなでしこ #たかねこ #takanenonadeshiko #takanenonadeshikoindonesia takanememory`,
-    color: '#F87590',
-    links: [
-      { label: 'Instagram', url: 'https://www.instagram.com/p/DVvYbcnkjZc/', type: 'blue' },
-    ]
-  },
-  {
-    id: 6,
-    date: '2026.03.20',
-    category: 'funfacts',
-    title: 'Funfact Watashi no Koto ga Suki',
-    image: 'img/media/Funfact Watashi no Koto ga Suki.jpg',
-    excerpt: 'Nao x Momoko',
-    content: `【TAKANE FUNFACT】
+//               #高嶺のなでしこ #たかねこ #takanenonadeshiko #takanenonadeshikoindonesia takanememory`,
+//     color: '#F87590',
+//     links: [
+//       { label: 'Instagram', url: 'https://www.instagram.com/p/DVvYbcnkjZc/', type: 'blue' },
+//     ]
+//   },
+//   {
+//     id: 6,
+//     date: '2026.03.20',
+//     category: 'funfacts',
+//     title: 'Funfact Watashi no Koto ga Suki',
+//     image: 'img/media/Funfact Watashi no Koto ga Suki.jpg',
+//     excerpt: 'Nao x Momoko',
+//     content: `【TAKANE FUNFACT】
 
-              Lagu bertema self-love ini juga mendapatkan versi odotte mita (dance cover) yang menampilkan 
-              duo center sambil cosplay sebagai karakter dari Cosmic Princess Kaguya Nao sebagai Kaguya dan 
-              Momoko sebagai Sakayori Iroha
+//               Lagu bertema self-love ini juga mendapatkan versi odotte mita (dance cover) yang menampilkan 
+//               duo center sambil cosplay sebagai karakter dari Cosmic Princess Kaguya Nao sebagai Kaguya dan 
+//               Momoko sebagai Sakayori Iroha
 
-              Ini juga menjadi momen pertama bagi Takane no Nadeshiko merilis dance cover dengan konsep cosplay`,
-    color: '#4883E0',
-    links: [
-      { label: 'Instagram', url: 'https://www.instagram.com/p/DXV7gYdktUp/', type: 'blue' },
-    ]
-  },
-];
+//               Ini juga menjadi momen pertama bagi Takane no Nadeshiko merilis dance cover dengan konsep cosplay`,
+//     color: '#4883E0',
+//     links: [
+//       { label: 'Instagram', url: 'https://www.instagram.com/p/DXV7gYdktUp/', type: 'blue' },
+//     ]
+//   },
+// ];
 
 /**
  * membersData — 9 members.
@@ -188,117 +188,119 @@ const mediaData = [
  *   message   — ひとこと (personal message to fans)
  * ============================================================
 */
-const membersData = [
-  {
-    id: 1, nameJp: '城月 菜央', nameEn: 'KIZUKI NAO',
-    color: '#f3d104', position: 'センター',
-    photo: 'img/members/nao.jpg',
-    instagram: 'https://www.instagram.com/nao_kizuki_',
-    twitter: 'https://x.com/nao_kizuki',
-    tiktok: 'https://www.tiktok.com/@nao_kizuki',
-    // --- MODAL BIODATA (edit these fields) ---
-    bloodType: 'B',
-    height: '153cm',
-    birthday: 'December 25, 2003',
-    hometown: 'Saitama Prefecture',
-  },
-  {
-    id: 2, nameJp: '涼海 すう', nameEn: 'SUZUMI SU',
-    color: '#209aca', position: 'リーダー',
-    photo: 'img/members/suu.jpg',
-    instagram: 'https://www.instagram.com/su_suzumi_/',
-    twitter: 'https://x.com/su_suzumi_',
-    tiktok: 'https://www.tiktok.com/@suu._.suu',
-    bloodType: 'AB',
-    height: '148cm',
-    birthday: 'August 22, 2007',
-    hometown: 'Osaka Prefecture',
-  },
-  {
-    id: 3, nameJp: '橋本 桃呼', nameEn: 'HASHIMOTO MOMOKO',
-    color: '#c72e85', position: 'メンバー',
-    photo: 'img/members/momoko.jpg',
-    instagram: 'https://www.instagram.com/momoko__3628/',
-    twitter: 'https://x.com/MomokoHashimoto',
-    tiktok: 'https://www.tiktok.com/@momoko_hashimoto',
-    bloodType: 'AB',
-    height: '160cm',
-    birthday: 'June 28, 2003',
-    hometown: 'Yamaguchi Prefecture',
-  },
-  {
-    id: 4, nameJp: '葉月 紗蘭', nameEn: 'HAZUKI SAARA',
-    color: '#ffffff', position: 'メンバー',
-    photo: 'img/members/saara.jpg',
-    instagram: 'https://www.instagram.com/saara_hazuki/',
-    twitter: 'https://x.com/saara_hazuki',
-    tiktok: 'https://www.tiktok.com/@saara_hazuki',
-    bloodType: '-',
-    height: '160cm',
-    birthday: 'March 3, 2007',
-    hometown: 'Mie Prefecture',
-  },
-  {
-    id: 5, nameJp: '東山 恵里沙', nameEn: 'HIGASHIYAMA ERISA',
-    color: '#f98c27', position: 'メンバー',
-    photo: 'img/members/erisa.jpg',
-    instagram: 'https://www.instagram.com/erisa_higashiyama/',
-    twitter: 'https://x.com/erisahigasiyama',
-    tiktok: 'https://www.tiktok.com/@erisahigasiyama',
-    bloodType: 'AB',
-    height: '157cm',
-    birthday: 'May 28, 2006',
-    hometown: 'Gifu Prefecture',
-  },
-  {
-    id: 6, nameJp: '日向端 ひな', nameEn: 'HINAHATA HINA',
-    color: '#8017bc', position: 'メンバー',
-    photo: 'img/members/hinatama.jpg',
-    instagram: 'https://www.instagram.com/hinatama18',
-    twitter: 'https://x.com/hina_hinahata',
-    tiktok: 'https://www.tiktok.com/@hinatam_18',
-    bloodType: 'O',
-    height: '158cm',
-    birthday: 'October 30, 2002',
-    hometown: 'Kanagawa Prefecture',
-  },
-  {
-    id: 7, nameJp: '星谷 美来', nameEn: 'HOSHITANI MIKURU',
-    color: '#d21919', position: 'メンバー',
-    photo: 'img/members/mikuru.jpg',
-    instagram: 'https://www.instagram.com/mikuru_1106/',
-    twitter: 'https://x.com/mikuru_hositani',
-    tiktok: 'https://www.tiktok.com/@mikuru_1106',
-    bloodType: 'O',
-    height: '161cm',
-    birthday: 'November 6, 2003',
-    hometown: 'Tokyo',
-  },
-  {
-    id: 8, nameJp: '松本ももな', nameEn: 'MATSUMOTO MOMONA',
-    color: '#e87dd4', position: 'メンバー',
-    photo: 'img/members/momona.jpg',
-    instagram: 'https://www.instagram.com/momona.1012/',
-    twitter: 'https://x.com/momonamatsumoto',
-    tiktok: 'https://www.tiktok.com/@momona.1012',
-    bloodType: 'B',
-    height: '159cm',
-    birthday: 'October 12, 2002',
-    hometown: 'Kanagawa Prefecture',
-  },
-  {
-    id: 9, nameJp: '籾山 ひめり', nameEn: 'MOMIYAMA HIMERI',
-    color: '#1864c1', position: 'メンバー',
-    photo: 'img/members/himeri.jpg',
-    instagram: 'https://www.instagram.com/momichan_hime/',
-    twitter: 'https://x.com/himeri_momiyama',
-    tiktok: 'https://www.tiktok.com/@momichan_hime',
-    bloodType: 'B',
-    height: '158cm',
-    birthday: 'March 22, 2004',
-    hometown: 'Tochigi Prefecture',
-  },
-];
+
+// membersData
+// const membersData = [
+//   {
+//     id: 1, nameJp: '城月 菜央', nameEn: 'KIZUKI NAO',
+//     color: '#f3d104', position: 'センター',
+//     photo: 'img/members/nao.jpg',
+//     instagram: 'https://www.instagram.com/nao_kizuki_',
+//     twitter: 'https://x.com/nao_kizuki',
+//     tiktok: 'https://www.tiktok.com/@nao_kizuki',
+//     // --- MODAL BIODATA (edit these fields) ---
+//     bloodType: 'B',
+//     height: '153cm',
+//     birthday: 'December 25, 2003',
+//     hometown: 'Saitama Prefecture',
+//   },
+//   {
+//     id: 2, nameJp: '涼海 すう', nameEn: 'SUZUMI SU',
+//     color: '#209aca', position: 'リーダー',
+//     photo: 'img/members/suu.jpg',
+//     instagram: 'https://www.instagram.com/su_suzumi_/',
+//     twitter: 'https://x.com/su_suzumi_',
+//     tiktok: 'https://www.tiktok.com/@suu._.suu',
+//     bloodType: 'AB',
+//     height: '148cm',
+//     birthday: 'August 22, 2007',
+//     hometown: 'Osaka Prefecture',
+//   },
+//   {
+//     id: 3, nameJp: '橋本 桃呼', nameEn: 'HASHIMOTO MOMOKO',
+//     color: '#c72e85', position: 'メンバー',
+//     photo: 'img/members/momoko.jpg',
+//     instagram: 'https://www.instagram.com/momoko__3628/',
+//     twitter: 'https://x.com/MomokoHashimoto',
+//     tiktok: 'https://www.tiktok.com/@momoko_hashimoto',
+//     bloodType: 'AB',
+//     height: '160cm',
+//     birthday: 'June 28, 2003',
+//     hometown: 'Yamaguchi Prefecture',
+//   },
+//   {
+//     id: 4, nameJp: '葉月 紗蘭', nameEn: 'HAZUKI SAARA',
+//     color: '#ffffff', position: 'メンバー',
+//     photo: 'img/members/saara.jpg',
+//     instagram: 'https://www.instagram.com/saara_hazuki/',
+//     twitter: 'https://x.com/saara_hazuki',
+//     tiktok: 'https://www.tiktok.com/@saara_hazuki',
+//     bloodType: '-',
+//     height: '160cm',
+//     birthday: 'March 3, 2007',
+//     hometown: 'Mie Prefecture',
+//   },
+//   {
+//     id: 5, nameJp: '東山 恵里沙', nameEn: 'HIGASHIYAMA ERISA',
+//     color: '#f98c27', position: 'メンバー',
+//     photo: 'img/members/erisa.jpg',
+//     instagram: 'https://www.instagram.com/erisa_higashiyama/',
+//     twitter: 'https://x.com/erisahigasiyama',
+//     tiktok: 'https://www.tiktok.com/@erisahigasiyama',
+//     bloodType: 'AB',
+//     height: '157cm',
+//     birthday: 'May 28, 2006',
+//     hometown: 'Gifu Prefecture',
+//   },
+//   {
+//     id: 6, nameJp: '日向端 ひな', nameEn: 'HINAHATA HINA',
+//     color: '#8017bc', position: 'メンバー',
+//     photo: 'img/members/hinatama.jpg',
+//     instagram: 'https://www.instagram.com/hinatama18',
+//     twitter: 'https://x.com/hina_hinahata',
+//     tiktok: 'https://www.tiktok.com/@hinatam_18',
+//     bloodType: 'O',
+//     height: '158cm',
+//     birthday: 'October 30, 2002',
+//     hometown: 'Kanagawa Prefecture',
+//   },
+//   {
+//     id: 7, nameJp: '星谷 美来', nameEn: 'HOSHITANI MIKURU',
+//     color: '#d21919', position: 'メンバー',
+//     photo: 'img/members/mikuru.jpg',
+//     instagram: 'https://www.instagram.com/mikuru_1106/',
+//     twitter: 'https://x.com/mikuru_hositani',
+//     tiktok: 'https://www.tiktok.com/@mikuru_1106',
+//     bloodType: 'O',
+//     height: '161cm',
+//     birthday: 'November 6, 2003',
+//     hometown: 'Tokyo',
+//   },
+//   {
+//     id: 8, nameJp: '松本ももな', nameEn: 'MATSUMOTO MOMONA',
+//     color: '#e87dd4', position: 'メンバー',
+//     photo: 'img/members/momona.jpg',
+//     instagram: 'https://www.instagram.com/momona.1012/',
+//     twitter: 'https://x.com/momonamatsumoto',
+//     tiktok: 'https://www.tiktok.com/@momona.1012',
+//     bloodType: 'B',
+//     height: '159cm',
+//     birthday: 'October 12, 2002',
+//     hometown: 'Kanagawa Prefecture',
+//   },
+//   {
+//     id: 9, nameJp: '籾山 ひめり', nameEn: 'MOMIYAMA HIMERI',
+//     color: '#1864c1', position: 'メンバー',
+//     photo: 'img/members/himeri.jpg',
+//     instagram: 'https://www.instagram.com/momichan_hime/',
+//     twitter: 'https://x.com/himeri_momiyama',
+//     tiktok: 'https://www.tiktok.com/@momichan_hime',
+//     bloodType: 'B',
+//     height: '158cm',
+//     birthday: 'March 22, 2004',
+//     hometown: 'Tochigi Prefecture',
+//   },
+// ];
 
 /**
  * discoData — Discography releases.
@@ -719,39 +721,76 @@ function initMedia() {
  * @param {string} filter - 'all' | 'news' | 'funfacts' | 'memories'
  * @param {boolean} [resetCount=true] - Whether to reset visible count
  */
+// function renderMedia(filter, resetCount = true) {
+//   currentMediaFilter = filter;
+//   if (resetCount) visibleMediaCount = MEDIA_PAGE_SIZE;
+
+//   const grid = document.getElementById('mediaGrid');
+//   const loadMoreBtn = document.getElementById('loadMoreMedia');
+//   if (!grid) return;
+
+//   // Filter by category
+//   // const filtered = filter === 'all'
+//   //   ? [...mediaData]
+//   //   : mediaData.filter((item) => item.category === filter);
+ 
+//   // Sort by date descending (newest first)
+//   // Date format: 'YYYY.MM.DD' — replace dots for reliable comparison
+//   filtered.sort((a, b) => {
+//     const da = a.date.replace(/\./g, '');
+//     const db = b.date.replace(/\./g, '');
+//     return db.localeCompare(da);
+//   });
+
+//   // Slice to visible count
+//   const visible = filtered.slice(0, visibleMediaCount);
+
+//   // Render cards
+//   grid.innerHTML = visible.map((item) => createMediaCardHTML(item)).join('');
+
+//   // Show/hide load more button
+//   if (loadMoreBtn) {
+//     loadMoreBtn.style.display = visibleMediaCount < filtered.length ? 'inline-flex' : 'none';
+//   }
+// }
 function renderMedia(filter, resetCount = true) {
-  currentMediaFilter = filter;
-  if (resetCount) visibleMediaCount = MEDIA_PAGE_SIZE;
+    currentMediaFilter = filter;
 
-  const grid = document.getElementById('mediaGrid');
-  const loadMoreBtn = document.getElementById('loadMoreMedia');
-  if (!grid) return;
+    if (resetCount) {
+        visibleMediaCount = MEDIA_PAGE_SIZE;
+    }
 
-  // Filter by category
-  const filtered = filter === 'all'
-    ? [...mediaData]
-    : mediaData.filter((item) => item.category === filter);
+    const grid = document.getElementById('mediaGrid');
+    const loadMoreBtn = document.getElementById('loadMoreMedia');
 
-  // Sort by date descending (newest first)
-  // Date format: 'YYYY.MM.DD' — replace dots for reliable comparison
-  filtered.sort((a, b) => {
-    const da = a.date.replace(/\./g, '');
-    const db = b.date.replace(/\./g, '');
-    return db.localeCompare(da);
-  });
+    if (!grid) return;
 
-  // Slice to visible count
-  const visible = filtered.slice(0, visibleMediaCount);
+    // Filter kategori
+    const filtered = filter === 'all'
+        ? [...mediaData]
+        : mediaData.filter(item =>
+            item.category.toLowerCase() === filter.toLowerCase()
+        );
 
-  // Render cards
-  grid.innerHTML = visible.map((item) => createMediaCardHTML(item)).join('');
+    // Urutkan terbaru
+    filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Show/hide load more button
-  if (loadMoreBtn) {
-    loadMoreBtn.style.display = visibleMediaCount < filtered.length ? 'inline-flex' : 'none';
-  }
+    // Ambil sejumlah data
+    const visible = filtered.slice(0, visibleMediaCount);
+
+    // Tampilkan
+    grid.innerHTML = visible
+        .map(item => createMediaCardHTML(item))
+        .join('');
+
+    // Tombol Read More
+    if (loadMoreBtn) {
+        loadMoreBtn.style.display =
+            visibleMediaCount < filtered.length
+                ? 'inline-flex'
+                : 'none';
+    }
 }
-
 /**
  * createMediaCardHTML
  * Returns the HTML string for a single media card.
@@ -761,6 +800,12 @@ function renderMedia(filter, resetCount = true) {
  * @param {Object} item - A mediaData object.
  * @returns {string} HTML string for a .media-card div.
  */
+
+function stripHtml(html) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    return div.textContent || div.innerText || '';
+}
 function createMediaCardHTML(item) {
   // Category label map
   const categoryLabels = {
@@ -769,7 +814,10 @@ function createMediaCardHTML(item) {
     memories: 'MEMORIES',
   };
   const catLabel = categoryLabels[item.category] || item.category.toUpperCase();
-
+  const excerpt = stripHtml(item.content)
+    .replace(/\s+/g, ' ')
+    .trim()
+    .substring(0, 120);
   // Cover image or gradient placeholder
   const coverHTML = item.image
     ? `<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" class="media-card-img" loading="lazy" />`
@@ -778,6 +826,7 @@ function createMediaCardHTML(item) {
        </div>`;
 
   return `
+   <a href="${mediaDetailUrl}/${item.id}"
     <div class="media-card" tabindex="0" aria-label="${escapeHTML(item.title)}"
          role="button"
          onclick="openMediaModal(${item.id})"
@@ -786,15 +835,17 @@ function createMediaCardHTML(item) {
       <div class="media-card-cover">
         ${coverHTML}
         <!-- [CATEGORY BADGE] Shown on top of the cover -->
-        <span class="media-card-badge media-card-badge--${escapeHTML(item.category)}">${catLabel}</span>
+        <span style="background:linear-gradient(160deg,${escapeHTML(item.color)}44,${escapeHTML(item.color)})" class="media-card-badge media-card-badge--${escapeHTML(item.category)}">${catLabel}</span>
       </div>
       <!-- [FOOTER] Title, excerpt, date -->
       <div class="media-card-footer">
         <p class="media-card-title">${escapeHTML(item.title)}</p>
-        <p class="media-card-excerpt">${escapeHTML(item.excerpt)}</p>
+        <p class="media-card-excerpt">${escapeHTML(excerpt)}</p>
         <p class="media-card-date">${escapeHTML(item.date)}</p>
       </div>
     </div>
+        </a>
+
   `;
 }
 

@@ -15,7 +15,7 @@
         <section class="media-section section-padding">
             <div class="container">
                 <!-- [MEDIA TABS] Filter items by category -->
-                <div class="media-tabs" role="tablist" aria-label="メディアカテゴリー">
+                {{-- <div class="media-tabs" role="tablist" aria-label="メディアカテゴリー">
                     <button class="media-tab media-tab--active" role="tab" aria-selected="true"
                         data-category="all">ALL</button>
                     <button class="media-tab" role="tab" aria-selected="false" data-category="news">NEWS</button>
@@ -23,8 +23,21 @@
                         data-category="funfacts">FUNFACTS</button>
                     <button class="media-tab" role="tab" aria-selected="false"
                         data-category="memories">MEMORIES</button>
-                </div>
+                </div> --}}
+                <div class="media-tabs" role="tablist" aria-label="メディアカテゴリー">
 
+                    <button class="media-tab media-tab--active" role="tab" aria-selected="true" data-category="all">
+                        ALL
+                    </button>
+
+                    @foreach ($kategori as $item)
+                        <button class="media-tab" role="tab" aria-selected="false"
+                            data-category="{{ strtolower($item->kategori) }}">
+                            {{ strtoupper($item->kategori) }}
+                        </button>
+                    @endforeach
+
+                </div>
                 <!-- [MEDIA GRID] Container for news cards -->
                 <div class="media-grid" id="mediaGrid">
                     <!-- Content is injected by renderMedia() in main.js -->
@@ -40,4 +53,9 @@
 
 
     </main>
+    <script>
+        window.mediaData = @json($media);
+        const mediaDetailUrl = "{{ url('/detail-media') }}";
+        // console.log('media', mediaData);
+    </script>
 @endsection

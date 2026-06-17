@@ -5,7 +5,7 @@
            <!-- [LOGO] Site identity — clicking returns to top of page -->
            <a href="#" class="logo" aria-label="TAKANESIA WEBSITE">
                <!-- [LOGO IMAGE] logo.png from the img folder -->
-               <img src="img/logo.png" alt="TAKANESIA LOGO" class="logo-img" />
+               <img src="{{ asset('img/logo.png') }}" alt="TAKANESIA LOGO" class="logo-img" />
            </a>
 
            <!-- [THEME TOGGLE] Dark/Light mode switch -->
@@ -34,14 +34,47 @@
            <!-- [MAIN NAV] Primary navigation links -->
            <nav class="main-nav" id="mainNav" role="navigation" aria-label="MAIN NAV">
                <ul class="nav-list" role="list">
-                   <!-- [NAV ITEM] Each li links to its own dedicated page -->
-                   <li><a href="{{ route('HalamanBeranda') }}" class="nav-link nav-link--active">HOME</a></li>
-                   <li><a href="{{ route('HalamanAbout') }}" class="nav-link">ABOUT</a></li>
-                   <li><a href="{{ route('HalamanMedia') }}" class="nav-link">MEDIA</a></li>
-                   <li><a href="{{ route('HalamanMember') }}" class="nav-link">MEMBER</a></li>
-                   <li><a href="{{ route('HalamanDiscography') }}" class="nav-link">DISCOGRAPHY</a></li>
-                   <li><a href="https://www.instagram.com/takanesia.id/" class="nav-link" target="_blank"
-                           rel="noopener noreferrer">GOODS</a></li>
+                   <li>
+                       <a href="{{ route('HalamanBeranda') }}"
+                           class="nav-link {{ request()->routeIs('HalamanBeranda') ? 'nav-link--active' : '' }}">
+                           HOME
+                       </a>
+                   </li>
+
+                   <li>
+                       <a href="{{ route('HalamanAbout') }}"
+                           class="nav-link {{ request()->routeIs('HalamanAbout') ? 'nav-link--active' : '' }}">
+                           ABOUT
+                       </a>
+                   </li>
+
+                   <li>
+                       <a href="{{ route('HalamanMedia') }}"
+                           class="nav-link {{ request()->routeIs('HalamanMedia', 'HalamanDMedia') ? 'nav-link--active' : '' }}">
+                           MEDIA
+                       </a>
+                   </li>
+
+                   <li>
+                       <a href="{{ route('HalamanMember') }}"
+                           class="nav-link {{ request()->routeIs('HalamanMember') ? 'nav-link--active' : '' }}">
+                           MEMBER
+                       </a>
+                   </li>
+
+                   <li>
+                       <a href="{{ route('HalamanDiscography') }}"
+                           class="nav-link {{ request()->routeIs('HalamanDiscography') ? 'nav-link--active' : '' }}">
+                           DISCOGRAPHY
+                       </a>
+                   </li>
+
+                   <li>
+                       <a href="https://www.instagram.com/takanesia.id/" class="nav-link" target="_blank"
+                           rel="noopener noreferrer">
+                           GOODS
+                       </a>
+                   </li>
                </ul>
            </nav>
 

@@ -5,3 +5,4 @@
     rel="stylesheet" />
 <!-- [LINK] External stylesheet -->
 <link rel="stylesheet" href="{{ asset('assets/style.css') }}" />
+<link href="bootstrap.min.css" rel="stylesheet">

@@ -2556,6 +2556,11 @@ body.dark-mode .about-stat-num {
   overflow: hidden;
 }
 
+.media-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
 /* Short excerpt */
 .media-card-excerpt {
   font-family: var(--font-body);
@@ -2883,3 +2888,5 @@ body.dark-mode .footer-logo-img {
   letter-spacing: 0.08em;
   margin-top: var(--space-2);
 }
+
+/* lightbox */

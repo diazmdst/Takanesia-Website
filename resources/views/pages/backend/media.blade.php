@@ -188,7 +188,8 @@
                                                                            <div class="position-relative d-inline-block mr-2 mb-2"
                                                                                id="picture-{{ $picture->id }}">
 
-                                                                               <img src="{{ asset('inputan/media/detailimg/' . $picture->foto) }}"
+                                                                               <img src=”｛｛ asset（’inputan/media/detailimg/’
+                                                                                   . ＄picture→f"
                                                                                    style="
                                                                                                     width:80px;
                                                                                                     height:80px;

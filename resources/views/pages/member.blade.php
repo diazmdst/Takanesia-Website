@@ -16,9 +16,9 @@
         </section>
 
         <!-- ============================================================
-             MEMBER MODAL
-             Shown when a member card is clicked.
-             ============================================================ -->
+                 MEMBER MODAL
+                 Shown when a member card is clicked.
+                 ============================================================ -->
         <div class="member-modal-overlay" id="memberModal" role="dialog" aria-modal="true" aria-label="Member Details">
             <!-- [MODAL CONTENT BOX] The white popup panel -->
             <div class="member-modal-box" id="memberModalContent">
@@ -26,4 +26,7 @@
             </div>
         </div>
     </main>
+    <script>
+        const membersData = @json($members);
+    </script>
 @endsection
