@@ -23,7 +23,18 @@ class BerandaController extends Controller
 {
     public function beranda()
     {
-        return view('pages.home');
+        $media = Media::join('kategori', 'media.kategori', '=', 'kategori.id')
+            ->select(
+                'media.id',
+                'media.created_at as date',
+                'kategori.kategori as category',
+                'kategori.color as color',
+                'media.judul as title',
+                'media.thumbnail as image',
+                'media.deskripsi as content'
+            )
+            ->get();
+        return view('pages.home', compact('media'));
     }
     public function about()
     {
