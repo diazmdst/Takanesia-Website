@@ -77,7 +77,7 @@ class BerandaController extends Controller
                 'member.profil as photo',
                 'member.sosmed_ig as instagram',
                 'member.sosmed_x as twitter',
-                'member.sosmed_tiktok as tiktok',
+                'member.sosmed_titok as tiktok',
                 'member.blood_type as bloodType',
                 'member.height',
                 'member.birthday',

@@ -538,7 +538,7 @@ class MasterController extends Controller
                 'nama_kanji' => $request->nama_kanji,
                 'sosmed_x' => $request->sosmed_x,
                 'sosmed_ig' => $request->sosmed_ig,
-                'sosmed_tiktok' => $request->sosmed_tiktok,
+                'sosmed_titok' => $request->sosmed_titok,
                 'profil' =>  $thumbnailPath,
                 'color' => $request->color_setting_id,
             ]);
@@ -580,7 +580,7 @@ class MasterController extends Controller
             'nama_kanji' => $request->nama_kanji,
             'sosmed_x' => $request->sosmed_x,
             'sosmed_ig' => $request->sosmed_ig,
-            'sosmed_tiktok' => $request->sosmed_tiktok,
+            'sosmed_titok' => $request->sosmed_titok,
             'color' => $request->color_setting_id,
         ];
 
