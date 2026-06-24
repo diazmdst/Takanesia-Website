@@ -24,6 +24,7 @@ Route::get('/media', [BerandaController::class, 'media'])->name('HalamanMedia');
 Route::get('/member', [BerandaController::class, 'member'])->name('HalamanMember');
 Route::get('/discography', [BerandaController::class, 'discography'])->name('HalamanDiscography');
 Route::get('/detail-media/{id}', [BerandaController::class, 'detailmedia'])->name('HalamanDMedia/{id}');
+Route::get('/detail-disco/{id}', [BerandaController::class, 'detaildisco'])->name('HalamanDDisco/{id}');
 Route::get('/admin', [MasterController::class, 'halamanlogin'])->name('HalamanLogin');
 Route::post('/login', [MasterController::class, 'login'])->name('login');
 Route::post('/logout', [MasterController::class, 'user_logout'])->name('Logout');

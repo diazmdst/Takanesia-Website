@@ -14,6 +14,7 @@ use App\Models\Kategori;
 use App\Models\Kategori_Disco;
 use App\Models\Colour_setting;
 use App\Models\About;
+use App\Models\Discography;
 use App\Models\Media;
 use App\Models\Galeri;
 use App\Models\Galeri_Member;
@@ -87,8 +88,26 @@ class BerandaController extends Controller
         return view('pages.member', compact('members'));
     }
 
+
     public function discography()
     {
-        return view('pages.discography');
+        $disco = Discography::join('kategori_disco', 'discography.kategori_disco', '=', 'kategori_disco.id')
+            ->select(
+                'discography.id',
+                'discography.judul as title',
+                'kategori_disco.kategori as type',
+                'discography.foto as cover',
+                DB::raw("DATE(discography.date_rilis) as releaseDate"),
+                DB::raw("'#4883E0' as color")
+            )
+            ->get();
+        return view('pages.discography', compact('disco'));
+    }
+    public function detaildisco($id)
+    {
+
+        $disco = Discography::find($id);
+
+        return view('pages.ddiscography', compact('disco'));
     }
 }

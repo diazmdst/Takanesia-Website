@@ -312,183 +312,183 @@
  *                 Set to null to show gradient placeholder
  * ============================================================
  */
-const discoData = [
-  {
-    title: 'アンチファン - Anti-fan',
-    type: 'Single',
-    releaseDate: '2022.10.26',
-    color: '#4883E0',
-    cover: 'img/disco/antifan.jpg',
-  },
-  {
-    title: '女の子は強い - Onnanoko wa Tsuyoi',
-    type: 'Digital Single',
-    releaseDate: '2022.12.26',
-    color: '#F87590',
-    cover: 'img/disco/onnanoko.jpg',
-  },
-  {
-    title: '可愛くてごめん - Kawaikute gomen',
-    type: 'Digital Single',
-    releaseDate: '2023.01.27',
-    color: '#2d5fb8',
-    cover: 'img/disco/kawaikute.png',
-  },
-  {
-    title: '乙女どもよ。 - Otomedomo yo',
-    type: 'Digital Single',
-    releaseDate: '2023.02.04',
-    color: '#F87590',
-    cover: 'img/disco/otome.jpg',
-  },
-  {
-    title: '男の子の目的は何？ - Otokonoko no Mokuteki wa Nani?',
-    type: 'Digital Single',
-    releaseDate: '2023.03.20',
-    color: '#4883E0',
-    cover: 'img/disco/otokonoko.jpg',
-  },
-  {
-    title: '僕は君になれない - Boku wa Kimi ni Narenai',
-    type: 'Digital Single',
-    releaseDate: '2023.04.04',
-    color: '#2d5fb8',
-    cover: 'img/disco/bokukimi.jpg',
-  },
-  {
-    title: '革命の女王 - Kakumei no Jyoou',
-    type: 'Digital Single',
-    releaseDate: '2023.04.04',
-    color: '#2d5fb8',
-    cover: 'img/disco/kakumei.jpg',
-  },
-  {
-    title: 'ヒロインは平均以下。 - Heroin wa Heikin ika.',
-    type: 'Digital Single',
-    releaseDate: '2023.06.21',
-    color: '#2d5fb8',
-    cover: 'img/disco/heroine.jpg',
-  },
-  {
-    title: '決戦スピリット - Kessen Spirit',
-    type: 'Digital Single',
-    releaseDate: '2023.06.22',
-    color: '#2d5fb8',
-    cover: 'img/disco/kessen.jpg',
-  },
-  {
-    title: '初恋のひと。 - Hatsukoi no Hito.',
-    type: 'Digital Single',
-    releaseDate: '2023.07.04',
-    color: '#2d5fb8',
-    cover: 'img/disco/hatsuhito.jpg',
-  },
-  {
-    title: '月曜日の憂鬱 - Getsuyoubi no Yuutsu',
-    type: 'Digital Single',
-    releaseDate: '2023.07.21',
-    color: '#2d5fb8',
-    cover: 'img/disco/getsuyobi.jpg',
-  },
-  {
-    title: 'すきっちゅーの！ - Sukicchuuno!',
-    type: 'Digital Single',
-    releaseDate: '2023.09.01',
-    color: '#2d5fb8',
-    cover: 'img/disco/sukichuno.png',
-  },
-  {
-    title: '17歳 - 17sai',
-    type: 'Digital Single',
-    releaseDate: '2023.09.03',
-    color: '#2d5fb8',
-    cover: 'img/disco/17sai.png',
-  },
-  {
-    title: 'いつか私がママになったら - Itsuka Watashi ga Mama ni Nattara',
-    type: 'Digital Single',
-    releaseDate: '2023.10.16',
-    color: '#2d5fb8',
-    cover: 'img/disco/itsumama.jpg',
-  },
-  {
-    title: '可愛いって言われたい - Kawaiitte Iwaretai',
-    type: 'Digital Single',
-    releaseDate: '2024.02.03',
-    color: '#2d5fb8',
-    cover: 'img/disco/kawaiiwaretai.jpg',
-  },
-  {
-    title: '私は怪物 - Watashi wa Kaibutsu',
-    type: 'Digital Single',
-    releaseDate: '2024.02.06',
-    color: '#2d5fb8',
-    cover: 'img/disco/watashikaibutsu.jpg',
-  },
-  {
-    title: '推しの魔法 - Oshi no Mahou',
-    type: 'Digital Single',
-    releaseDate: '2024.03.25',
-    color: '#2d5fb8',
-    cover: 'img/disco/oshinomahou.jpg',
-  },
-  {
-    title: 'メイド☆至上主義 - Maid Shijyoshugi',
-    type: 'Digital Single',
-    releaseDate: '2024.05.13',
-    color: '#2d5fb8',
-    cover: 'img/disco/maid.jpg',
-  },
-  {
-    title: '私より好きでいて - Watashi Yori Sukide Ite',
-    type: 'Digital Single',
-    releaseDate: '2024.06.05',
-    color: '#2d5fb8',
-    cover: 'img/disco/lovememore.jpg',
-  },
-  {
-    title: '小悪魔だってかまわない! - Koakuma Datte Kamawanai!',
-    type: 'Digital Single',
-    releaseDate: '2025.02.09',
-    color: '#2d5fb8',
-    cover: 'img/disco/koakuma.jpg',
-  },
-  {
-    title: 'Cute for Life',
-    type: 'Digital Single',
-    releaseDate: '2025.04.07',
-    color: '#2d5fb8',
-    cover: 'img/disco/cfl.jpg',
-  },
-  {
-    title: 'メランコリックハニー - Melancholic Honey',
-    type: 'Digital Single',
-    releaseDate: '2025.04.30',
-    color: '#2d5fb8',
-    cover: 'img/disco/meraho.jpg',
-  },
-  {
-    title: '美しく生きろ - Utsukushiku Ikiro',
-    type: 'Single',
-    releaseDate: '2024.02.21',
-    color: '#2d5fb8',
-    cover: 'img/disco/utsukushi.jpg',
-  },
-  {
-    title: 'I’M YOUR IDOL / アドレナリンゲーム - I’M YOUR IDOL / Adrenaline Game',
-    type: 'Single',
-    releaseDate: '2024.12.11',
-    color: '#2d5fb8',
-    cover: 'img/disco/imidol.jpg',
-  },
-  {
-    title: '見上げるたびに、恋をする。 - Miageru Tabi ni, Koi o Suru.',
-    type: 'Album',
-    releaseDate: '2025.12.17',
-    color: '#2d5fb8',
-    cover: 'img/disco/miageru.jpg',
-  },
-];
+// const discoData = [
+//   {
+//     title: 'アンチファン - Anti-fan',
+//     type: 'Single',
+//     releaseDate: '2022.10.26',
+//     color: '#4883E0',
+//     cover: 'img/disco/antifan.jpg',
+//   },
+//   {
+//     title: '女の子は強い - Onnanoko wa Tsuyoi',
+//     type: 'Digital Single',
+//     releaseDate: '2022.12.26',
+//     color: '#F87590',
+//     cover: 'img/disco/onnanoko.jpg',
+//   },
+//   {
+//     title: '可愛くてごめん - Kawaikute gomen',
+//     type: 'Digital Single',
+//     releaseDate: '2023.01.27',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/kawaikute.png',
+//   },
+//   {
+//     title: '乙女どもよ。 - Otomedomo yo',
+//     type: 'Digital Single',
+//     releaseDate: '2023.02.04',
+//     color: '#F87590',
+//     cover: 'img/disco/otome.jpg',
+//   },
+//   {
+//     title: '男の子の目的は何？ - Otokonoko no Mokuteki wa Nani?',
+//     type: 'Digital Single',
+//     releaseDate: '2023.03.20',
+//     color: '#4883E0',
+//     cover: 'img/disco/otokonoko.jpg',
+//   },
+//   {
+//     title: '僕は君になれない - Boku wa Kimi ni Narenai',
+//     type: 'Digital Single',
+//     releaseDate: '2023.04.04',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/bokukimi.jpg',
+//   },
+//   {
+//     title: '革命の女王 - Kakumei no Jyoou',
+//     type: 'Digital Single',
+//     releaseDate: '2023.04.04',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/kakumei.jpg',
+//   },
+//   {
+//     title: 'ヒロインは平均以下。 - Heroin wa Heikin ika.',
+//     type: 'Digital Single',
+//     releaseDate: '2023.06.21',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/heroine.jpg',
+//   },
+//   {
+//     title: '決戦スピリット - Kessen Spirit',
+//     type: 'Digital Single',
+//     releaseDate: '2023.06.22',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/kessen.jpg',
+//   },
+//   {
+//     title: '初恋のひと。 - Hatsukoi no Hito.',
+//     type: 'Digital Single',
+//     releaseDate: '2023.07.04',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/hatsuhito.jpg',
+//   },
+//   {
+//     title: '月曜日の憂鬱 - Getsuyoubi no Yuutsu',
+//     type: 'Digital Single',
+//     releaseDate: '2023.07.21',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/getsuyobi.jpg',
+//   },
+//   {
+//     title: 'すきっちゅーの！ - Sukicchuuno!',
+//     type: 'Digital Single',
+//     releaseDate: '2023.09.01',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/sukichuno.png',
+//   },
+//   {
+//     title: '17歳 - 17sai',
+//     type: 'Digital Single',
+//     releaseDate: '2023.09.03',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/17sai.png',
+//   },
+//   {
+//     title: 'いつか私がママになったら - Itsuka Watashi ga Mama ni Nattara',
+//     type: 'Digital Single',
+//     releaseDate: '2023.10.16',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/itsumama.jpg',
+//   },
+//   {
+//     title: '可愛いって言われたい - Kawaiitte Iwaretai',
+//     type: 'Digital Single',
+//     releaseDate: '2024.02.03',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/kawaiiwaretai.jpg',
+//   },
+//   {
+//     title: '私は怪物 - Watashi wa Kaibutsu',
+//     type: 'Digital Single',
+//     releaseDate: '2024.02.06',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/watashikaibutsu.jpg',
+//   },
+//   {
+//     title: '推しの魔法 - Oshi no Mahou',
+//     type: 'Digital Single',
+//     releaseDate: '2024.03.25',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/oshinomahou.jpg',
+//   },
+//   {
+//     title: 'メイド☆至上主義 - Maid Shijyoshugi',
+//     type: 'Digital Single',
+//     releaseDate: '2024.05.13',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/maid.jpg',
+//   },
+//   {
+//     title: '私より好きでいて - Watashi Yori Sukide Ite',
+//     type: 'Digital Single',
+//     releaseDate: '2024.06.05',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/lovememore.jpg',
+//   },
+//   {
+//     title: '小悪魔だってかまわない! - Koakuma Datte Kamawanai!',
+//     type: 'Digital Single',
+//     releaseDate: '2025.02.09',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/koakuma.jpg',
+//   },
+//   {
+//     title: 'Cute for Life',
+//     type: 'Digital Single',
+//     releaseDate: '2025.04.07',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/cfl.jpg',
+//   },
+//   {
+//     title: 'メランコリックハニー - Melancholic Honey',
+//     type: 'Digital Single',
+//     releaseDate: '2025.04.30',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/meraho.jpg',
+//   },
+//   {
+//     title: '美しく生きろ - Utsukushiku Ikiro',
+//     type: 'Single',
+//     releaseDate: '2024.02.21',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/utsukushi.jpg',
+//   },
+//   {
+//     title: 'I’M YOUR IDOL / アドレナリンゲーム - I’M YOUR IDOL / Adrenaline Game',
+//     type: 'Single',
+//     releaseDate: '2024.12.11',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/imidol.jpg',
+//   },
+//   {
+//     title: '見上げるたびに、恋をする。 - Miageru Tabi ni, Koi o Suru.',
+//     type: 'Album',
+//     releaseDate: '2025.12.17',
+//     color: '#2d5fb8',
+//     cover: 'img/disco/miageru.jpg',
+//   },
+// ];
 
 /* ============================================================
    2. INITIALIZATION
@@ -864,7 +864,7 @@ function renderHomeNews() {
     return db.localeCompare(da);
   });
 
-  // Get the top 5
+  // Get the topmsin 5
   const top5 = sorted.slice(0, 5);
 
   // Render cards reusing the existing HTML generator
@@ -1075,6 +1075,7 @@ function createDiscoCardHTML(release) {
     : `background: linear-gradient(160deg, ${escapeHTML(release.color)}55 0%, ${escapeHTML(release.color)} 100%);`;
 
   return `
+   <a href="${discoDetailUrl}/${release.id}"
     <div class="disco-card" tabindex="0" aria-label="${escapeHTML(release.title)} — ${escapeHTML(release.type)}">
       <div class="disco-cover" style="${coverBg}">
         ${coverContent}
@@ -1086,6 +1087,7 @@ function createDiscoCardHTML(release) {
       </div>
       <div class="disco-color-bar" style="background-color: ${escapeHTML(release.color)};"></div>
     </div>
+     </a>
   `;
 }
 
