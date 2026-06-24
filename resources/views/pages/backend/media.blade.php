@@ -44,6 +44,11 @@
 
                                            </select>
                                        </div>
+                                       <div class="form-group">
+                                           <label>Link Postingan</label>
+
+                                           <textarea class="form-control" name="link" placeholder="masukkan  URL Postingan"></textarea>
+                                       </div>
                                        <div class="form-group col-md-6">
                                            <label for="exampleFormControlInput1">Thumbnail</label>
                                            <div class="input-group ">
@@ -143,7 +148,8 @@
                                                                </div>
                                                                <div class="form-group">
                                                                    <label for="exampleFormControlInput1">Deskripsi</label>
-                                                                   <textarea class="form-control" id="deskripsi2-{{ $media->id }}" name="deskripsi" placeholder="masukkan Tulisan">{{ strip_tags($media->deskripsi) }}</textarea>
+                                                                   <textarea class="form-control editor" id="deskripsi2-{{ $media->id }}" name="deskripsi"
+                                                                       placeholder="masukkan Tulisan">{!! $media->deskripsi !!}</textarea>
                                                                </div>
                                                                <div class="form-group">
                                                                    <label for="exampleFormControlInput1">Kategori</label>
@@ -157,6 +163,11 @@
                                                                        @endforeach
 
                                                                    </select>
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <label>Link Postingan</label>
+
+                                                                   <textarea class="form-control" name="link" placeholder="masukkan  URL Postingan">{{ $media->link }}</textarea>
                                                                </div>
                                                                <div class="form-group col-md-6">
                                                                    <label for="exampleFormControlInput1">Thumbnail</label>
@@ -338,9 +349,19 @@
                    }
                });
            });
+           //deskripsi2
            document.addEventListener("DOMContentLoaded", function() {
-               CKEDITOR.replace('deskripsi2-{{ $media->id }}');
+
+               document.querySelectorAll('.editor').forEach(function(el) {
+
+                   CKEDITOR.replace(el.id);
+
+               });
+
            });
+           //    document.addEventListener("DOMContentLoaded", function() {
+           //        CKEDITOR.replace('deskripsi2-{{ $media->id }}');
+           //    });
            $(document).on('submit', '#editformmedia2', function(e) {
                e.preventDefault();
 

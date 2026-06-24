@@ -13,4 +13,5 @@
  <!-- Page level custom scripts -->
  <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>
  <script src="{{ asset('backend/js/demo/chart-pie-demo.js') }}"></script>
+ {{-- <script src="https://cdn.ckeditor.com/4.25.1-lts/standard/ckeditor.js"></script> --}}
  <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>

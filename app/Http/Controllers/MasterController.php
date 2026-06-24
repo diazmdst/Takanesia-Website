@@ -541,6 +541,11 @@ class MasterController extends Controller
                 'sosmed_ig' => $request->sosmed_ig,
                 'sosmed_titok' => $request->sosmed_titok,
                 'profil' =>  $thumbnailPath,
+                'birthday' =>  $request->birthday,
+                'position' =>  $request->position,
+                'blood_type' =>  $request->blood_type,
+                'home_town' =>  $request->home_town,
+                'height' =>  $request->height,
                 'color' => $request->color_setting_id,
             ]);
             $member_id  = $member->id;
@@ -582,6 +587,11 @@ class MasterController extends Controller
             'sosmed_x' => $request->sosmed_x,
             'sosmed_ig' => $request->sosmed_ig,
             'sosmed_titok' => $request->sosmed_titok,
+            'birthday' =>  $request->birthday,
+            'position' =>  $request->position,
+            'blood_type' =>  $request->blood_type,
+            'home_town' =>  $request->home_town,
+            'height' =>  $request->height,
             'color' => $request->color_setting_id,
         ];
 

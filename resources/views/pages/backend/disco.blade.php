@@ -195,16 +195,15 @@
                                                                <div class="form-group">
                                                                    <label for="exampleFormControlInput1">Lirik</label>
                                                                    <textarea class="form-control editor" id="lirik2-{{ $disco->id }}" name="lirik"
-                                                                       placeholder="masukkan Tulisan">{{ strip_tags($disco->lirik) }}</textarea>
-                                                               </div>
+                                                                       placeholder="masukkan Tulisan">{!! $disco->lirik !!}</textarea>
 
-                                                           </div>
-                                                           <div class="modal-footer">
-                                                               <button type="button" class="btn btn-secondary"
-                                                                   data-dismiss="modal">Close</button>
-                                                               <button type="submit" class="btn btn-primary">Save
-                                                                   changes</button>
-                                                           </div>
+                                                               </div>
+                                                               <div class="modal-footer">
+                                                                   <button type="button" class="btn btn-secondary"
+                                                                       data-dismiss="modal">Close</button>
+                                                                   <button type="submit" class="btn btn-primary">Save
+                                                                       changes</button>
+                                                               </div>
                                                        </form>
                                                    </div>
                                                </div>

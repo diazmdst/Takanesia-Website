@@ -49,7 +49,26 @@
                                            <input type="text" class="form-control" name="sosmed_tiktok"
                                                id="exampleFormControlInput1" placeholder="masukkan nama member">
                                        </div>
-
+                                       <div class="form-group">
+                                           <label for="exampleFormControlInput1">Position</label>
+                                           <input type="text" class="form-control" name="position"
+                                               id="exampleFormControlInput1" placeholder="masukkan position">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="exampleFormControlInput1">Blood Type</label>
+                                           <input type="text" class="form-control" name="blood_type"
+                                               id="exampleFormControlInput1" placeholder="masukkan blood_type">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="exampleFormControlInput1">Home Town</label>
+                                           <input type="text" class="form-control" name="home_town"
+                                               id="exampleFormControlInput1" placeholder="masukkan home_town">
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="exampleFormControlInput1">Height</label>
+                                           <input type="number" class="form-control" name="height"
+                                               id="exampleFormControlInput1" placeholder="masukkan height">
+                                       </div>
                                        <div class="form-group">
                                            <label for="exampleFormControlInput1">colour Member</label>
                                            <select id="id_kat_program" name = "color_setting_id" class="form-control">
@@ -63,6 +82,11 @@
                                                @endforeach
 
                                            </select>
+                                       </div>
+                                       <div class="form-group">
+                                           <label for="date_rilis">Birthday</label>
+
+                                           <input type="date" class="form-control" id="birthday" name="birthday">
                                        </div>
                                        <div class="form-group col-md-6">
                                            <label for="exampleFormControlInput1">Foto Profil</label>
@@ -121,7 +145,8 @@
                                @foreach ($member as $key => $member)
                                    <tr>
                                        <td>{{ $key + 1 }}</td>
-                                       <td>{{ $member->nama }} <span class="fw-bold">({{ $member->nama_kanji }})</span></td>
+                                       <td>{{ $member->nama }} <span class="fw-bold">({{ $member->nama_kanji }})</span>
+                                       </td>
                                        <td><img src="{{ $member->profil }}" alt=""
                                                style="width: 50%; height:300px; object-fit:cover;"></td>
                                        <td>{{ $member->rcolor?->nama }} <div
@@ -198,9 +223,36 @@
                                                                    <input type="text" class="form-control"
                                                                        name="sosmed_tiktok" id="exampleFormControlInput1"
                                                                        placeholder="masukkan nama member"
-                                                                       value="{{ $member->sosmed_tiktok }}">
+                                                                       value="{{ $member->sosmed_titok }}">
                                                                </div>
-
+                                                               <div class="form-group">
+                                                                   <label for="exampleFormControlInput1">Position</label>
+                                                                   <input type="text" class="form-control"
+                                                                       name="position" id="exampleFormControlInput1"
+                                                                       placeholder="masukkan position"
+                                                                       value="{{ $member->position }}">
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <label for="exampleFormControlInput1">Blood Type</label>
+                                                                   <input type="text" class="form-control"
+                                                                       name="blood_type" id="exampleFormControlInput1"
+                                                                       placeholder="masukkan blood_type"
+                                                                       value="{{ $member->blood_type }}">
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <label for="exampleFormControlInput1">Home Town</label>
+                                                                   <input type="text" class="form-control"
+                                                                       name="home_town" id="exampleFormControlInput1"
+                                                                       placeholder="masukkan home_town"
+                                                                       value="{{ $member->home_town }}">
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <label for="exampleFormControlInput1">Height</label>
+                                                                   <input type="number" class="form-control"
+                                                                       name="height" id="exampleFormControlInput1"
+                                                                       placeholder="masukkan height"
+                                                                       value="{{ $member->height }}">
+                                                               </div>
                                                                <div class="form-group">
                                                                    <label
                                                                        for="exampleFormControlInput1">color_setting</label>
@@ -218,6 +270,13 @@
                                                                        @endforeach
 
                                                                    </select>
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <label for="birthday">Birthday</label>
+
+                                                                   <input type="date" class="form-control"
+                                                                       id="birthday" name="birthday"
+                                                                       value="{{ old('birthday', $member->birthday ? \Carbon\Carbon::parse($member->birthday)->format('Y-m-d') : '') }}">
                                                                </div>
                                                                <div class="form-group col-md-6">
                                                                    <label for="exampleFormControlInput1">Foto
