@@ -60,4 +60,10 @@ Route::middleware(['auth', 'role:Admin'])->group(function () {
     Route::post('/edit_member/{id}', [MasterController::class, 'edit_member'])->name('Edit_Member');
     Route::delete('/member/{member}', [MasterController::class, 'member_destroy'])->name('Member.destroy');
     Route::delete('/member/detail-picture/{id}', [MasterController::class, 'deletePictureMember']);
+
+    //admin_discography
+    Route::get('admin_disco', [MasterController::class, 'admin_disco'])->name('HalamanAdmindisco');
+    Route::post('/tambah_disco', [MasterController::class, 'tambah_disco'])->name('Tambah_disco');
+    Route::post('/edit_disco/{id}', [MasterController::class, 'edit_disco'])->name('Edit_disco');
+    Route::delete('/disco/{disco}', [MasterController::class, 'disco_destroy'])->name('Disco.destroy');
 });

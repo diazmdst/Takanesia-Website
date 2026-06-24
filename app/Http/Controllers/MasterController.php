@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Kategori;
 use App\Models\Kategori_Disco;
+use App\Models\Discography;
 use App\Models\Colour_setting;
 use App\Models\About;
 use App\Models\Media;
@@ -702,5 +703,109 @@ class MasterController extends Controller
         request()->session()->invalidate();
         request()->session()->regenerateToken();
         return redirect('/');
+    }
+    //disco
+    // adminkategori_disco_disco
+
+    public function admin_disco()
+    {
+        $discos = Discography::get();
+        $disco = Discography::get();
+        $kat_disco = Kategori_Disco::get();
+        $kat_discos = Kategori_Disco::get();
+        return view('pages.backend.disco', compact('discos', 'disco', 'kat_disco', 'kat_discos'));
+    }
+    public function tambah_disco(Request $request)
+    {
+
+        DB::beginTransaction();
+
+        try {
+            $thumbnailPath = null;
+            if ($request->hasFile('foto')) {
+                $thumbnail = $request->file('foto');
+                $thumbnailName = uniqid() . '_foto_' . $thumbnail->getClientOriginalName();
+                $thumbnail->move(public_path('inputan/disco/thumbnail/'), $thumbnailName);
+                $thumbnailPath = 'inputan/disco/thumbnail/' . $thumbnailName;
+            }
+
+            $disco = Discography::create([
+                'kategori_disco' => $request->kategori_disco,
+                'judul' => $request->judul,
+                'foto' => $thumbnailPath,
+                'date_rilis' => $request->date_rilis,
+                'link_embed_spotify' => $request->link_embed_spotify,
+                'lirik' => $request->lirik
+
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'status' => 1,
+                'message' => 'disco berhasil diupdate'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return response()->json([
+                'status' => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
+    public function edit_disco(Request $request, $id)
+    {
+
+        $disco = Discography::find($id);
+        $data = [
+            'kategori_disco' => $request->kategori_disco,
+            'judul' => $request->judul,
+            'date_rilis' => $request->date_rilis,
+            'link_embed_spotify' => $request->link_embed_spotify,
+            'lirik' => $request->lirik
+        ];
+        if ($request->hasFile('foto')) {
+
+            $thumbnail = $request->file('foto');
+            $thumbnailName = uniqid() . '_foto_' . $thumbnail->getClientOriginalName();
+            $thumbnail->move(public_path('inputan/disco/thumbnail'), $thumbnailName);
+
+            $data['foto'] = 'inputan/disco/thumbnail/' . $thumbnailName;
+        }
+        Discography::where('id', $id)->update($data);
+        return response()->json([
+            'status'  => 1,
+            'message' => 'Data disco berhasil diupdate'
+        ]);
+    }
+    public function disco_destroy(Discography $disco)
+    {
+        DB::beginTransaction();
+
+        try {
+
+            // hapus file gambar jika ada
+            if ($disco->image && file_exists(public_path($disco->image))) {
+                unlink(public_path($disco->image));
+            }
+
+            // hapus data
+            $disco->delete();
+
+            DB::commit();
+
+            return response()->json([
+                'status'  => 1,
+                'message' => 'Data disco berhasil dihapus'
+            ]);
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+
+            return response()->json([
+                'status'  => 0,
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
