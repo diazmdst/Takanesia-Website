@@ -19,6 +19,7 @@
             </div>
         </section>
     </main>
+
     <script>
         const discoData = @json($disco);
         const discoDetailUrl = "{{ url('/detail-disco') }}";

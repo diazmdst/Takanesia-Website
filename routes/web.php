@@ -23,6 +23,7 @@ Route::get('/about', [BerandaController::class, 'about'])->name('HalamanAbout');
 Route::get('/media', [BerandaController::class, 'media'])->name('HalamanMedia');
 Route::get('/member', [BerandaController::class, 'member'])->name('HalamanMember');
 Route::get('/discography', [BerandaController::class, 'discography'])->name('HalamanDiscography');
+Route::get('/card-member', [BerandaController::class, 'card_member'])->name('HalamanCardMember');
 Route::get('/detail-media/{id}', [BerandaController::class, 'detailmedia'])->name('HalamanDMedia/{id}');
 Route::get('/detail-disco/{id}', [BerandaController::class, 'detaildisco'])->name('HalamanDDisco/{id}');
 Route::get('/admin', [MasterController::class, 'halamanlogin'])->name('HalamanLogin');

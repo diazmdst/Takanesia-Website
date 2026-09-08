@@ -17,6 +17,7 @@
     <title>【公式】タカネシア</title>
     <!-- [LINK] Google Fonts — Noto Sans JP for Japanese text, Playfair Display for decorative headings -->
     @include('includes.style')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
 <!-- [BODY] Main document body -->

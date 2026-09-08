@@ -2,9 +2,9 @@
 
 @section('konten')
     <!-- ============================================================
-                                   HERO SECTION
-                                   Full-viewport visual splash with group name and tagline.
-                                   ============================================================ -->
+                                       HERO SECTION
+                                       Full-viewport visual splash with group name and tagline.
+                                       ============================================================ -->
     <section class="hero" id="hero" aria-label="Hero Section">
         <!-- [HERO BG] Decorative background layer — gradient + pattern via CSS -->
         <div class="hero-bg" aria-hidden="true"></div>
@@ -30,14 +30,14 @@
     </section>
 
     <!-- ============================================================
-                                   MAIN CONTENT
-                                   ============================================================ -->
+                                       MAIN CONTENT
+                                       ============================================================ -->
     <main id="mainContent" role="main">
 
         <!-- ----------------------------------------------------------
-                                     COMMUNITY NEWS
-                                     Displays the 5 latest media items.
-                                     ---------------------------------------------------------- -->
+                                         COMMUNITY NEWS
+                                         Displays the 5 latest media items.
+                                         ---------------------------------------------------------- -->
         <section class="section home-news-section is-visible" aria-label="MEDIA">
             <div class="home-news-header">
                 <h2 class="home-news-title">
@@ -56,9 +56,9 @@
 
     </main><!-- /#mainContent -->
     <!-- ============================================================
-                                   MEDIA MODAL
-                                   Shown when a media card is clicked.
-                                   ============================================================ -->
+                                       MEDIA MODAL
+                                       Shown when a media card is clicked.
+                                       ============================================================ -->
     <div class="member-modal-overlay" id="mediaModal" role="dialog" aria-modal="true" aria-label="ニュース詳細">
         <!-- [MODAL CONTENT BOX] The white popup panel -->
         {{-- <div class="member-modal-box" id="mediaModalContent">

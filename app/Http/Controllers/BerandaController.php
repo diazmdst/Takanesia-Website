@@ -19,6 +19,10 @@ use App\Models\Media;
 use App\Models\Galeri;
 use App\Models\Galeri_Member;
 use App\Models\Member;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+
+// use App\Models\Me;
 
 class BerandaController extends Controller
 {
@@ -109,5 +113,15 @@ class BerandaController extends Controller
         $disco = Discography::find($id);
 
         return view('pages.ddiscography', compact('disco'));
+    }
+    public function card_member()
+    {
+        $member = Member::get();
+        $uniqueId = (string) Str::uuid();
+        $qrCode = QrCode::size(200)
+            ->margin(0)
+            ->generate($uniqueId);
+
+        return view('pages.card_member', compact('member', 'uniqueId', 'qrCode'));
     }
 }
