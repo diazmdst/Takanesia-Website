@@ -117,11 +117,12 @@ class BerandaController extends Controller
     public function card_member()
     {
         $member = Member::get();
+        $disco = Discography::get();
         $uniqueId = (string) Str::uuid();
         $qrCode = QrCode::size(200)
             ->margin(0)
             ->generate($uniqueId);
 
-        return view('pages.card_member', compact('member', 'uniqueId', 'qrCode'));
+        return view('pages.card_member', compact('member', 'disco', 'uniqueId', 'qrCode'));
     }
 }

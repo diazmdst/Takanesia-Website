@@ -16,8 +16,8 @@
             <div class="member-container">
 
                 <!-- =========================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 CANVAS
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ========================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     CANVAS
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ========================== -->
                 <div class="canvas-area">
                     <canvas id="memberCanvas" width="1000" height="610">
                     </canvas>
@@ -29,8 +29,8 @@
 
 
                 <!-- =========================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 FORM
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ========================== -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     FORM
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ========================== -->
                 <div class="form-area">
 
                     <form id="memberForm">
@@ -44,25 +44,26 @@
 
                         <!-- Discord & Instagram -->
                         <div class="form-row">
-
+                            {{-- 
                             <div class="form-group">
                                 <label for="discord">Discord</label>
                                 <input type="text" id="discord" class="form-control" placeholder="Kumapan">
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label for="instagram">Instagram</label>
                                 <input type="text" id="instagram" class="form-control" placeholder="Kumapan">
                             </div>
+                            <div class="form-group">
+                                <label for="twitter">twitter</label>
+                                <input type="text" id="twitter" class="form-control" placeholder="Kumapan">
+                            </div>
+
 
                         </div>
 
 
-                        <!-- Facebook -->
-                        <div class="form-group">
-                            <label for="facebook">Facebook</label>
-                            <input type="text" id="facebook" class="form-control" placeholder="Kumapan">
-                        </div>
+                        <!-- twitter -->
 
 
                         <!-- Comment -->
@@ -117,7 +118,28 @@
                             </small> --}}
                         </div>
 
-
+                        <div class="form-group"> <label for="discography_id">Discography</label>
+                            <div class="custom-select" id="discographySelect">
+                                <div class="select-selected"> <span>-- Pilih Discography --</span> <span class="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+                                        </svg>
+                                    </span></div>
+                                <div class="select-dropdown"> <input type="text" class="select-search"
+                                        placeholder="Cari discography..." autocomplete="off">
+                                    <div class="select-options">
+                                        @foreach ($disco as $lagu)
+                                            <div class="select-option" data-value="{{ $lagu->id }}"> {{ $lagu->judul }}
+                                            </div>
+                                            <input type="hidden" name="discography_id" id="discography_id"
+                                                data-foto ="{{ $item->foto }}" value="{{ $lagu->id }}">
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
 
 
@@ -144,7 +166,8 @@
                                 <button type="button" class="color-option" data-color="#858DD8" style="background:#858DD8">
                                 </button>
 
-                                <button type="button" class="color-option" data-color="#B57DDB" style="background:#B57DDB">
+                                <button type="button" class="color-option" data-color="#B57DDB"
+                                    style="background:#B57DDB">
                                 </button>
 
                             </div>
@@ -192,6 +215,122 @@
         qrImage.src = "data:image/png;base64,{{ $qrCode }}";
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const select = document.getElementById('discographySelect');
+            const selected = select.querySelector('.select-selected');
+            const dropdown = select.querySelector('.select-dropdown');
+            const search = select.querySelector('.select-search');
+            const optionsContainer = select.querySelector('.select-options');
+            const hiddenInput = document.getElementById('discography_id');
+
+            selected.addEventListener('click', function() {
+
+                select.classList.toggle('open');
+
+                if (select.classList.contains('open')) {
+                    search.focus();
+                }
+
+            });
+
+            search.addEventListener('input', function() {
+
+                const keyword = this.value.toLowerCase().trim();
+
+                const options = optionsContainer.querySelectorAll('.select-option');
+
+                let found = false;
+
+                options.forEach(function(option) {
+
+                    const text = option.textContent.toLowerCase();
+
+                    if (text.includes(keyword)) {
+                        option.style.display = 'block';
+                        found = true;
+                    } else {
+                        option.style.display = 'none';
+                    }
+
+                });
+
+                let noResult = optionsContainer.querySelector('.no-result');
+
+                if (!found) {
+
+                    if (!noResult) {
+                        noResult = document.createElement('div');
+                        noResult.className = 'no-result';
+                        noResult.textContent = 'Data tidak ditemukan';
+                        optionsContainer.appendChild(noResult);
+                    }
+
+                } else {
+
+                    if (noResult) {
+                        noResult.remove();
+                    }
+
+                }
+
+            });
+
+            optionsContainer.addEventListener('click', function(e) {
+
+                const option = e.target.closest('.select-option');
+
+                if (!option) {
+                    return;
+                }
+
+                const value = option.dataset.value;
+                const text = option.textContent.trim();
+
+                hiddenInput.value = value;
+
+                selected.querySelector('span:first-child').textContent = text;
+
+                optionsContainer
+                    .querySelectorAll('.select-option')
+                    .forEach(function(item) {
+                        item.classList.remove('selected');
+                    });
+
+                option.classList.add('selected');
+
+                select.classList.remove('open');
+
+                search.value = '';
+
+                optionsContainer
+                    .querySelectorAll('.select-option')
+                    .forEach(function(item) {
+                        item.style.display = 'block';
+                    });
+
+            });
+
+            document.addEventListener('click', function(e) {
+
+                if (!select.contains(e.target)) {
+                    select.classList.remove('open');
+                }
+
+            });
+
+        });
+        // member
+        const memberSelect = document.querySelector('.slct-mmbr');
+        const memberToggle = document.querySelector('.slct-mmbr-toggle');
+        const memberPlaceholder = document.querySelector('.slct-mmbr-placeholder');
+        const memberSearch = document.querySelector('.slct-mmbr-search');
+        const memberItems = document.querySelectorAll('.slct-mmbr-item');
+        const memberCheckboxes = document.querySelectorAll(
+            '.slct-mmbr-item input[type="checkbox"]'
+        );
+
+        // lagu-search
         const memberSelect = document.querySelector('.slct-mmbr');
         const memberToggle = document.querySelector('.slct-mmbr-toggle');
         const memberPlaceholder = document.querySelector('.slct-mmbr-placeholder');
@@ -305,6 +444,28 @@
                 profil: checkbox.dataset.profil
             }));
         }
+
+
+        function getSelecteddiscography() {
+
+            const selected = from(memberCheckboxes)
+                .filter(checkbox => checkbox.checked);
+
+            if (selected.length > 5) {
+                alert('tidak boleh lebih dari 5 dasar karbit');
+
+                // Batalkan checkbox yang baru saja dipilih
+                selected[selected.length - 1].checked = false;
+
+                return getSelectedMembers();
+            }
+
+            return selected.map(checkbox => ({
+                id: checkbox.value,
+                nama: checkbox.dataset.name,
+                profil: checkbox.dataset.profil
+            }));
+        }
     </script>
 
     <script>
@@ -313,7 +474,7 @@
 
         const template = new Image();
 
-        template.src = "{{ asset('assets/img/kartu.png') }}";
+        template.src = "{{ asset('assets/img/kartu.jpeg') }}";
 
         let selectedColor = '#59B7D8';
 
@@ -363,53 +524,57 @@
             const nama =
                 document.getElementById('nama').value || 'Member';
 
-            ctx.fillStyle = '#111';
+            ctx.fillStyle = 'white';
+
             ctx.font = 'bold 44px Arial';
 
             ctx.fillText(
                 nama,
-                420,
+                395,
                 145
             );
 
-            // Discord
-            const discord =
-                document.getElementById('discord').value || '-';
+            // // Discord
+            // const discord =
+            //     document.getElementById('discord').value || '-';
 
-            drawSocial(
-                'Discord',
-                discord,
-                420,
-                165
-            );
+            // drawSocial(
+            //     'Discord',
+            //     discord,
+            //     420,
+            //     165
+            // );
 
             // Instagram
             const instagram =
                 document.getElementById('instagram').value || '-';
-
+            ctx.fillStyle = 'black';
             drawSocial(
-                'Instagram',
                 instagram,
-                420,
-                215
+                190,
+                470
             );
 
-            // Facebook
-            const facebook =
-                document.getElementById('facebook').value || '-';
+            // twitter
+            const twitter =
+                document.getElementById('twitter').value || '-';
 
             drawSocial(
-                'Facebook',
-                facebook,
-                420,
-                265
-            );
 
+                twitter,
+                190,
+                525
+            );
+            // comment untuk oshi
             // Comment
             const comment =
                 document.getElementById('comment')?.value || '';
 
             drawComment(comment);
+            const discographySelect =
+                document.getElementById('discographySelect')?.value || '';
+
+            drawdiscographySelect(discographySelect);
             // PROFIL MEMBER YANG DIPILIH
             drawMemberProfiles();
 
@@ -420,12 +585,12 @@
         function drawComment(comment) {
 
             const x = 400;
-            const y = 360;
+            const y = 400;
             const width = 512;
             const height = 160;
 
             // Background
-            ctx.fillStyle = '#ffffffff';
+            ctx.fillStyle = 'transparent';
 
             roundRect(
                 ctx,
@@ -442,7 +607,7 @@
             if (!comment) return;
 
             // Text
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = 'transparent';
             ctx.font = '20px Arial';
 
             const maxWidth = width - 40;
@@ -479,55 +644,121 @@
             });
         }
 
-        // ==========================================
-        // DRAW CANVAS
-        // ==========================================
+        // lagu
+        function drawdiscographySelect(discographySelect) {
+            const selectedMembers = getSelecteddiscography();
+            const x = 100;
+            const y = 100;
+            const width = 512;
+            const height = 160;
 
-
-
-        function drawSocial(label, value, x, y) {
-
-            // Kotak label
-
-            ctx.fillStyle = '#5D72A7';
+            // Background
+            ctx.fillStyle = 'transparent';
 
             roundRect(
                 ctx,
                 x,
                 y,
-                115,
-                45,
-                10
+                width,
+                height,
+                15
             );
 
             ctx.fill();
 
+            // Kalau comment kosong, tetap tampilkan kotaknya
+            if (!discographySelect) return;
 
-            // Text label
+            // Text
+            ctx.fillStyle = 'transparent';
+            ctx.font = '20px Arial';
 
-            ctx.fillStyle = '#fff';
+            const maxWidth = width - 40;
+            const lineHeight = 28;
 
-            ctx.font = 'bold 20px Arial';
+            const words = discographySelect.split(' ');
+            let line = '';
+            let lines = [];
 
-            ctx.fillText(
-                label,
-                x + 20,
-                y + 29
-            );
+            words.forEach(word => {
 
+                const testLine = line + word + ' ';
+                const metrics = ctx.measureText(testLine);
 
-            // Value
+                if (metrics.width > maxWidth) {
+                    lines.push(line);
+                    line = word + ' ';
+                } else {
+                    line = testLine;
+                }
 
-            ctx.fillStyle = '#5D72A7';
+            });
 
-            ctx.font = 'bold 20px Arial';
+            lines.push(line);
 
-            ctx.fillText(
-                value,
-                x + 140,
-                y + 29
-            );
+            lines.forEach((line, index) => {
+
+                ctx.fillText(
+                    line.trim(),
+                    x + 20,
+                    y + 35 + (index * lineHeight)
+                );
+
+            });
         }
+        // akhir lagu
+
+        // ==========================================
+        // DRAW CANVAS
+        // ==========================================
+        function drawSocial(value, x, y) {
+            ctx.font = 'bold 16px Arial';
+            ctx.fillText(value, x, y);
+        }
+
+        // function drawSocial(label, value, x, y) {
+
+        //     // Kotak label
+
+        //     ctx.fillStyle = '#5D72A7';
+
+        //     roundRect(
+        //         ctx,
+        //         x,
+        //         y,
+        //         115,
+        //         45,
+        //         10
+        //     );
+
+        //     ctx.fill();
+
+
+        //     // Text label
+
+        //     ctx.fillStyle = '#fff';
+
+        //     ctx.font = 'bold 20px Arial';
+
+        //     ctx.fillText(
+        //         label,
+        //         x + 20,
+        //         y + 29
+        //     );
+
+
+        //     // Value
+
+        //     ctx.fillStyle = '#5D72A7';
+
+        //     ctx.font = 'bold 20px Arial';
+
+        //     ctx.fillText(
+        //         value,
+        //         x + 140,
+        //         y + 29
+        //     );
+        // }
 
         function roundRect(ctx, x, y, width, height, radius) {
 
@@ -584,13 +815,13 @@
         }
 
         function drawMemberProfiles() {
-
+            // start oshi
             const selectedMembers = getSelectedMembers();
 
             if (selectedMembers.length === 0) return;
 
             const startX = 420;
-            const startY = 380;
+            const startY = 450;
 
             const photoWidth = 80;
             const photoHeight = 80;
@@ -633,15 +864,14 @@
         }
 
         function drawOshi() {
-
-            const x = 226;
-            const y = 400;
+            // untuk qrcode
+            const x = 736;
+            const y = 274;
 
             const width = 135;
             const height = 130;
 
-            // Background
-            ctx.fillStyle = selectedColor;
+
 
             roundRect(
                 ctx,
@@ -691,10 +921,11 @@
         });
         const inputs = [
             'nama',
-            'discord',
+
             'instagram',
-            'facebook',
-            'comment'
+            'twitter',
+            'comment',
+            'discographySelect'
         ];
 
         inputs.forEach(id => {
@@ -709,33 +940,33 @@
 
         });
         //posisi hapus text area
-        document
-            .querySelectorAll('.color-option')
-            .forEach(button => {
+        // document
+        //     .querySelectorAll('.color-option')
+        //     .forEach(button => {
 
-                button.addEventListener('click', function() {
+        //         button.addEventListener('click', function() {
 
-                    selectedColor =
-                        this.dataset.color;
-
-
-                    document
-                        .querySelectorAll('.color-option')
-                        .forEach(btn => {
-
-                            btn.classList.remove('active');
-
-                        });
+        //             selectedColor =
+        //                 this.dataset.color;
 
 
-                    this.classList.add('active');
+        //             document
+        //                 .querySelectorAll('.color-option')
+        //                 .forEach(btn => {
+
+        //                     btn.classList.remove('active');
+
+        //                 });
 
 
-                    drawCanvas();
+        //             this.classList.add('active');
 
-                });
 
-            });
+        //             drawCanvas();
+
+        //         });
+
+        //     });
         document
             .getElementById('btnFoto')
             .addEventListener('click', function() {
@@ -828,11 +1059,12 @@
             ctx.beginPath();
 
             ctx.rect(
-                105,
+                145,
                 125,
-                255,
-                245
+                200,
+                290
             );
+
 
             ctx.clip();
 
